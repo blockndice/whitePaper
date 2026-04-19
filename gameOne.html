@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Paper - Prototype de Mini-Jeu Web3</title>
+    <link rel="stylesheet" href="asset/css/whitepaper.css">
+    <link rel="stylesheet" href="asset/css/projetstatut.css">
+    <link rel="stylesheet" href="asset/css/language-switcher.css">
+    <link rel="stylesheet" href="asset/css/theme-switcher.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header" style="--header-bg-image: url('https://www.dol-celeb.com/wp-content/uploads/2023/09/excalibur.jpg')">
+            <div class="header-icon">🎮</div>
+            <h1 class="main-title" data-i18n="header-title">Project One</h1>
+            <p class="subtitle" data-i18n="header-subtitle">White Paper v0</p>
+        </header>
+
+        <div class="notification-wrapper">
+            <div class="status-banner">
+                <div class="status-header">
+                    <span class="status-icon">📊</span>
+                    <span class="status-title" data-i18n="status-title">Statut du projet</span>
+                </div>
+                <div class="status-bar">
+                    <div class="status-step completed">
+                        <div class="status-dot"></div>
+                        <span class="status-label" data-i18n="status-1">Fondation</span>
+                    </div>
+                    <div class="status-step active">
+                        <div class="status-dot"></div>
+                        <span class="status-label" data-i18n="status-2">Développement</span>
+                    </div>
+                    <div class="status-step">
+                        <div class="status-dot"></div>
+                        <span class="status-label" data-i18n="status-3">Testing</span>
+                    </div>
+                    <div class="status-step">
+                        <div class="status-dot"></div>
+                        <span class="status-label" data-i18n="status-4">Playable<br>Itch.io</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="back-button-wrapper">
+            <a href="index.html" class="back-button">
+                <span class="back-button-icon">←</span>
+                <span data-i18n="back-button">Retour Block'n Dice</span>
+            </a>
+        </div>
+
+        <nav class="table-of-contents">
+            <h2 data-i18n="toc-title">Table des matières</h2>
+            <ul>
+                <li><a href="#objectif" data-i18n="toc-objectif">Objectif</a></li>
+                <li><a href="#objectifs-detailles" data-i18n="toc-objectifs-detailles">Objectifs détaillés</a></li>
+                <li><a href="#methodologie" data-i18n="toc-methodologie">Méthodologie</a></li>
+                <li><a href="#recompenses" data-i18n="toc-recompenses">Système de récompense</a></li>
+                <li><a href="#note" data-i18n="toc-note">Note finale</a></li>
+            </ul>
+        </nav>
+
+        <section id="objectif" class="section">
+            <div class="section-header">
+                <span class="icon">🎯</span>
+                <h2 data-i18n="section-objectif-title">Objectif</h2>
+            </div>
+            <div class="content-box">
+                <p data-i18n="objectif-p1">Découvrir l'intersection entre le jeu vidéo et la blockchain à travers la création de petits jeux Web3 jouables.</p>
+                <p data-i18n="objectif-p2">Le white paper constitue l'étape numéro 1 afin de poser les fondations et l'orientation du projet. Au fil du temps, il sera complété, cependant les principaux éléments sont listés ci-dessous.</p>
+            </div>
+        </section>
+
+        <section id="objectifs-detailles" class="section">
+            <div class="section-header">
+                <span class="icon">📌</span>
+                <h2 data-i18n="section-objectifs-detailles-title">Objectifs détaillés</h2>
+            </div>
+            <div class="content-box">
+                <ul class="objectives-list">
+                    <li data-i18n="objectif-1">Concevoir des mini-jeux <strong>simples et fun</strong> intégrant des fonctionnalités Web3 (NFTs, portefeuilles, récompenses on-chain).</li>
+                    <li data-i18n="objectif-2">Tester le gameplay et recueillir des retours sur <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> en priorité.</li>
+                    <li data-i18n="objectif-3">Expérimenter et itérer les mécaniques blockchain selon les retours des joueurs et la faisabilité technique.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="methodologie" class="section">
+            <div class="section-header">
+                <span class="icon">🛠️</span>
+                <h2 data-i18n="section-methodologie-title">Méthodologie</h2>
+            </div>
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="card-number">1</div>
+                    <h3 data-i18n="methodo-1-title">Prototyper</h3>
+                    <p data-i18n="methodo-1-desc">Développer le jeu avec HTML5/JavaScript, avec une évolution future vers Unreal Engine.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">2</div>
+                    <h3 data-i18n="methodo-2-title">Publier</h3>
+                    <p data-i18n="methodo-2-desc">Déployer une version jouable sur itch.io pour obtenir du feedback de la communauté.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">3</div>
+                    <h3 data-i18n="methodo-3-title">Intégrer Web3</h3>
+                    <p data-i18n="methodo-3-desc">Utiliser l'écosystème <strong>Solana</strong> et <strong>Pump.fun</strong> pour la gestion du token.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">4</div>
+                    <h3 data-i18n="methodo-4-title">Open Source</h3>
+                    <p data-i18n="methodo-4-desc">Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L'architecture reste <strong>privée</strong> pour des raisons de sécurité.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="recompenses" class="section">
+            <div class="section-header">
+                <span class="icon">🎁</span>
+                <h2 data-i18n="section-recompenses-title">Système de Récompense</h2>
+            </div>
+            <div class="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-icon">🎰</div>
+                    <h3 data-i18n="reward-1-title">Loterie</h3>
+                    <p data-i18n="reward-1-desc">Le joueur reçoit une récompense aléatoire parmi une sélection d'objets ou de bonus possibles.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">🗺️</div>
+                    <h3 data-i18n="reward-2-title">Carte au trésor</h3>
+                    <p data-i18n="reward-2-desc">Le joueur suit des indices ou une carte pour trouver une récompense cachée dans le monde du jeu.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">🎯</div>
+                    <h3 data-i18n="reward-3-title">Objectif</h3>
+                    <p data-i18n="reward-3-desc">Une récompense est donnée lorsque le joueur atteint un score précis, un temps record, ou un autre objectif mesurable.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">⚔️</div>
+                    <h3 data-i18n="reward-4-title">Mission</h3>
+                    <p data-i18n="reward-4-desc">Le joueur complète une ou plusieurs missions (quêtes, défis, mini-jeux) pour débloquer une récompense spécifique.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="note" class="section note-section">
+            <div class="section-header">
+                <span class="icon">💬</span>
+                <h2 data-i18n="section-note-title">Note</h2>
+            </div>
+            <div class="content-box note-box">
+                <p data-i18n="note-final"><strong>Projet de taille humaine en développement</strong></p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p data-i18n="footer-text">© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0</p>
+            <p class="footer-note" data-i18n="footer-note">Document évolutif - Les spécifications peuvent être mises à jour au fil du développement</p>
+
+            <div id="social-network" class="social-links">
+                <a href="https://x.com/blockndice" target="_blank" rel="noopener" class="social-icon x" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="social-icon github" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="social-icon itchio" title="Itch.io"><i class="fab fa-itch-io"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="social-icon youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <div class="language-switcher">
+        <button class="lang-btn" data-lang="fr" data-tooltip="Français">
+            <span class="fi fi-fr"></span>
+        </button>
+        <button class="lang-btn" data-lang="en" data-tooltip="English">
+            <span class="fi fi-gb"></span>
+        </button>
+        <button class="lang-btn" data-lang="es" data-tooltip="Español">
+            <span class="fi fi-es"></span>
+        </button>
+    </div>
+
+    <script src="asset/js/whitepaper.js"></script>
+    <script src="asset/js/theme-switcher.js"></script>
+    <script src="asset/js/language-gameOne.js"></script>
+</body>
+</html>

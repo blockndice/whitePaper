@@ -1,0 +1,694 @@
+/* ========== RESET ET STYLES DE BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== VARIABLES THÈME ========== */
+
+/* Variables pour le thème sombre (par défaut) */
+:root,
+:root[data-theme="dark"] {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --secondary: #8b5cf6;
+    --accent: #ec4899;
+    --bg-main: #0f172a;
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    --bg-card: #1e293b;
+    --bg-card-hover: #334155;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --border: #334155;
+    --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Variables pour le thème clair */
+:root[data-theme="light"] {
+    --primary: #4f46e5;
+    --primary-dark: #4338ca;
+    --secondary: #7c3aed;
+    --accent: #db2777;
+    --bg-main: #f8fafc;
+    --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+    --bg-card: #ffffff;
+    --bg-card-hover: #f1f5f9;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --border: #e2e8f0;
+    --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* ========== BODY ========== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    transition: background 0.5s ease, color 0.3s ease;
+}
+
+/* Animation lors du switch de thème */
+body.theme-transitioning {
+    animation: themeSwitch 0.5s ease-in-out;
+}
+
+@keyframes themeSwitch {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.95;
+        transform: scale(0.99);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    margin-left: calc(280px + 4rem + 2rem);
+}
+
+/* ========== HEADER ========== */
+.header {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 40px var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--header-bg-image, none);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.header-icon,
+.main-title,
+.subtitle {
+    position: relative;
+    z-index: 1;
+}
+
+.header-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+.header .main-title,
+.header .subtitle {
+    color: #ffffff;
+}
+
+:root[data-theme="light"] .header {
+    color: #ffffff;
+}
+
+:root[data-theme="light"] .main-title,
+:root[data-theme="light"] .subtitle {
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ========== CLASSE BANNIERE PERSONNALISÉE ========== */
+.banniereUp {
+    background: transparent !important;
+}
+
+.banniereUp::before {
+    opacity: 1 !important;
+}
+
+.banniereUp .header-icon {
+    opacity: 0;
+}
+
+.banniereUp .main-title {
+    opacity: 0;
+}
+
+.banniereUp .subtitle {
+    opacity: 0;
+}
+
+/* ========== TABLE DES MATIÈRES ========== */
+.table-of-contents {
+    position: fixed;
+    left: 2rem;
+    top: 2rem;
+    width: 280px;
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 20px var(--shadow);
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.table-of-contents h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.table-of-contents ul {
+    list-style: none;
+}
+
+.table-of-contents li {
+    margin: 0.5rem 0;
+}
+
+.table-of-contents a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.table-of-contents a:hover {
+    color: var(--primary);
+    background: rgba(99, 102, 241, 0.1);
+    transform: translateX(5px);
+}
+
+/* ========== SECTIONS ========== */
+.section {
+    margin-bottom: 3rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-header .icon {
+    font-size: 2rem;
+}
+
+.section-header h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.content-box {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.content-box p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.content-box p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========== LISTES D'OBJECTIFS ========== */
+.objectives-list,
+.explains-list,
+.roadmap-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.objectives-list li {
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.objectives-list li:last-child {
+    margin-bottom: 0;
+}
+
+.objectives-list a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.objectives-list a:hover {
+    text-decoration: underline;
+}
+
+/* ========== GRILLE MÉTHODOLOGIE ========== */
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.methodology-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.methodology-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.methodology-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px var(--shadow);
+    background: var(--bg-card-hover);
+}
+
+.card-number {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.methodology-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.methodology-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ========== CARTES DE RÉCOMPENSES ========== */
+.rewards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.reward-card {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px var(--shadow);
+}
+
+.reward-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px var(--shadow);
+    border-color: var(--primary);
+}
+
+.reward-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.reward-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+}
+
+.reward-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+/* ========== EXPLICATIONS DES RÉCOMPENSES ========== */
+.explains-container {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 15px var(--shadow);
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.explains-container h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.explains-list li {
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.explains-list li:hover {
+    background: rgba(99, 102, 241, 0.15);
+    transform: translateX(5px);
+}
+
+.explains-list li:last-child {
+    margin-bottom: 0;
+}
+
+.explains-list strong {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ========== ROADMAP ========== */
+.roadmap-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.roadmap-phase {
+    background: var(--bg-card);
+    padding: 2rem;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 15px var(--shadow);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.roadmap-phase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+}
+
+.phase-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.phase-number {
+    color: #ffffff;
+    min-width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.phase-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.roadmap-checklist li {
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.8rem;
+    background: rgba(99, 102, 241, 0.05);
+    border-left: 3px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+}
+
+.roadmap-checklist li:hover {
+    background: rgba(99, 102, 241, 0.1);
+    border-left-color: var(--primary);
+    transform: translateX(3px);
+}
+
+.roadmap-checklist li:last-child {
+    margin-bottom: 0;
+}
+
+/* Cercles de statut dans la roadmap */
+.status-circle {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.status-circle.todo {
+    background-color: #94a3b8;
+}
+
+.status-circle.progress {
+    background-color: #f97316;
+}
+
+.status-circle.done {
+    background-color: #22c55e;
+}
+
+/* Légende Roadmap */
+.legend-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 10px var(--shadow);
+    display: inline-block;
+}
+
+.legend-box p {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.legend-title {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.legend-items {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    background: rgba(99, 102, 241, 0.08);
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.legend-item:hover {
+    background: rgba(99, 102, 241, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ========== NOTE SECTION ========== */
+.note-section .content-box {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
+    border: 2px solid var(--secondary);
+}
+
+:root[data-theme="light"] .note-section .content-box {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.15), rgba(219, 39, 119, 0.15));
+    border: 2px solid var(--secondary);
+}
+
+.note-box p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border);
+    color: var(--text-secondary);
+}
+
+.footer p {
+    margin: 0.5rem 0;
+}
+
+.footer-note {
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Réseaux sociaux dans le footer */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    font-size: 1.8rem;
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2);
+}
+
+/* Couleurs spécifiques par réseau */
+.social-icon.x:hover { color: #000000; }
+.social-icon.twitter:hover { color: #1DA1F2; }
+.social-icon.discord:hover { color: #5865F2; }
+.social-icon.github:hover { color: #fff; }
+.social-icon.linkedin:hover { color: #0077B5; }
+.social-icon.itchio:hover { color: #FA5C5C; }
+.social-icon.youtube:hover { color: #FF0000; }
+
+/* ========== BANNIÈRE DE NOTIFICATION ========== */
+.notification-banner {
+    background: linear-gradient(135deg, #dc2626, #ef4444);
+    transition: background 0.3s ease;
+}
+
+:root[data-theme="light"] .notification-banner {
+    background: linear-gradient(135deg, #f97316, #fb923c);
+    color: #ffffff;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1200px) {
+    .table-of-contents {
+        position: static;
+        width: 100%;
+        margin-bottom: 2rem;
+        max-height: none;
+    }
+    
+    .container {
+        margin-left: auto;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .main-title {
+        font-size: 2rem;
+    }
+
+    .methodology-grid,
+    .rewards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+}
