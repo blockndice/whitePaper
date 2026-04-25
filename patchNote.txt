@@ -26,6 +26,7 @@ v0.00.23 : add workflow
 -- Beta phase
 v1.00.0 : Rework + préparation 1er jeu
 v1.00.1 : préparation landing page
+v1.00.2 : Page d'accueil projet block'n Dice
 
 ** Next step **
 s'inspirer de mes jeux wow / starcraft / mini jeu soul fighter de lol / fellowship / Card Game Magic / Tetris game Super puyo puyo

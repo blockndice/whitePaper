@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Paper - Prototype de Mini-Jeu Web3</title>
+    <link rel="stylesheet" href="asset/css/whitepaper.css">
+    <link rel="stylesheet" href="asset/css/notif.css">
+    <link rel="stylesheet" href="asset/css/theme-switcher.css">
+    <link rel="stylesheet" href="asset/css/language-switcher.css">
+    <link rel="stylesheet" href="asset/css/responsive-nav.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"> <!-- icone réseaux sociaux -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css" rel="stylesheet"> <!-- icone drapeau -->
+</head>
+<body>
+    <div class="container">
+        <header class="header banniereUp" style="--header-bg-image: url('../img/')">
+            <div class="header-icon">🎮</div>
+            <h1 class="main-title" data-i18n="header-title">Early Projet de Mini-Jeu Web3</h1>
+            <p class="subtitle" data-i18n="header-subtitle">White Paper v0</p>
+        </header>
+
+        <div class="notification-wrapper">
+            <div class="notification-banner" data-i18n="notification-banner">
+                ⚠️ <strong>White paper en rédaction </strong> ⚠️
+            </div>
+        </div>
+
+        <nav class="table-of-contents">
+            <h2 data-i18n="toc-title">Table des matières</h2>
+            <ul>
+                <li><a href="#objectif" data-i18n="toc-objectif">Objectif</a></li>
+                <li><a href="#objectifs-detailles" data-i18n="toc-objectifs-detailles">Objectifs détaillés</a></li>
+                <li><a href="#methodologie" data-i18n="toc-methodologie">Méthodologie</a></li>
+                <li><a href="#systeme-recompenses" data-i18n="toc-systeme-recompenses">Système de récompense</a></li>
+                <li><a href="#roadmap" data-i18n="toc-roadmap">Roadmap</a></li>
+                <li><a href="#note" data-i18n="toc-note">Note finale</a></li>
+                <li><a href="#social-network" data-i18n="toc-social">Réseaux Sociaux</a></li>
+                <li><a href="#about" data-i18n="toc-about">A propos</a></li>
+            </ul>
+            <h2 data-i18n="toc-games">Jeux</h2>
+            <ul>
+                <li><a href="gameOne.html">Project One</a></li>
+            </ul>
+        </nav>
+
+        <section id="objectif" class="section">
+            <div class="section-header">
+                <span class="icon">🎯</span>
+                <h2 data-i18n="section-objectif-title">Objectif</h2>
+            </div>
+            <div class="content-box">
+                <p data-i18n="objectif-p1">
+                    Créer des mini-jeux fun et à fort retention, qui incitent les joueurs non seulement à jouer, mais aussi à s'investir pour gagner des récompense. Si la démo du jeu a suscité assez d'intérêt et de satisfaction auprès des joueurs, développer le jeu en play-to-earn simple et direct.
+                </p>
+                <p data-i18n="objectif-p2">
+                    Chaque participants contribue au cashprize ou un pool de récompenses, destiné à récompenser les joueurs ayant atteint différents objectifs dans le jeu ou soutenu activement son développement.
+                </p>
+                <p data-i18n="objectif-p3">
+                    Reposant sur la blockchain afin de réduire les intermédiaires et de garantir une transparence du financement et la distribution des récompense. Les développeurs reçoivent directement le soutien de leur communauté comme sur Twitch où Kick, et les joueurs deviennent de véritables acteurs du projet. Ce modèle crée un écosystème plus juste, participatif et collaboratif, où chaque contribution a un impact réel et chaque joueur se sent impliqué dans la réussite du jeu.
+                </p>
+            </div>
+        </section>
+
+        <section id="objectifs-detailles" class="section">
+            <div class="section-header">
+                <span class="icon">📌</span>
+                <h2 data-i18n="section-objectifs-detailles-title">Objectifs détaillés</h2>
+            </div>
+            <div class="content-box">
+                <ul class="objectives-list">
+                    <li data-i18n="objectif-1">Concevoir des mini-jeux <strong>simples et fun</strong> du genre RPG où rogue-like avec des challenge pour rejouabilité élevée.</li>
+                    <li data-i18n="objectif-2">Tester le gameplay et recueillir des retours sur <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> en priorité.</li>
+                    <li data-i18n="objectif-3">L'accès du play-to-Earn sera fera via un <strong>NFT</strong> mint sur <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a></li>
+                    <li data-i18n="objectif-4">Avec <a href="https://pump.fun/" target="_blank" rel="noopener">Pump Fun</a>, constituer la pool de liquidité puis destiné au cashprize pour le play2Earn</li>
+                    <li data-i18n="objectif-5">Optimiser les coûts en utilisant les assets graphique <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>, où comander des assets personnalisé sur cette plateforme</li>
+                    <li data-i18n="objectif-6">Afficher Code du jeu en OpenSource sur GitHub pour la transparence</li>
+                    <li data-i18n="objectif-7">La sécurité sera appuyé par plusieur outil d'analyse ainsi qu'un audit</li>
+                    <li data-i18n="objectif-8">L'accès du play-to-Earn sera fera via un <strong>NFT</strong> mint sur <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="methodologie" class="section">
+            <div class="section-header">
+                <span class="icon">🛠️</span>
+                <h2 data-i18n="section-methodologie-title">Méthodologie</h2>
+            </div>
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="card-number">1</div>
+                    <h3 data-i18n="methodo-1-title">Documentation</h3>
+                    <p data-i18n="methodo-1-desc">Rédiger le projet du jeu et son cahier des charges accessible dans l'onglet de ce whitepaper, pour informer la communauté</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">2</div>
+                    <h3 data-i18n="methodo-2-title">Prototyper</h3>
+                    <p data-i18n="methodo-2-desc">Développer le jeu sur navigateur web avec le moteur Solar2D ancienne Corona SDK, il permet un build sur Android, iOS, Windows, macOS et HTML5.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">3</div>
+                    <h3 data-i18n="methodo-3-title">Publier</h3>
+                    <p data-i18n="methodo-3-desc">Déployer une version jouable sur itch.io pour obtenir du feedback de la communauté.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">4</div>
+                    <h3 data-i18n="methodo-4-title">Intégrer Web3</h3>
+                    <p data-i18n="methodo-4-desc">Utiliser l'écosystème <strong>Solana</strong> et <strong>Pump.fun</strong> pour la gestion du token.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">5</div>
+                    <h3 data-i18n="methodo-5-title">Open Source</h3>
+                    <p data-i18n="methodo-5-desc">Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L'architecture reste <strong>privée</strong> pour des raisons de sécurité.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">6</div>
+                    <h3 data-i18n="methodo-6-title">Open Source</h3>
+                    <p data-i18n="methodo-6-desc">Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L'architecture reste <strong>privée</strong> pour des raisons de sécurité.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="systeme-recompenses" class="section">
+            <div class="section-header">
+                <span class="icon">🎁</span>
+                <h2 data-i18n="section-recompenses-title">Système de récompense</h2>
+            </div>
+            <div class="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-icon">🎰</div>
+                    <h3 data-i18n="reward-1-title">Loterie</h3>
+                    <p data-i18n="reward-1-desc">Un joueur aléatoire reçoit une récompense parmi une sélection d'objets ou de bonus possibles.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">🗺️</div>
+                    <h3 data-i18n="reward-2-title">Carte au trésor</h3>
+                    <p data-i18n="reward-2-desc">Le joueur suit des indices ou une carte pour trouver une récompense cachée dans le monde du jeu.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">🎯</div>
+                    <h3 data-i18n="reward-3-title">Objectif</h3>
+                    <p data-i18n="reward-3-desc">Une récompense est donnée lorsque le joueur atteint un score précis, un temps record, ou un autre objectif mesurable.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">⚔️</div>
+                    <h3 data-i18n="reward-4-title">Mission</h3>
+                    <p data-i18n="reward-4-desc">Le joueur complète une ou plusieurs missions (quêtes, défis, mini-jeux) pour débloquer une récompense spécifique.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">⚡</div>
+                    <h3 data-i18n="reward-5-title">Keep to win</h3>
+                    <p data-i18n="reward-5-desc">Le joueur gagnent des bonus en gardant leurs tokens dans leur wallet (auto-staking).</p>
+                </div>
+            </div>            
+            <div class="explains-container">
+                <h3 data-i18n="reward-examples-title">💎 Exemple de récompense</h3>
+                <ul class="explains-list">
+                    <li data-i18n="reward-ex-1"><strong>Contenu exclusifs</strong> : Des objets rares liés au jeu</li>
+                    <li data-i18n="reward-ex-2"><strong>Tokens du jeu</strong> : Monnaie native permettant d'accéder à des avantages</li>
+                    <li data-i18n="reward-ex-3"><strong>Bonus in-game</strong> : Boost d'XP, chances de loot augmentées, accès à des niveaux spéciales</li>
+                    <li data-i18n="reward-ex-4"><strong>Accès anticipé</strong> : Obtenir une avance avant les autre joueur</li>
+                    <li data-i18n="reward-ex-5"><strong>Récompenses communautaires</strong> : Reconnaissance via leaderboards, badges spéciaux, titres honorifiques</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="roadmap" class="section">
+            <div class="section-header">
+                <span class="icon">🗺️</span>
+                <h2 data-i18n="section-roadmap-title">Roadmap de Développement</h2>
+            </div>
+
+            <div class="legend-box">
+                <p class="legend-title" data-i18n="legend-title">Légende :</p>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="status-circle todo"></span>
+                        <span data-i18n="legend-todo">À faire</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="status-circle progress"></span>
+                        <span data-i18n="legend-progress">En cours</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="status-circle done"></span>
+                        <span data-i18n="legend-done">Terminé</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="roadmap-timeline">
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-number">1</div>
+                        <h3 data-i18n="roadmap-phase-1">Coder le Whitepaper</h3>
+                    </div>
+                    <ul class="roadmap-checklist">
+                        <li><span class="status-circle done"></span> <span data-i18n="roadmap-1-1">Définir la structure du document</span></li>
+                        <li><span class="status-circle progress"></span> <span data-i18n="roadmap-1-2">Rédiger le pseudocode et les algorithmes clés</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-1-3">Décrire l'architecture technique</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-1-4">Effectuer une revue technique interne</span></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-number">2</div>
+                        <h3 data-i18n="roadmap-phase-2">Écrire le Whitepaper</h3>
+                    </div>
+                    <ul class="roadmap-checklist">
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-1">Rédiger la version narrative à partir du code technique</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-2">Structurer les parties : vision, mission, tokenomics, gameplay, gouvernance</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-3">Faire relire par des pairs et corriger le style et la clarté</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-4">Publier une première version publique (v1.0)</span></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-number">3</div>
+                        <h3 data-i18n="roadmap-phase-3">Créer le Jeu</h3>
+                    </div>
+                    <ul class="roadmap-checklist">
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-1">Élaborer le Game Design Document (GDD)</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-2">Développer un prototype jouable</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-3">Intégrer les mécaniques de base et les assets graphiques</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-4">Tester et équilibrer le gameplay</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-5">Lancer une version Alpha</span></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-number">4</div>
+                        <h3 data-i18n="roadmap-phase-4">Retour d'Expérience (XP)</h3>
+                    </div>
+                    <ul class="roadmap-checklist">
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-1">Collecter les retours des joueurs et testeurs</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-2">Analyser les données d'utilisation</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-3">Identifier les points d'amélioration</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-4">Prioriser les évolutions pour la version Beta</span></li>
+                    </ul>
+                </div>
+
+                <div class="roadmap-phase">
+                    <div class="phase-header">
+                        <div class="phase-number">5</div>
+                        <h3 data-i18n="roadmap-phase-5">Mise en Place Web3</h3>
+                    </div>
+                    <ul class="roadmap-checklist">
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-1">Intégrer les wallets (Metamask, WalletConnect, etc.)</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-2">Déployer les smart contracts sur le réseau choisi</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-3">Créer la passerelle entre le jeu et la blockchain (transactions, NFTs, etc.)</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-4">Auditer la sécurité des contrats</span></li>
+                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-5">Lancer la version Web3 officielle</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="section-header">
+                <span class="icon">✨</span>
+                <h2 data-i18n="section-about-title">A propos du fondateur</h2>
+            </div>
+            <div class="content-box">
+                <p data-i18n="about-p1">Créer des jeux vidéo est le rêve de mon enfance réalisé à l'âge adulte. J’ai commencé par coder des prototypes, ensuite des game jams, mais vite confronté aux obstacles pour en vivre. 
+                Grâce à une veille technologique, j’ai découvert une alternative pour créer et financer un jeu en conservant un lien avec la communauté. Aujourd’hui, je veux transformer cette vision en réalité.</p>
+                <p data-i18n="about-p2">Cette vision n’a rien de révolutionnaire, juste une alternative à la voie classique, simple mais encore peu adoptée, comme la blockchain ou le Cloud auparavant. Ça permettrait au solo dev de vivre directement de sa création, grâce au soutien de sa communauté et de ses joueurs, un peu comme les streamers et YouTubeurs.</p>
+                <p data-i18n="about-p3">Un joueur veut de la passion, de la confiance et des récompenses. Ces valeurs seront insufflées dans Block'n Dice, pour maximiser une bonne expérience.</p>
+                <p data-i18n="about-p4">Mon succès en inspira d'autres...</p>
+            </div>
+        </section>
+
+        <section id="note" class="section note-section">
+            <div class="section-header">
+                <span class="icon">💬</span>
+                <h2>Note</h2>
+            </div>
+            <div class="content-box note-box">
+                <p data-i18n="note-final"><strong>Projet de taille humaine en développement</strong></p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p data-i18n="footer-text">© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0</p>
+            <p class="footer-note" data-i18n="footer-note">Document évolutif - Les spécifications peuvent être mises à jour au fil du développement</p>
+
+            <div id="social-network" class="social-links">
+                <a href="https://x.com/blockndice" target="_blank" rel="noopener" class="social-icon x" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="social-icon github" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="social-icon itchio" title="Itch.io"><i class="fab fa-itch-io"></i></a>
+                <a href="#" target="_blank" rel="noopener" class="social-icon youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+        </footer>
+
+    </div>
+
+    <div class="language-switcher">
+        <button class="lang-btn" data-lang="fr" data-tooltip="Français"><span class="fi fi-fr"></span></button>
+        <button class="lang-btn" data-lang="en" data-tooltip="English"><span class="fi fi-gb"></span></button>
+        <button class="lang-btn" data-lang="es" data-tooltip="Español"><span class="fi fi-es"></span></button>
+    </div>
+
+    <script src="asset/js/notif.js"></script>
+    <script src="asset/js/theme-switcher.js"></script>
+    <script src="asset/js/language-index.js"></script>
+    <script src="asset/js/responsive-nav.js"></script>
+</body>
+</html>

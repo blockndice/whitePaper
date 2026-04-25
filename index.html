@@ -1,310 +1,1514 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White Paper - Prototype de Mini-Jeu Web3</title>
-    <link rel="stylesheet" href="asset/css/whitepaper.css">
-    <link rel="stylesheet" href="asset/css/notif.css">
-    <link rel="stylesheet" href="asset/css/theme-switcher.css">
-    <link rel="stylesheet" href="asset/css/language-switcher.css">
-    <link rel="stylesheet" href="asset/css/responsive-nav.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet"> <!-- icone réseaux sociaux -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css" rel="stylesheet"> <!-- icone drapeau -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block'n Dice — Build. Play. Earn.</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Outfit:wght@300;400;500&family=Fira+Code:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cobalt: #0047AB;
+      --cobalt-deep: #00338a;
+      --cobalt-dark: #001f5c;
+      --cobalt-mid: #1a5cc8;
+      --cobalt-pale: #d4e3ff;
+      --cobalt-xpale: #eaf1ff;
+      --yellow: #F5A623;
+      --yellow-light: #ffd47a;
+      --yellow-pale: #fff3dc;
+      --black: #080c12;
+      --black-mid: #111827;
+      --white: #ffffff;
+      --offwhite: #f7f9ff;
+      --muted: rgba(255, 255, 255, 0.55);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-dark: rgba(0, 71, 171, 0.18);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cobalt-dark);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 68px;
+      padding: 0 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 31, 92, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    /* Logo image — remplace le src par ton fichier final */
+    .logo-img {
+      height: 38px;
+      width: auto;
+      display: block;
+      /* fallback si l'image ne charge pas */
+      min-width: 38px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--yellow);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .logo-text {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .btn-nav {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 10px 22px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--yellow-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 68px);
+      padding: 80px 64px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Geometric background shapes */
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .shape-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.12);
+    }
+
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      right: -100px;
+      top: -200px;
+    }
+
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      right: 80px;
+      top: -50px;
+      border-color: rgba(0, 71, 171, 0.3);
+    }
+
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      right: 220px;
+      top: 80px;
+      background: rgba(245, 166, 35, 0.04);
+    }
+
+    .shape-dot-grid {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-image: radial-gradient(circle, rgba(245, 166, 35, 0.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse at right center, black 20%, transparent 65%);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(245, 166, 35, 0.35);
+      background: rgba(245, 166, 35, 0.08);
+      color: var(--yellow);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      animation: blink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.25;
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(32px, 3.8vw, 54px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 26px;
+      color: var(--white);
+    }
+
+    .hero h1 .word-yellow {
+      color: var(--yellow);
+    }
+
+    .hero h1 .word-blue {
+      color: var(--cobalt-pale);
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      font-weight: 300;
+      max-width: 440px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 14px 28px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      border: 2px solid var(--yellow);
+    }
+
+    .btn-primary:hover {
+      background: var(--yellow-light);
+      border-color: var(--yellow-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 166, 35, 0.25);
+    }
+
+    .btn-ghost {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 14px 28px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      border: 2px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--white);
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .phase-card-head {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .phase-card-head-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    .phase-rows {
+      padding: 8px 0;
+    }
+
+    .phase-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 24px;
+      transition: background 0.15s;
+    }
+
+    .phase-row:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .phase-row.active {
+      background: rgba(245, 166, 35, 0.07);
+    }
+
+    .phase-num-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .num-active {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .num-next {
+      background: rgba(0, 71, 171, 0.4);
+      color: var(--cobalt-pale);
+      border: 1px solid rgba(0, 71, 171, 0.6);
+    }
+
+    .num-later {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    .phase-row-info {}
+
+    .phase-row-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .phase-row.active .phase-row-name {
+      color: var(--yellow-light);
+    }
+
+    .phase-row-sub {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.04em;
+    }
+
+    .phase-status {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .s-now {
+      background: rgba(245, 166, 35, 0.15);
+      color: var(--yellow);
+      border: 1px solid rgba(245, 166, 35, 0.25);
+    }
+
+    .s-next {
+      background: rgba(0, 71, 171, 0.2);
+      color: var(--cobalt-pale);
+      border: 1px solid rgba(0, 71, 171, 0.35);
+    }
+
+    .s-tbd {
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--black);
+      border-top: 1px solid rgba(245, 166, 35, 0.15);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.15);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 28s linear infinite;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 36px;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.08em;
+    }
+
+    .ticker-item .t-accent {
+      color: var(--yellow);
+    }
+
+    .ticker-item .t-blue {
+      color: var(--cobalt-pale);
+    }
+
+    .ticker-sep {
+      color: rgba(245, 166, 35, 0.25);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 96px 64px;
+    }
+
+    .section-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--yellow);
+      display: block;
+    }
+
+    section h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 540px;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 60px;
+    }
+
+    /* ── ROADMAP ── */
+    .roadmap-section {
+      background: var(--cobalt-dark);
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .r-card {
+      background: var(--black-mid);
+      padding: 36px 28px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .r-card:hover {
+      background: rgba(0, 31, 92, 0.9);
+    }
+
+    .r-card.active {
+      background: rgba(0, 71, 171, 0.25);
+      border-left: 3px solid var(--yellow);
+    }
+
+    .r-card.active::after {
+      content: 'Phase active';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+      background: rgba(245, 166, 35, 0.1);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .r-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .r-card.active .r-num {
+      color: rgba(245, 166, 35, 0.15);
+    }
+
+    .r-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .r-card p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.75;
+    }
+
+    .r-deliverable {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.04em;
+    }
+
+    .r-card.active .r-deliverable {
+      color: rgba(245, 166, 35, 0.5);
+      border-color: rgba(245, 166, 35, 0.15);
+    }
+
+    /* ── P2E ── */
+    .p2e-section {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .p2e-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .p2e-callout {
+      background: rgba(245, 166, 35, 0.07);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 28px 0;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--yellow-light);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+
+    .mechanic {
+      background: var(--cobalt-dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .mechanic-bar {
+      background: var(--cobalt);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mechanic-bar-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--cobalt-pale);
+    }
+
+    .mechanic-bar-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      background: rgba(245, 166, 35, 0.15);
+      border: 1px solid rgba(245, 166, 35, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
+
+    .players {
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr;
+      align-items: center;
+    }
+
+    .player {
+      padding: 28px 24px;
+    }
+
+    .player:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .player-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .tag-c {
+      color: var(--cobalt-pale);
+    }
+
+    .tag-a {
+      color: var(--yellow);
+    }
+
+    .player-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .player p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.65;
+    }
+
+    .vs-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      height: 100%;
+    }
+
+    .vs-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .results {
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .result {
+      padding: 20px 24px;
+    }
+
+    .result:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .result-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .rl-win {
+      color: var(--yellow);
+    }
+
+    .rl-lose {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .result-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+
+    .icon-win {
+      background: rgba(245, 166, 35, 0.2);
+      color: var(--yellow);
+    }
+
+    .icon-lose {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .result p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.65;
+    }
+
+    /* ── STACK ── */
+    .stack-section {
+      background: var(--cobalt-dark);
+    }
+
+    .stack-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .stack-item {
+      background: var(--black-mid);
+      padding: 28px 24px;
+      transition: background 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stack-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--border);
+      transition: background 0.2s;
+    }
+
+    .stack-item.p1::before {
+      background: var(--yellow);
+    }
+
+    .stack-item.p2::before {
+      background: var(--cobalt);
+    }
+
+    .stack-item.p3::before {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .stack-item:hover {
+      background: rgba(0, 31, 92, 0.8);
+    }
+
+    .stack-phase-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .pt1 {
+      background: rgba(245, 166, 35, 0.1);
+      color: var(--yellow);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+    }
+
+    .pt2 {
+      background: rgba(0, 71, 171, 0.2);
+      color: var(--cobalt-pale);
+      border: 1px solid rgba(0, 71, 171, 0.35);
+    }
+
+    .pt3 {
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    .stack-tech {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .stack-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--cobalt);
+      padding: 100px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 31, 92, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.15);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section h2 .highlight {
+      color: var(--yellow);
+    }
+
+    .cta-section p {
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 460px;
+      margin: 0 auto 44px;
+      font-weight: 300;
+      line-height: 1.75;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-main {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 15px 32px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border: 2px solid var(--yellow);
+      transition: all 0.2s;
+    }
+
+    .btn-cta-main:hover {
+      background: var(--yellow-light);
+      border-color: var(--yellow-light);
+      box-shadow: 0 8px 28px rgba(245, 166, 35, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-cta-border {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 15px 32px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    .btn-cta-border:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(245, 166, 35, 0.12);
+      padding: 48px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .footer-logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .footer-logo-mark {
+      width: 32px;
+      height: 32px;
+      background: var(--yellow);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .footer-logo-mark svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .footer-brand-text {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand-sub {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-right {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d1 {
+      transition-delay: 0.1s;
+    }
+
+    .d2 {
+      transition-delay: 0.2s;
+    }
+
+    .d3 {
+      transition-delay: 0.3s;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 56px 20px 56px;
+        min-height: auto;
+        gap: 48px;
+      }
+
+      .hero-shapes {
+        display: none;
+      }
+
+      section {
+        padding: 64px 20px;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .p2e-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .stack-list {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: 64px 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        padding: 36px 20px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .footer-right {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <header class="header banniereUp" style="--header-bg-image: url('../img/')">
-            <div class="header-icon">🎮</div>
-            <h1 class="main-title" data-i18n="header-title">Early Projet de Mini-Jeu Web3</h1>
-            <p class="subtitle" data-i18n="header-subtitle">White Paper v0</p>
-        </header>
 
-        <div class="notification-wrapper">
-            <div class="notification-banner" data-i18n="notification-banner">
-                ⚠️ <strong>White paper en rédaction </strong> ⚠️
-            </div>
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!--
+      LOGO IMAGE — remplace le src ci-dessous par le chemin vers ton fichier logo.
+      Formats recommandés : SVG (idéal) ou PNG avec fond transparent.
+      Exemple : src="assets/blockndice-logo.svg"
+
+      En attendant, un logo SVG de substitution est généré inline.
+    -->
+      <svg class="logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-label="Block'n Dice logo">
+        <!-- Dé gauche -->
+        <rect x="1" y="5" width="28" height="28" rx="5" fill="#F5A623" />
+        <rect x="1" y="5" width="28" height="28" rx="5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" />
+        <!-- Points du dé (5) -->
+        <circle cx="8" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="15" cy="19" r="2.5" fill="#080c12" />
+        <circle cx="8" cy="26" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="26" r="2.5" fill="#080c12" />
+        <!-- Texte -->
+        <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white"
+          letter-spacing="-0.3">BLOCK'N</text>
+        <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="#F5A623"
+          letter-spacing="-0.3">DICE</text>
+      </svg>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#p2e">P2E Model</a></li>
+      <li><a href="#stack">Stack</a></li>
+    </ul>
+    <a href="https://blockndice.itch.io" class="btn-nav" target="_blank">itch.io →</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-shapes">
+      <div class="shape-circle shape-1"></div>
+      <div class="shape-circle shape-2"></div>
+      <div class="shape-circle shape-3"></div>
+      <div class="shape-dot-grid"></div>
+    </div>
+
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Phase I — En développement
+      </div>
+      <h1>
+        Tester.<br>
+        <span class="word-yellow">Jouer.</span><br>
+        <span class="word-blue">Gagner.</span>
+      </h1>
+      <p class="hero-desc">
+        Block'n Dice crée des mini-jeux navigateur avec méthode —
+        de itch.io à Solana, avec un modèle Play-to-Earn centré sur les défis entre joueurs.
+      </p>
+      <div class="hero-actions">
+        <a href="#roadmap" class="btn-primary">Voir la roadmap</a>
+        <a href="#p2e" class="btn-ghost">Modèle P2E →</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="phase-card">
+        <div class="phase-card-head">
+          <span class="phase-card-head-title">project.phases</span>
+          <span class="live-badge"><span class="live-dot"></span>live</span>
         </div>
-
-        <nav class="table-of-contents">
-            <h2 data-i18n="toc-title">Table des matières</h2>
-            <ul>
-                <li><a href="#objectif" data-i18n="toc-objectif">Objectif</a></li>
-                <li><a href="#objectifs-detailles" data-i18n="toc-objectifs-detailles">Objectifs détaillés</a></li>
-                <li><a href="#methodologie" data-i18n="toc-methodologie">Méthodologie</a></li>
-                <li><a href="#systeme-recompenses" data-i18n="toc-systeme-recompenses">Système de récompense</a></li>
-                <li><a href="#roadmap" data-i18n="toc-roadmap">Roadmap</a></li>
-                <li><a href="#note" data-i18n="toc-note">Note finale</a></li>
-                <li><a href="#social-network" data-i18n="toc-social">Réseaux Sociaux</a></li>
-                <li><a href="#about" data-i18n="toc-about">A propos</a></li>
-            </ul>
-            <h2 data-i18n="toc-games">Jeux</h2>
-            <ul>
-                <li><a href="gameOne.html">Project One</a></li>
-            </ul>
-        </nav>
-
-        <section id="objectif" class="section">
-            <div class="section-header">
-                <span class="icon">🎯</span>
-                <h2 data-i18n="section-objectif-title">Objectif</h2>
+        <div class="phase-rows">
+          <div class="phase-row active">
+            <div class="phase-num-box num-active">01</div>
+            <div class="phase-row-info">
+              <div class="phase-row-name">Consolider le processus</div>
+              <div class="phase-row-sub">pipeline · templates · standards</div>
             </div>
-            <div class="content-box">
-                <p data-i18n="objectif-p1">
-                    Créer des mini-jeux fun et à fort retention, qui incitent les joueurs non seulement à jouer, mais aussi à s'investir pour gagner des récompense. Si la démo du jeu a suscité assez d'intérêt et de satisfaction auprès des joueurs, développer le jeu en play-to-earn simple et direct.
-                </p>
-                <p data-i18n="objectif-p2">
-                    Chaque participants contribue au cashprize ou un pool de récompenses, destiné à récompenser les joueurs ayant atteint différents objectifs dans le jeu ou soutenu activement son développement.
-                </p>
-                <p data-i18n="objectif-p3">
-                    Reposant sur la blockchain afin de réduire les intermédiaires et de garantir une transparence du financement et la distribution des récompense. Les développeurs reçoivent directement le soutien de leur communauté comme sur Twitch où Kick, et les joueurs deviennent de véritables acteurs du projet. Ce modèle crée un écosystème plus juste, participatif et collaboratif, où chaque contribution a un impact réel et chaque joueur se sent impliqué dans la réussite du jeu.
-                </p>
+            <span class="phase-status s-now">maintenant</span>
+          </div>
+          <div class="phase-row">
+            <div class="phase-num-box num-next">02</div>
+            <div class="phase-row-info">
+              <div class="phase-row-name">Mini-jeux sur itch.io</div>
+              <div class="phase-row-sub">publish · mesure · itération</div>
             </div>
-        </section>
-
-        <section id="objectifs-detailles" class="section">
-            <div class="section-header">
-                <span class="icon">📌</span>
-                <h2 data-i18n="section-objectifs-detailles-title">Objectifs détaillés</h2>
+            <span class="phase-status s-next">phase II</span>
+          </div>
+          <div class="phase-row">
+            <div class="phase-num-box num-later">03</div>
+            <div class="phase-row-info">
+              <div class="phase-row-name">Play-to-Earn · Solana</div>
+              <div class="phase-row-sub">smart contracts · récompenses</div>
             </div>
-            <div class="content-box">
-                <ul class="objectives-list">
-                    <li data-i18n="objectif-1">Concevoir des mini-jeux <strong>simples et fun</strong> du genre RPG où rogue-like avec des challenge pour rejouabilité élevée.</li>
-                    <li data-i18n="objectif-2">Tester le gameplay et recueillir des retours sur <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> en priorité.</li>
-                    <li data-i18n="objectif-3">L'accès du play-to-Earn sera fera via un <strong>NFT</strong> mint sur <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a></li>
-                    <li data-i18n="objectif-4">Avec <a href="https://pump.fun/" target="_blank" rel="noopener">Pump Fun</a>, constituer la pool de liquidité puis destiné au cashprize pour le play2Earn</li>
-                    <li data-i18n="objectif-5">Optimiser les coûts en utilisant les assets graphique <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>, où comander des assets personnalisé sur cette plateforme</li>
-                    <li data-i18n="objectif-6">Afficher Code du jeu en OpenSource sur GitHub pour la transparence</li>
-                    <li data-i18n="objectif-7">La sécurité sera appuyé par plusieur outil d'analyse ainsi qu'un audit</li>
-                    <li data-i18n="objectif-8">L'accès du play-to-Earn sera fera via un <strong>NFT</strong> mint sur <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a></li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="methodologie" class="section">
-            <div class="section-header">
-                <span class="icon">🛠️</span>
-                <h2 data-i18n="section-methodologie-title">Méthodologie</h2>
-            </div>
-            <div class="methodology-grid">
-                <div class="methodology-card">
-                    <div class="card-number">1</div>
-                    <h3 data-i18n="methodo-1-title">Documentation</h3>
-                    <p data-i18n="methodo-1-desc">Rédiger le projet du jeu et son cahier des charges accessible dans l'onglet de ce whitepaper, pour informer la communauté</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="card-number">2</div>
-                    <h3 data-i18n="methodo-2-title">Prototyper</h3>
-                    <p data-i18n="methodo-2-desc">Développer le jeu sur navigateur web avec le moteur Solar2D ancienne Corona SDK, il permet un build sur Android, iOS, Windows, macOS et HTML5.</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="card-number">3</div>
-                    <h3 data-i18n="methodo-3-title">Publier</h3>
-                    <p data-i18n="methodo-3-desc">Déployer une version jouable sur itch.io pour obtenir du feedback de la communauté.</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="card-number">4</div>
-                    <h3 data-i18n="methodo-4-title">Intégrer Web3</h3>
-                    <p data-i18n="methodo-4-desc">Utiliser l'écosystème <strong>Solana</strong> et <strong>Pump.fun</strong> pour la gestion du token.</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="card-number">5</div>
-                    <h3 data-i18n="methodo-5-title">Open Source</h3>
-                    <p data-i18n="methodo-5-desc">Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L'architecture reste <strong>privée</strong> pour des raisons de sécurité.</p>
-                </div>
-                <div class="methodology-card">
-                    <div class="card-number">6</div>
-                    <h3 data-i18n="methodo-6-title">Open Source</h3>
-                    <p data-i18n="methodo-6-desc">Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L'architecture reste <strong>privée</strong> pour des raisons de sécurité.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="systeme-recompenses" class="section">
-            <div class="section-header">
-                <span class="icon">🎁</span>
-                <h2 data-i18n="section-recompenses-title">Système de récompense</h2>
-            </div>
-            <div class="rewards-container">
-                <div class="reward-card">
-                    <div class="reward-icon">🎰</div>
-                    <h3 data-i18n="reward-1-title">Loterie</h3>
-                    <p data-i18n="reward-1-desc">Un joueur aléatoire reçoit une récompense parmi une sélection d'objets ou de bonus possibles.</p>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon">🗺️</div>
-                    <h3 data-i18n="reward-2-title">Carte au trésor</h3>
-                    <p data-i18n="reward-2-desc">Le joueur suit des indices ou une carte pour trouver une récompense cachée dans le monde du jeu.</p>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon">🎯</div>
-                    <h3 data-i18n="reward-3-title">Objectif</h3>
-                    <p data-i18n="reward-3-desc">Une récompense est donnée lorsque le joueur atteint un score précis, un temps record, ou un autre objectif mesurable.</p>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon">⚔️</div>
-                    <h3 data-i18n="reward-4-title">Mission</h3>
-                    <p data-i18n="reward-4-desc">Le joueur complète une ou plusieurs missions (quêtes, défis, mini-jeux) pour débloquer une récompense spécifique.</p>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon">⚡</div>
-                    <h3 data-i18n="reward-5-title">Keep to win</h3>
-                    <p data-i18n="reward-5-desc">Le joueur gagnent des bonus en gardant leurs tokens dans leur wallet (auto-staking).</p>
-                </div>
-            </div>            
-            <div class="explains-container">
-                <h3 data-i18n="reward-examples-title">💎 Exemple de récompense</h3>
-                <ul class="explains-list">
-                    <li data-i18n="reward-ex-1"><strong>Contenu exclusifs</strong> : Des objets rares liés au jeu</li>
-                    <li data-i18n="reward-ex-2"><strong>Tokens du jeu</strong> : Monnaie native permettant d'accéder à des avantages</li>
-                    <li data-i18n="reward-ex-3"><strong>Bonus in-game</strong> : Boost d'XP, chances de loot augmentées, accès à des niveaux spéciales</li>
-                    <li data-i18n="reward-ex-4"><strong>Accès anticipé</strong> : Obtenir une avance avant les autre joueur</li>
-                    <li data-i18n="reward-ex-5"><strong>Récompenses communautaires</strong> : Reconnaissance via leaderboards, badges spéciaux, titres honorifiques</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="roadmap" class="section">
-            <div class="section-header">
-                <span class="icon">🗺️</span>
-                <h2 data-i18n="section-roadmap-title">Roadmap de Développement</h2>
-            </div>
-
-            <div class="legend-box">
-                <p class="legend-title" data-i18n="legend-title">Légende :</p>
-                <div class="legend-items">
-                    <div class="legend-item">
-                        <span class="status-circle todo"></span>
-                        <span data-i18n="legend-todo">À faire</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="status-circle progress"></span>
-                        <span data-i18n="legend-progress">En cours</span>
-                    </div>
-                    <div class="legend-item">
-                        <span class="status-circle done"></span>
-                        <span data-i18n="legend-done">Terminé</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="roadmap-timeline">
-                <div class="roadmap-phase">
-                    <div class="phase-header">
-                        <div class="phase-number">1</div>
-                        <h3 data-i18n="roadmap-phase-1">Coder le Whitepaper</h3>
-                    </div>
-                    <ul class="roadmap-checklist">
-                        <li><span class="status-circle done"></span> <span data-i18n="roadmap-1-1">Définir la structure du document</span></li>
-                        <li><span class="status-circle progress"></span> <span data-i18n="roadmap-1-2">Rédiger le pseudocode et les algorithmes clés</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-1-3">Décrire l'architecture technique</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-1-4">Effectuer une revue technique interne</span></li>
-                    </ul>
-                </div>
-
-                <div class="roadmap-phase">
-                    <div class="phase-header">
-                        <div class="phase-number">2</div>
-                        <h3 data-i18n="roadmap-phase-2">Écrire le Whitepaper</h3>
-                    </div>
-                    <ul class="roadmap-checklist">
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-1">Rédiger la version narrative à partir du code technique</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-2">Structurer les parties : vision, mission, tokenomics, gameplay, gouvernance</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-3">Faire relire par des pairs et corriger le style et la clarté</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-2-4">Publier une première version publique (v1.0)</span></li>
-                    </ul>
-                </div>
-
-                <div class="roadmap-phase">
-                    <div class="phase-header">
-                        <div class="phase-number">3</div>
-                        <h3 data-i18n="roadmap-phase-3">Créer le Jeu</h3>
-                    </div>
-                    <ul class="roadmap-checklist">
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-1">Élaborer le Game Design Document (GDD)</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-2">Développer un prototype jouable</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-3">Intégrer les mécaniques de base et les assets graphiques</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-4">Tester et équilibrer le gameplay</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-3-5">Lancer une version Alpha</span></li>
-                    </ul>
-                </div>
-
-                <div class="roadmap-phase">
-                    <div class="phase-header">
-                        <div class="phase-number">4</div>
-                        <h3 data-i18n="roadmap-phase-4">Retour d'Expérience (XP)</h3>
-                    </div>
-                    <ul class="roadmap-checklist">
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-1">Collecter les retours des joueurs et testeurs</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-2">Analyser les données d'utilisation</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-3">Identifier les points d'amélioration</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-4-4">Prioriser les évolutions pour la version Beta</span></li>
-                    </ul>
-                </div>
-
-                <div class="roadmap-phase">
-                    <div class="phase-header">
-                        <div class="phase-number">5</div>
-                        <h3 data-i18n="roadmap-phase-5">Mise en Place Web3</h3>
-                    </div>
-                    <ul class="roadmap-checklist">
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-1">Intégrer les wallets (Metamask, WalletConnect, etc.)</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-2">Déployer les smart contracts sur le réseau choisi</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-3">Créer la passerelle entre le jeu et la blockchain (transactions, NFTs, etc.)</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-4">Auditer la sécurité des contrats</span></li>
-                        <li><span class="status-circle todo"></span> <span data-i18n="roadmap-5-5">Lancer la version Web3 officielle</span></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="section">
-            <div class="section-header">
-                <span class="icon">✨</span>
-                <h2 data-i18n="section-about-title">A propos du fondateur</h2>
-            </div>
-            <div class="content-box">
-                <p data-i18n="about-p1">Créer des jeux vidéo est le rêve de mon enfance réalisé à l'âge adulte. J’ai commencé par coder des prototypes, ensuite des game jams, mais vite confronté aux obstacles pour en vivre. 
-                Grâce à une veille technologique, j’ai découvert une alternative pour créer et financer un jeu en conservant un lien avec la communauté. Aujourd’hui, je veux transformer cette vision en réalité.</p>
-                <p data-i18n="about-p2">Cette vision n’a rien de révolutionnaire, juste une alternative à la voie classique, simple mais encore peu adoptée, comme la blockchain ou le Cloud auparavant. Ça permettrait au solo dev de vivre directement de sa création, grâce au soutien de sa communauté et de ses joueurs, un peu comme les streamers et YouTubeurs.</p>
-                <p data-i18n="about-p3">Un joueur veut de la passion, de la confiance et des récompenses. Ces valeurs seront insufflées dans Block'n Dice, pour maximiser une bonne expérience.</p>
-                <p data-i18n="about-p4">Mon succès en inspira d'autres...</p>
-            </div>
-        </section>
-
-        <section id="note" class="section note-section">
-            <div class="section-header">
-                <span class="icon">💬</span>
-                <h2>Note</h2>
-            </div>
-            <div class="content-box note-box">
-                <p data-i18n="note-final"><strong>Projet de taille humaine en développement</strong></p>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <p data-i18n="footer-text">© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0</p>
-            <p class="footer-note" data-i18n="footer-note">Document évolutif - Les spécifications peuvent être mises à jour au fil du développement</p>
-
-            <div id="social-network" class="social-links">
-                <a href="https://x.com/blockndice" target="_blank" rel="noopener" class="social-icon x" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
-                <a href="#" target="_blank" rel="noopener" class="social-icon github" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank" rel="noopener" class="social-icon itchio" title="Itch.io"><i class="fab fa-itch-io"></i></a>
-                <a href="#" target="_blank" rel="noopener" class="social-icon youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
-            </div>
-        </footer>
-
+            <span class="phase-status s-tbd">phase III</span>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="language-switcher">
-        <button class="lang-btn" data-lang="fr" data-tooltip="Français"><span class="fi fi-fr"></span></button>
-        <button class="lang-btn" data-lang="en" data-tooltip="English"><span class="fi fi-gb"></span></button>
-        <button class="lang-btn" data-lang="es" data-tooltip="Español"><span class="fi fi-es"></span></button>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="t-accent">●</span> HTML5 Canvas <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Solar2D <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> itch.io <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Supabase <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Solana <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Anchor / Rust <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Phantom Wallet <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Play-to-Earn <span class="ticker-sep">·</span></span>
+      <!-- duplicate for seamless loop -->
+      <span class="ticker-item"><span class="t-accent">●</span> HTML5 Canvas <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Solar2D <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> itch.io <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Supabase <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Solana <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Anchor / Rust <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Phantom Wallet <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Play-to-Earn <span class="ticker-sep">·</span></span>
     </div>
+  </div>
 
-    <script src="asset/js/notif.js"></script>
-    <script src="asset/js/theme-switcher.js"></script>
-    <script src="asset/js/language-index.js"></script>
-    <script src="asset/js/responsive-nav.js"></script>
+  <!-- ROADMAP -->
+  <section id="roadmap" class="roadmap-section">
+    <div class="section-label">01 — Roadmap</div>
+    <h2>La méthode<br>avant le produit.</h2>
+    <p class="section-lead">
+      Chaque phase déverrouille la suivante. Pas d'annonce prématurée —
+      des livrables concrets à chaque étape.
+    </p>
+
+    <div class="roadmap-grid">
+      <div class="r-card active reveal">
+        <div class="r-num">01</div>
+        <h3>Consolider<br>le Processus</h3>
+        <p>Pipeline de dev reproductible. Templates, conventions, CI/CD. La fondation qui accélère tout le reste.</p>
+        <div class="r-deliverable">→ Pipeline + 2 jeux pilotes</div>
+      </div>
+      <div class="r-card reveal d1">
+        <div class="r-num">02</div>
+        <h3>Mini-Jeux<br>sur itch.io</h3>
+        <p>Publier, mesurer, itérer. Rétention, partage, commentaires. Les données orientent la Phase III.</p>
+        <div class="r-deliverable">→ Catalogue + métriques engagement</div>
+      </div>
+      <div class="r-card reveal d2">
+        <div class="r-num">03</div>
+        <h3>Play-to-Earn<br>sur Solana</h3>
+        <p>Intégrer le modèle P2E sur les hits identifiés. Récompenses on-chain, vérifiables et automatiques.</p>
+        <div class="r-deliverable">→ Smart contracts + Wallet Phantom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- P2E -->
+  <section id="p2e" class="p2e-section">
+    <div class="p2e-grid">
+      <div class="reveal">
+        <div class="section-label">02 — Modèle P2E</div>
+        <h2>Simple.<br>Direct.<br>Entre joueurs.</h2>
+        <p style="font-size:17px; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.8; margin-bottom:0">
+          Pas de tokenomics opaques, pas de pay-to-win.
+          Un défi posé, une récompense mise, un résultat
+          arbitré par le jeu lui-même.
+        </p>
+        <div class="p2e-callout">
+          « Si tu peux accomplir l'objectif, tu gagnes. »
+        </div>
+        <p style="font-size:14px; color:rgba(255,255,255,0.35); line-height:1.8; font-weight:300">
+          Récompenses distribuées automatiquement via smart contracts Solana.
+          Frais quasi-nuls, exécution instantanée, zéro intermédiaire.
+        </p>
+      </div>
+
+      <div class="reveal d1">
+        <div class="mechanic">
+          <div class="mechanic-bar">
+            <span class="mechanic-bar-title">mécanique des défis</span>
+            <span class="mechanic-bar-badge">on-chain · solana</span>
+          </div>
+          <div class="players">
+            <div class="player">
+              <div class="player-tag tag-c">Challenger</div>
+              <div class="player-name">Pose un défi</div>
+              <p>Choisit un objectif précis. Mise une récompense. Attend que quelqu'un relève.</p>
+            </div>
+            <div class="vs-col">
+              <div class="vs-badge">vs</div>
+            </div>
+            <div class="player">
+              <div class="player-tag tag-a">Attaquant</div>
+              <div class="player-name">Tente de gagner</div>
+              <p>N'importe quel joueur peut tenter de remplir le défi dans le temps imparti.</p>
+            </div>
+          </div>
+          <div class="results">
+            <div class="result">
+              <div class="result-label rl-win">
+                <span class="result-icon icon-win">✓</span>
+                Objectif atteint
+              </div>
+              <p>L'Attaquant reçoit la récompense. Vérifié on-chain, automatique.</p>
+            </div>
+            <div class="result">
+              <div class="result-label rl-lose">
+                <span class="result-icon icon-lose">✗</span>
+                Non atteint
+              </div>
+              <p>Le Challenger récupère sa mise intégralement. Défi invaincu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="stack-section">
+    <div class="section-label">03 — Stack</div>
+    <h2>La bonne tech,<br>au bon moment.</h2>
+    <p class="section-lead">
+      Simple au départ, puissant à l'arrivée.
+      Chaque couche est introduite quand elle a du sens.
+    </p>
+
+    <div class="stack-list reveal">
+      <div class="stack-item p1">
+        <span class="stack-phase-tag pt1">Phase I</span>
+        <div class="stack-tech">HTML5 Canvas</div>
+        <div class="stack-desc">Rendu natif navigateur. Zéro dépendance, zéro installation.</div>
+      </div>
+      <div class="stack-item p1">
+        <span class="stack-phase-tag pt1">Phase I</span>
+        <div class="stack-tech">Solar2D</div>
+        <div class="stack-desc">Framework jeu 2D mature. Sprites, physique, audio.</div>
+      </div>
+      <div class="stack-item p1">
+        <span class="stack-phase-tag pt1">Phase I</span>
+        <div class="stack-tech">itch.io</div>
+        <div class="stack-desc">Distribution indie. Audience réelle, analytics intégrés.</div>
+      </div>
+      <div class="stack-item p2">
+        <span class="stack-phase-tag pt2">Phase II</span>
+        <div class="stack-tech">Supabase</div>
+        <div class="stack-desc">Backend temps réel. Leaderboards, profils, métriques.</div>
+      </div>
+      <div class="stack-item p3">
+        <span class="stack-phase-tag pt3">Phase III</span>
+        <div class="stack-tech">Solana</div>
+        <div class="stack-desc">Blockchain haute perf. Frais minimes, idéal micropaiements.</div>
+      </div>
+      <div class="stack-item p3">
+        <span class="stack-phase-tag pt3">Phase III</span>
+        <div class="stack-tech">Anchor / Rust</div>
+        <div class="stack-desc">Smart contracts audtables. Gestion escrow sécurisée.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>On expérimente d'abord.<br><span class="highlight">Le reste suivra.</span></h2>
+    <p>
+      Rejoignez la communauté Block'n Dice et suivez
+      la progression Phase par Phase.
+    </p>
+    <div class="cta-btns">
+      <a href="https://blockndice.itch.io" class="btn-cta-main" target="_blank">Suivre sur itch.io</a>
+      <a href="whitePaper.html" class="btn-cta-border" target="_blank">Lire le White Paper →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <!-- Même logo que la nav, version footer -->
+      <svg class="footer-logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-label="Block'n Dice">
+        <rect x="1" y="5" width="28" height="28" rx="5" fill="#F5A623" />
+        <rect x="1" y="5" width="28" height="28" rx="5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" />
+        <circle cx="8" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="15" cy="19" r="2.5" fill="#080c12" />
+        <circle cx="8" cy="26" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="26" r="2.5" fill="#080c12" />
+        <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white"
+          letter-spacing="-0.3">BLOCK'N</text>
+        <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="#F5A623"
+          letter-spacing="-0.3">DICE</text>
+      </svg>
+      <div>
+        <!-- <div class="footer-brand-text">Block'n Dice</div> -->
+        <div class="footer-brand-sub">© 2026 — White Paper v1.0</div>
+      </div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="https://blockndice.itch.io" target="_blank">itch.io</a></li>
+      <li><a href="whitePaper.html" target="_blank">White Paper</a></li>
+      <li><a href="https://github.com/blockndice" target="_blank">GitHub</a></li>
+      <!-- <li><a href="#">Discord</a></li> -->
+      <li><a href="https://x.com/blockndice" target="_blank">Twitter</a></li>
+    </ul>
+    <div class="footer-right">Block'n Dice<br>build · play · earn</div>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    els.forEach(el => obs.observe(el));
+  </script>
 </body>
+
 </html>
