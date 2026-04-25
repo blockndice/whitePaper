@@ -1,1283 +1,1643 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Block'n Dice — Build. Play. Earn.</title>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Outfit:wght@300;400;500&family=Fira+Code:wght@300;400&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --cobalt:       #0047AB;
-    --cobalt-deep:  #00338a;
-    --cobalt-dark:  #001f5c;
-    --cobalt-mid:   #1a5cc8;
-    --cobalt-pale:  #d4e3ff;
-    --yellow:       #F5A623;
-    --yellow-light: #ffd47a;
-    --yellow-pale:  #fff3dc;
-    --black:        #080c12;
-    --black-mid:    #111827;
-    --white:        #ffffff;
-    --muted:        rgba(255,255,255,0.55);
-    --border:       rgba(255,255,255,0.1);
-  }
-
-  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--cobalt-dark);
-    color: var(--white);
-    font-family: 'Outfit', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    height: 68px;
-    padding: 0 64px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(0,31,92,0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  /* Logo image — remplace le src par ton fichier final */
-  .logo-img {
-    height: 38px;
-    width: auto;
-    display: block;
-    /* fallback si l'image ne charge pas */
-    min-width: 38px;
-  }
-
-  .logo-text {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.01em;
-    line-height: 1.1;
-  }
-
-  .logo-text span {
-    display: block;
-    font-size: 9px;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    color: var(--yellow);
-    text-transform: uppercase;
-    font-family: 'Fira Code', monospace;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 36px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    letter-spacing: 0.01em;
-  }
-
-  .nav-links a:hover { color: var(--white); }
-
-  .btn-nav {
-    font-family: 'Fira Code', monospace;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 10px 22px;
-    background: var(--yellow);
-    color: var(--black);
-    border-radius: 6px;
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
-  }
-
-  .btn-nav:hover { background: var(--yellow-light); transform: translateY(-1px); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: calc(100vh - 68px);
-    padding: 80px 64px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero-shapes { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
-
-  .shape-circle {
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(245,166,35,0.12);
-  }
-
-  .shape-1 { width: 600px; height: 600px; right: -100px; top: -200px; }
-  .shape-2 { width: 400px; height: 400px; right: 80px; top: -50px; border-color: rgba(0,71,171,0.3); }
-  .shape-3 { width: 200px; height: 200px; right: 220px; top: 80px; background: rgba(245,166,35,0.04); border: none; }
-
-  .shape-dot-grid {
-    position: absolute;
-    right: 0; top: 0;
-    width: 50%; height: 100%;
-    background-image: radial-gradient(circle, rgba(245,166,35,0.15) 1px, transparent 1px);
-    background-size: 28px 28px;
-    mask-image: radial-gradient(ellipse at right center, black 20%, transparent 65%);
-  }
-
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid rgba(245,166,35,0.35);
-    background: rgba(245,166,35,0.08);
-    color: var(--yellow);
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    padding: 6px 14px;
-    border-radius: 4px;
-    margin-bottom: 28px;
-    width: fit-content;
-  }
-
-  .eyebrow-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--yellow);
-    animation: blink 2.5s ease-in-out infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.25; }
-  }
-
-  .hero h1 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(32px, 3.8vw, 54px);
-    font-weight: 900;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 26px;
-    color: var(--white);
-  }
-
-  .hero h1 .word-yellow { color: var(--yellow); }
-  .hero h1 .word-blue {
-    color: var(--cobalt-pale);
-    -webkit-text-stroke: 1px rgba(255,255,255,0.3);
-  }
-
-  .hero-desc {
-    font-size: 17px;
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 44px;
-    font-weight: 300;
-    max-width: 440px;
-  }
-
-  .hero-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
-
-  .btn-primary {
-    font-family: 'Fira Code', monospace;
-    font-size: 13px;
-    padding: 14px 28px;
-    background: var(--yellow);
-    color: var(--black);
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
-    border: 2px solid var(--yellow);
-  }
-
-  .btn-primary:hover {
-    background: var(--yellow-light);
-    border-color: var(--yellow-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(245,166,35,0.25);
-  }
-
-  .btn-ghost {
-    font-family: 'Fira Code', monospace;
-    font-size: 13px;
-    padding: 14px 28px;
-    background: transparent;
-    color: rgba(255,255,255,0.7);
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    border: 2px solid var(--border);
-    transition: all 0.2s;
-  }
-
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.3); color: var(--white); }
-
-  /* Hero phase card */
-  .hero-visual { position: relative; z-index: 1; }
-
-  .phase-card {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    backdrop-filter: blur(8px);
-  }
-
-  .phase-card-head {
-    padding: 16px 24px;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .phase-card-head-title {
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: rgba(255,255,255,0.4);
-  }
-
-  .live-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    color: var(--yellow);
-    letter-spacing: 0.08em;
-  }
-
-  .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--yellow);
-    animation: blink 1.5s ease-in-out infinite;
-  }
-
-  .phase-rows { padding: 8px 0; }
-
-  .phase-row {
-    display: grid;
-    grid-template-columns: 48px 1fr auto;
-    gap: 14px;
-    align-items: center;
-    padding: 14px 24px;
-    transition: background 0.15s;
-  }
-
-  .phase-row:hover { background: rgba(255,255,255,0.04); }
-  .phase-row.active { background: rgba(245,166,35,0.07); }
-
-  .phase-num-box {
-    width: 40px; height: 40px;
-    border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .num-active { background: var(--yellow); color: var(--black); }
-  .num-next   { background: rgba(0,71,171,0.4); color: var(--cobalt-pale); border: 1px solid rgba(0,71,171,0.6); }
-  .num-later  { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); border: 1px solid var(--border); }
-
-  .phase-row-name { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 2px; }
-  .phase-row.active .phase-row-name { color: var(--yellow-light); }
-  .phase-row-sub { font-family: 'Fira Code', monospace; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.04em; }
-
-  .phase-status {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    padding: 4px 10px;
-    border-radius: 4px;
-    letter-spacing: 0.06em;
-    white-space: nowrap;
-  }
-
-  .s-now  { background: rgba(245,166,35,0.15); color: var(--yellow); border: 1px solid rgba(245,166,35,0.25); }
-  .s-next { background: rgba(0,71,171,0.2); color: var(--cobalt-pale); border: 1px solid rgba(0,71,171,0.35); }
-  .s-tbd  { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.3); border: 1px solid var(--border); }
-
-  /* ── TICKER ── */
-  .ticker {
-    background: var(--black);
-    border-top: 1px solid rgba(245,166,35,0.15);
-    border-bottom: 1px solid rgba(245,166,35,0.15);
-    padding: 12px 0;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
-  .ticker-track {
-    display: inline-flex;
-    gap: 0;
-    animation: ticker 32s linear infinite;
-  }
-
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  .ticker-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 36px;
-    font-family: 'Fira Code', monospace;
-    font-size: 12px;
-    color: rgba(255,255,255,0.35);
-    letter-spacing: 0.08em;
-  }
-
-  .t-accent { color: var(--yellow); }
-  .t-blue   { color: var(--cobalt-pale); }
-  .ticker-sep { color: rgba(245,166,35,0.25); }
-
-  /* ── SECTIONS ── */
-  section { padding: 96px 64px; }
-
-  .section-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--yellow);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-label::before { content: ''; width: 20px; height: 2px; background: var(--yellow); display: block; }
-
-  section h2 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(26px, 3vw, 40px);
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.15;
-    letter-spacing: -0.03em;
-    margin-bottom: 16px;
-  }
-
-  .section-lead {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.8;
-    font-weight: 300;
-    margin-bottom: 60px;
-  }
-
-  /* ── ROADMAP ── */
-  .roadmap-section { background: var(--cobalt-dark); }
-
-  .roadmap-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .r-card {
-    background: var(--black-mid);
-    padding: 36px 28px;
-    position: relative;
-    transition: background 0.2s;
-  }
-
-  .r-card:hover { background: rgba(0,31,92,0.9); }
-
-  .r-card.active {
-    background: rgba(0,71,171,0.25);
-    border-left: 3px solid var(--yellow);
-  }
-
-  .r-card.active::after {
-    content: 'Phase active';
-    position: absolute;
-    top: 16px; right: 16px;
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    color: var(--yellow);
-    letter-spacing: 0.08em;
-    background: rgba(245,166,35,0.1);
-    border: 1px solid rgba(245,166,35,0.2);
-    padding: 3px 8px;
-    border-radius: 4px;
-  }
-
-  .r-num {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 56px;
-    font-weight: 900;
-    line-height: 1;
-    margin-bottom: 20px;
-    color: rgba(255,255,255,0.06);
-  }
-
-  .r-card.active .r-num { color: rgba(245,166,35,0.15); }
-
-  .r-card h3 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 12px;
-    line-height: 1.3;
-    letter-spacing: -0.02em;
-  }
-
-  .r-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.75; }
-
-  .r-deliverable {
-    margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid var(--border);
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.04em;
-  }
-
-  .r-card.active .r-deliverable { color: rgba(245,166,35,0.5); border-color: rgba(245,166,35,0.15); }
-
-  /* ── P2E ── */
-  .p2e-section {
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .p2e-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  .p2e-callout {
-    background: rgba(245,166,35,0.07);
-    border: 1px solid rgba(245,166,35,0.2);
-    border-radius: 8px;
-    padding: 22px 24px;
-    margin: 28px 0;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--yellow-light);
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-  }
-
-  /* Web3 option cards */
-  .web3-options {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-
-  .web3-opt {
-    border-radius: 8px;
-    padding: 16px 18px;
-  }
-
-  .web3-opt-a {
-    background: rgba(245,166,35,0.06);
-    border: 1px solid rgba(245,166,35,0.18);
-  }
-
-  .web3-opt-b {
-    background: rgba(0,71,171,0.12);
-    border: 1px solid rgba(0,71,171,0.3);
-  }
-
-  .web3-opt-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    margin-bottom: 8px;
-  }
-
-  .web3-opt-a .web3-opt-label { color: var(--yellow); }
-  .web3-opt-b .web3-opt-label { color: var(--cobalt-pale); }
-
-  .web3-opt-name {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 6px;
-    letter-spacing: -0.02em;
-  }
-
-  .web3-opt p {
-    font-size: 12px;
-    color: rgba(255,255,255,0.35);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  .web3-note {
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.04em;
-    line-height: 1.7;
-  }
-
-  /* Mechanic card */
-  .mechanic {
-    background: var(--cobalt-dark);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .mechanic-bar {
-    background: var(--cobalt);
-    padding: 14px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .mechanic-bar-title {
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    color: var(--cobalt-pale);
-  }
-
-  .mechanic-bar-badge {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    color: var(--yellow);
-    background: rgba(245,166,35,0.15);
-    border: 1px solid rgba(245,166,35,0.3);
-    padding: 3px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.06em;
-  }
-
-  .players {
-    display: grid;
-    grid-template-columns: 1fr 50px 1fr;
-    align-items: center;
-  }
-
-  .player { padding: 28px 24px; }
-  .player:first-child { border-right: 1px solid var(--border); }
-
-  .player-tag {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .tag-c { color: var(--cobalt-pale); }
-  .tag-a { color: var(--yellow); }
-
-  .player-name {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-
-  .player p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.65; }
-
-  .vs-col {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-right: 1px solid var(--border);
-    height: 100%;
-  }
-
-  .vs-badge {
-    width: 34px; height: 34px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 11px;
-    color: rgba(255,255,255,0.3);
-  }
-
-  .results {
-    border-top: 1px solid var(--border);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .result { padding: 20px 24px; }
-  .result:first-child { border-right: 1px solid var(--border); }
-
-  .result-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    margin-bottom: 8px;
-    display: flex;
-    align-items: center;
-    gap: 7px;
-  }
-
-  .rl-win  { color: var(--yellow); }
-  .rl-lose { color: rgba(255,255,255,0.3); }
-
-  .result-icon {
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    display: inline-flex; align-items: center; justify-content: center;
-    font-size: 9px;
-    flex-shrink: 0;
-  }
-
-  .icon-win  { background: rgba(245,166,35,0.2); color: var(--yellow); }
-  .icon-lose { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.3); }
-
-  .result p { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.65; }
-
-  /* ── STACK ── */
-  .stack-section { background: var(--cobalt-dark); }
-
-  .stack-block-label {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .stack-block-label::before {
-    content: '';
-    width: 16px; height: 1px;
-    display: block;
-  }
-
-  .lbl-yellow { color: var(--yellow); }
-  .lbl-yellow::before { background: var(--yellow); }
-  .lbl-blue   { color: var(--cobalt-pale); }
-  .lbl-blue::before   { background: var(--cobalt-pale); }
-  .lbl-ghost  { color: rgba(255,255,255,0.25); }
-  .lbl-ghost::before  { background: rgba(255,255,255,0.2); }
-
-  .stack-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 16px;
-  }
-
-  .stack-item {
-    background: var(--black-mid);
-    padding: 28px 24px;
-    transition: background 0.15s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stack-item::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--border);
-    transition: background 0.2s;
-  }
-
-  .stack-item.p1::before { background: var(--yellow); }
-  .stack-item.p2::before { background: var(--cobalt); }
-  .stack-item.p3::before { background: rgba(255,255,255,0.2); }
-  .stack-item:hover { background: rgba(0,31,92,0.8); }
-
-  .stack-phase-tag {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    padding: 3px 8px;
-    border-radius: 4px;
-    display: inline-block;
-    margin-bottom: 16px;
-  }
-
-  .pt1 { background: rgba(245,166,35,0.1); color: var(--yellow); border: 1px solid rgba(245,166,35,0.2); }
-  .pt2 { background: rgba(0,71,171,0.2); color: var(--cobalt-pale); border: 1px solid rgba(0,71,171,0.35); }
-  .pt3 { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.3); border: 1px solid var(--border); }
-
-  .stack-tech {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-  }
-
-  .stack-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.6; }
-
-  /* ── CTA ── */
-  .cta-section {
-    background: var(--cobalt);
-    padding: 100px 64px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    bottom: -150px; left: 50%;
-    transform: translateX(-50%);
-    width: 800px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0,31,92,0.6) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-section::after {
-    content: '';
-    position: absolute;
-    top: -100px; right: -100px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    border: 1px solid rgba(245,166,35,0.15);
-    pointer-events: none;
-  }
-
-  .cta-section h2 {
-    font-family: 'Unbounded', sans-serif;
-    font-size: clamp(28px, 4vw, 52px);
-    font-weight: 900;
-    color: var(--white);
-    letter-spacing: -0.04em;
-    margin-bottom: 18px;
-    line-height: 1.1;
-    position: relative; z-index: 1;
-  }
-
-  .cta-section h2 .highlight { color: var(--yellow); }
-
-  .cta-section p {
-    font-size: 17px;
-    color: rgba(255,255,255,0.6);
-    max-width: 460px;
-    margin: 0 auto 44px;
-    font-weight: 300;
-    line-height: 1.75;
-    position: relative; z-index: 1;
-  }
-
-  .cta-btns {
-    display: flex;
-    gap: 14px;
-    justify-content: center;
-    flex-wrap: wrap;
-    position: relative; z-index: 1;
-  }
-
-  .btn-cta-main {
-    font-family: 'Fira Code', monospace;
-    font-size: 13px;
-    padding: 15px 32px;
-    background: var(--yellow);
-    color: var(--black);
-    border-radius: 6px;
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    border: 2px solid var(--yellow);
-    transition: all 0.2s;
-  }
-
-  .btn-cta-main:hover {
-    background: var(--yellow-light);
-    border-color: var(--yellow-light);
-    box-shadow: 0 8px 28px rgba(245,166,35,0.3);
-    transform: translateY(-2px);
-  }
-
-  .btn-cta-border {
-    font-family: 'Fira Code', monospace;
-    font-size: 13px;
-    padding: 15px 32px;
-    background: transparent;
-    color: rgba(255,255,255,0.75);
-    border-radius: 6px;
-    text-decoration: none;
-    letter-spacing: 0.06em;
-    border: 2px solid rgba(255,255,255,0.2);
-    transition: all 0.2s;
-  }
-
-  .btn-cta-border:hover { border-color: rgba(255,255,255,0.5); color: var(--white); }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--black);
-    border-top: 1px solid rgba(245,166,35,0.12);
-    padding: 48px 64px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 32px;
-  }
-
-  .footer-left { display: flex; align-items: center; gap: 14px; }
-
-  .footer-logo-img {
-    height: 36px;
-    width: auto;
-    display: block;
-    opacity: 0.9;
-  }
-
-  .footer-brand-text {
-    font-family: 'Unbounded', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.01em;
-  }
-
-  .footer-brand-sub {
-    font-family: 'Fira Code', monospace;
-    font-size: 10px;
-    color: rgba(255,255,255,0.25);
-    letter-spacing: 0.08em;
-    margin-top: 3px;
-  }
-
-  .footer-links { display: flex; gap: 28px; list-style: none; }
-
-  .footer-links a {
-    font-size: 13px;
-    color: rgba(255,255,255,0.3);
-    text-decoration: none;
-    transition: color 0.2s;
-    letter-spacing: 0.02em;
-  }
-
-  .footer-links a:hover { color: var(--yellow); }
-
-  .footer-right {
-    font-family: 'Fira Code', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.2);
-    letter-spacing: 0.06em;
-    text-align: right;
-  }
-
-  /* ── REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.65s ease, transform 0.65s ease;
-  }
-
-  .reveal.in { opacity: 1; transform: translateY(0); }
-  .d1 { transition-delay: 0.1s; }
-  .d2 { transition-delay: 0.2s; }
-  .d3 { transition-delay: 0.3s; }
-
-  @media (max-width: 900px) {
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 56px 20px; min-height: auto; gap: 48px; }
-    .hero-shapes { display: none; }
-    section { padding: 64px 20px; }
-    .roadmap-grid { grid-template-columns: 1fr; }
-    .p2e-grid { grid-template-columns: 1fr; gap: 40px; }
-    .stack-list { grid-template-columns: 1fr; }
-    .web3-options { grid-template-columns: 1fr; }
-    .cta-section { padding: 64px 20px; }
-    footer { flex-direction: column; padding: 36px 20px; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
-    .footer-right { text-align: center; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Block'n Dice — Build. Play. Earn.</title>
+  <link rel="icon" type="image/svg+xml" href="asset/img/favicon.svg">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Outfit:wght@300;400;500&family=Fira+Code:wght@300;400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cobalt: #0047AB;
+      --cobalt-deep: #00338a;
+      --cobalt-dark: #001f5c;
+      --cobalt-mid: #1a5cc8;
+      --cobalt-pale: #d4e3ff;
+      --yellow: #F5A623;
+      --yellow-light: #ffd47a;
+      --yellow-pale: #fff3dc;
+      --black: #080c12;
+      --black-mid: #111827;
+      --white: #ffffff;
+      --muted: rgba(255, 255, 255, 0.55);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--cobalt-dark);
+      color: var(--white);
+      font-family: 'Outfit', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: 68px;
+      padding: 0 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 31, 92, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    /* Logo image — remplace le src par ton fichier final */
+    .logo-img {
+      height: 38px;
+      width: auto;
+      display: block;
+      /* fallback si l'image ne charge pas */
+      min-width: 38px;
+    }
+
+    .logo-text {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--yellow);
+      text-transform: uppercase;
+      font-family: 'Fira Code', monospace;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .btn-nav {
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      font-weight: 400;
+      padding: 10px 22px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+    }
+
+    .btn-nav:hover {
+      background: var(--yellow-light);
+      transform: translateY(-1px);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: calc(100vh - 68px);
+      padding: 80px 64px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .shape-circle {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.12);
+    }
+
+    .shape-1 {
+      width: 600px;
+      height: 600px;
+      right: -100px;
+      top: -200px;
+    }
+
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      right: 80px;
+      top: -50px;
+      border-color: rgba(0, 71, 171, 0.3);
+    }
+
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      right: 220px;
+      top: 80px;
+      background: rgba(245, 166, 35, 0.04);
+      border: none;
+    }
+
+    .shape-dot-grid {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background-image: radial-gradient(circle, rgba(245, 166, 35, 0.15) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse at right center, black 20%, transparent 65%);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(245, 166, 35, 0.35);
+      background: rgba(245, 166, 35, 0.08);
+      color: var(--yellow);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+      width: fit-content;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      animation: blink 2.5s ease-in-out infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.25;
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(32px, 3.8vw, 54px);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 26px;
+      color: var(--white);
+    }
+
+    .hero h1 .word-yellow {
+      color: var(--yellow);
+    }
+
+    .hero h1 .word-blue {
+      color: var(--cobalt-pale);
+      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      font-weight: 300;
+      max-width: 440px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 14px 28px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      transition: all 0.2s;
+      border: 2px solid var(--yellow);
+    }
+
+    .btn-primary:hover {
+      background: var(--yellow-light);
+      border-color: var(--yellow-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245, 166, 35, 0.25);
+    }
+
+    .btn-ghost {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 14px 28px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.7);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      border: 2px solid var(--border);
+      transition: all 0.2s;
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--white);
+    }
+
+    /* Hero phase card */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .phase-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      backdrop-filter: blur(8px);
+    }
+
+    .phase-card-head {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .phase-card-head-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .live-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--yellow);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+
+    .phase-rows {
+      padding: 8px 0;
+    }
+
+    .phase-row {
+      display: grid;
+      grid-template-columns: 48px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 14px 24px;
+      transition: background 0.15s;
+    }
+
+    .phase-row:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .phase-row.active {
+      background: rgba(245, 166, 35, 0.07);
+    }
+
+    .phase-num-box {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .num-active {
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .num-next {
+      background: rgba(0, 71, 171, 0.4);
+      color: var(--cobalt-pale);
+      border: 1px solid rgba(0, 71, 171, 0.6);
+    }
+
+    .num-later {
+      background: rgba(255, 255, 255, 0.05);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    .phase-row-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .phase-row.active .phase-row-name {
+      color: var(--yellow-light);
+    }
+
+    .phase-row-sub {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.04em;
+    }
+
+    .phase-status {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+
+    .s-now {
+      background: rgba(245, 166, 35, 0.15);
+      color: var(--yellow);
+      border: 1px solid rgba(245, 166, 35, 0.25);
+    }
+
+    .s-next {
+      background: rgba(0, 71, 171, 0.2);
+      color: var(--cobalt-pale);
+      border: 1px solid rgba(0, 71, 171, 0.35);
+    }
+
+    .s-tbd {
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    /* ── TICKER ── */
+    .ticker {
+      background: var(--black);
+      border-top: 1px solid rgba(245, 166, 35, 0.15);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.15);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .ticker-track {
+      display: inline-flex;
+      gap: 0;
+      animation: ticker 32s linear infinite;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 36px;
+      font-family: 'Fira Code', monospace;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.08em;
+    }
+
+    .t-accent {
+      color: var(--yellow);
+    }
+
+    .t-blue {
+      color: var(--cobalt-pale);
+    }
+
+    .ticker-sep {
+      color: rgba(245, 166, 35, 0.25);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 96px 64px;
+    }
+
+    .section-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 20px;
+      height: 2px;
+      background: var(--yellow);
+      display: block;
+    }
+
+    section h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(26px, 3vw, 40px);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+
+    .section-lead {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 60px;
+    }
+
+    /* ── ROADMAP ── */
+    .roadmap-section {
+      background: var(--cobalt-dark);
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .r-card {
+      background: var(--black-mid);
+      padding: 36px 28px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .r-card:hover {
+      background: rgba(0, 31, 92, 0.9);
+    }
+
+    .r-card.active {
+      background: rgba(0, 71, 171, 0.25);
+      border-left: 3px solid var(--yellow);
+    }
+
+    .r-card.active::after {
+      content: 'Phase active';
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      letter-spacing: 0.08em;
+      background: rgba(245, 166, 35, 0.1);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .r-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.06);
+    }
+
+    .r-card.active .r-num {
+      color: rgba(245, 166, 35, 0.15);
+    }
+
+    .r-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    .r-card p {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.75;
+    }
+
+    .r-deliverable {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.04em;
+    }
+
+    .r-card.active .r-deliverable {
+      color: rgba(245, 166, 35, 0.5);
+      border-color: rgba(245, 166, 35, 0.15);
+    }
+
+    /* ── P2E ── */
+    .p2e-section {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .p2e-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .p2e-callout {
+      background: rgba(245, 166, 35, 0.07);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 28px 0;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--yellow-light);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+    }
+
+    /* Web3 option cards */
+    .web3-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .web3-opt {
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .web3-opt-a {
+      background: rgba(245, 166, 35, 0.06);
+      border: 1px solid rgba(245, 166, 35, 0.18);
+    }
+
+    .web3-opt-b {
+      background: rgba(0, 71, 171, 0.12);
+      border: 1px solid rgba(0, 71, 171, 0.3);
+    }
+
+    .web3-opt-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .web3-opt-a .web3-opt-label {
+      color: var(--yellow);
+    }
+
+    .web3-opt-b .web3-opt-label {
+      color: var(--cobalt-pale);
+    }
+
+    .web3-opt-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .web3-opt p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .web3-note {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+    }
+
+    /* Mechanic card */
+    .mechanic {
+      background: var(--cobalt-dark);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .mechanic-bar {
+      background: var(--cobalt);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .mechanic-bar-title {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--cobalt-pale);
+    }
+
+    .mechanic-bar-badge {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: var(--yellow);
+      background: rgba(245, 166, 35, 0.15);
+      border: 1px solid rgba(245, 166, 35, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+    }
+
+    .players {
+      display: grid;
+      grid-template-columns: 1fr 50px 1fr;
+      align-items: center;
+    }
+
+    .player {
+      padding: 28px 24px;
+    }
+
+    .player:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .player-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .tag-c {
+      color: var(--cobalt-pale);
+    }
+
+    .tag-a {
+      color: var(--yellow);
+    }
+
+    .player-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .player p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.4);
+      line-height: 1.65;
+    }
+
+    .vs-col {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 1px solid var(--border);
+      height: 100%;
+    }
+
+    .vs-badge {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .results {
+      border-top: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .result {
+      padding: 20px 24px;
+    }
+
+    .result:first-child {
+      border-right: 1px solid var(--border);
+    }
+
+    .result-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .rl-win {
+      color: var(--yellow);
+    }
+
+    .rl-lose {
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .result-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      flex-shrink: 0;
+    }
+
+    .icon-win {
+      background: rgba(245, 166, 35, 0.2);
+      color: var(--yellow);
+    }
+
+    .icon-lose {
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .result p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.65;
+    }
+
+    /* ── STACK ── */
+    .stack-section {
+      background: var(--cobalt-dark);
+    }
+
+    .stack-block-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stack-block-label::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      display: block;
+    }
+
+    .lbl-yellow {
+      color: var(--yellow);
+    }
+
+    .lbl-yellow::before {
+      background: var(--yellow);
+    }
+
+    .lbl-blue {
+      color: var(--cobalt-pale);
+    }
+
+    .lbl-blue::before {
+      background: var(--cobalt-pale);
+    }
+
+    .lbl-ghost {
+      color: rgba(255, 255, 255, 0.25);
+    }
+
+    .lbl-ghost::before {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .stack-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .stack-item {
+      background: var(--black-mid);
+      padding: 28px 24px;
+      transition: background 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stack-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--border);
+      transition: background 0.2s;
+    }
+
+    .stack-item.p1::before {
+      background: var(--yellow);
+    }
+
+    .stack-item.p2::before {
+      background: var(--cobalt);
+    }
+
+    .stack-item.p3::before {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .stack-item:hover {
+      background: rgba(0, 31, 92, 0.8);
+    }
+
+    .stack-phase-tag {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+
+    .pt1 {
+      background: rgba(245, 166, 35, 0.1);
+      color: var(--yellow);
+      border: 1px solid rgba(245, 166, 35, 0.2);
+    }
+
+    .pt2 {
+      background: rgba(0, 71, 171, 0.2);
+      color: var(--cobalt-pale);
+      border: 1px solid rgba(0, 71, 171, 0.35);
+    }
+
+    .pt3 {
+      background: rgba(255, 255, 255, 0.04);
+      color: rgba(255, 255, 255, 0.3);
+      border: 1px solid var(--border);
+    }
+
+    .stack-tech {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .stack-desc {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.6;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--cobalt);
+      padding: 100px 64px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 31, 92, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      border: 1px solid rgba(245, 166, 35, 0.15);
+      pointer-events: none;
+    }
+
+    .cta-section h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 18px;
+      line-height: 1.1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-section h2 .highlight {
+      color: var(--yellow);
+    }
+
+    .cta-section p {
+      font-size: 17px;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 460px;
+      margin: 0 auto 44px;
+      font-weight: 300;
+      line-height: 1.75;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-cta-main {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 15px 32px;
+      background: var(--yellow);
+      color: var(--black);
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border: 2px solid var(--yellow);
+      transition: all 0.2s;
+    }
+
+    .btn-cta-main:hover {
+      background: var(--yellow-light);
+      border-color: var(--yellow-light);
+      box-shadow: 0 8px 28px rgba(245, 166, 35, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .btn-cta-border {
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 15px 32px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.75);
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
+    }
+
+    .btn-cta-border:hover {
+      border-color: rgba(255, 255, 255, 0.5);
+      color: var(--white);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      border-top: 1px solid rgba(245, 166, 35, 0.12);
+      padding: 48px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .footer-logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+      opacity: 0.9;
+    }
+
+    .footer-brand-text {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-brand-sub {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.08em;
+      margin-top: 3px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .footer-links a:hover {
+      color: var(--yellow);
+    }
+
+    .footer-right {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.06em;
+      text-align: right;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .d1 {
+      transition-delay: 0.1s;
+    }
+
+    .d2 {
+      transition-delay: 0.2s;
+    }
+
+    .d3 {
+      transition-delay: 0.3s;
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 56px 20px;
+        min-height: auto;
+        gap: 48px;
+      }
+
+      .hero-shapes {
+        display: none;
+      }
+
+      section {
+        padding: 64px 20px;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .p2e-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .stack-list {
+        grid-template-columns: 1fr;
+      }
+
+      .web3-options {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: 64px 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        padding: 36px 20px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .footer-right {
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="nav-logo">
-    <!--
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!--
       LOGO IMAGE — remplace le src ci-dessous par le chemin vers ton fichier logo.
       Formats recommandés : SVG (idéal) ou PNG avec fond transparent.
       Exemple : src="assets/blockndice-logo.svg"
 
       En attendant, un logo SVG de substitution est généré inline.
     -->
-    <svg class="logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Block'n Dice logo">
-      <!-- Dé gauche -->
-      <rect x="1" y="5" width="28" height="28" rx="5" fill="#F5A623"/>
-      <rect x="1" y="5" width="28" height="28" rx="5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/>
-      <!-- Points du dé (5) -->
-      <circle cx="8"  cy="12" r="2.5" fill="#080c12"/>
-      <circle cx="22" cy="12" r="2.5" fill="#080c12"/>
-      <circle cx="15" cy="19" r="2.5" fill="#080c12"/>
-      <circle cx="8"  cy="26" r="2.5" fill="#080c12"/>
-      <circle cx="22" cy="26" r="2.5" fill="#080c12"/>
-      <!-- Texte -->
-      <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white" letter-spacing="-0.3">BLOCK'N</text>
-      <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="#F5A623" letter-spacing="-0.3">DICE</text>
-    </svg>
-  </a>
+      <svg class="logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-label="Block'n Dice logo">
+        <!-- Dé gauche -->
+        <rect x="1" y="5" width="28" height="28" rx="5" fill="#F5A623" />
+        <rect x="1" y="5" width="28" height="28" rx="5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" />
+        <!-- Points du dé (5) -->
+        <circle cx="8" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="15" cy="19" r="2.5" fill="#080c12" />
+        <circle cx="8" cy="26" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="26" r="2.5" fill="#080c12" />
+        <!-- Texte -->
+        <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white"
+          letter-spacing="-0.3">BLOCK'N</text>
+        <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="#F5A623"
+          letter-spacing="-0.3">DICE</text>
+      </svg>
+    </a>
 
-  <ul class="nav-links">
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#p2e">P2E</a></li>
-    <li><a href="#stack">Stack</a></li>
-  </ul>
-  <a href="#" class="btn-nav">itch.io →</a>
-</nav>
+    <ul class="nav-links">
+      <li><a href="#roadmap">Roadmap</a></li>
+      <li><a href="#p2e">P2E</a></li>
+      <li><a href="#stack">Stack</a></li>
+    </ul>
+    <a href="#" class="btn-nav">itch.io →</a>
+  </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-shapes">
-    <div class="shape-circle shape-1"></div>
-    <div class="shape-circle shape-2"></div>
-    <div class="shape-circle shape-3"></div>
-    <div class="shape-dot-grid"></div>
-  </div>
-
-  <div class="hero-left">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-dot"></span>
-      Phase I — En développement
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-shapes">
+      <div class="shape-circle shape-1"></div>
+      <div class="shape-circle shape-2"></div>
+      <div class="shape-circle shape-3"></div>
+      <div class="shape-dot-grid"></div>
     </div>
-    <h1>
-      Construire.<br>
-      <span class="word-yellow">Jouer.</span><br>
-      <span class="word-blue">Gagner.</span>
-    </h1>
-    <p class="hero-desc">
-      Block'n Dice crée des mini-jeux en Solar2D — un seul moteur Lua
-      pour le navigateur et le mobile. Web2 sur itch.io d'abord,
-      Web3 sur Solana si le succès est au rendez-vous.
-    </p>
-    <div class="hero-actions">
-      <a href="#roadmap" class="btn-primary">Voir la roadmap</a>
-      <a href="#p2e" class="btn-ghost">Modèle P2E →</a>
-    </div>
-  </div>
 
-  <div class="hero-visual reveal">
-    <div class="phase-card">
-      <div class="phase-card-head">
-        <span class="phase-card-head-title">project.phases</span>
-        <span class="live-badge"><span class="live-dot"></span>live</span>
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span>
+        Phase I — En développement
       </div>
-      <div class="phase-rows">
-        <div class="phase-row active">
-          <div class="phase-num-box num-active">01</div>
-          <div class="phase-row-info">
-            <div class="phase-row-name">Consolider le processus</div>
-            <div class="phase-row-sub">Solar2D · pipeline · standards</div>
-          </div>
-          <span class="phase-status s-now">maintenant</span>
-        </div>
-        <div class="phase-row">
-          <div class="phase-num-box num-next">02</div>
-          <div class="phase-row-info">
-            <div class="phase-row-name">Web + Mobile · itch.io</div>
-            <div class="phase-row-sub">Solar2D · Lua · web + mobile</div>
-          </div>
-          <span class="phase-status s-next">phase II</span>
-        </div>
-        <div class="phase-row">
-          <div class="phase-num-box num-later">03</div>
-          <div class="phase-row-info">
-            <div class="phase-row-name">Web3 · si succès Web2</div>
-            <div class="phase-row-sub">pump.fun ou x402 · Solana</div>
-          </div>
-          <span class="phase-status s-tbd">phase III</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-track">
-    <span class="ticker-item"><span class="t-accent">●</span> Solar2D · Lua <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> Web + Mobile · 1 moteur <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-accent">●</span> itch.io · Web2 <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> Box2D · physique <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-accent">●</span> Supabase · leaderboards <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> Solana · si succès <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-accent">●</span> pump.fun · token <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> x402 · micropaiements <span class="ticker-sep">·</span></span>
-    <!-- duplicate -->
-    <span class="ticker-item"><span class="t-accent">●</span> Solar2D · Lua <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> Web + Mobile · 1 moteur <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-accent">●</span> itch.io · Web2 <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> Box2D · physique <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-accent">●</span> Supabase · leaderboards <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> Solana · si succès <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-accent">●</span> pump.fun · token <span class="ticker-sep">·</span></span>
-    <span class="ticker-item"><span class="t-blue">▸</span> x402 · micropaiements <span class="ticker-sep">·</span></span>
-  </div>
-</div>
-
-<!-- ROADMAP -->
-<section id="roadmap" class="roadmap-section">
-  <div class="section-label">01 — Roadmap</div>
-  <h2>La méthode<br>avant le produit.</h2>
-  <p class="section-lead">
-    Chaque phase déverrouille la suivante. Pas d'annonce prématurée —
-    des livrables concrets à chaque étape.
-  </p>
-
-  <div class="roadmap-grid">
-    <div class="r-card active reveal">
-      <div class="r-num">01</div>
-      <h3>Consolider<br>le Processus</h3>
-      <p>Pipeline Solar2D reproductible. Templates Lua, conventions, CI/CD pour itch.io. La fondation qui accélère tout le reste.</p>
-      <div class="r-deliverable">→ Pipeline + 2 jeux pilotes web</div>
-    </div>
-    <div class="r-card reveal d1">
-      <div class="r-num">02</div>
-      <h3>Web + Mobile<br>Solar2D</h3>
-      <p>Un seul moteur Lua pour tout. Export HTML5 pour itch.io et le navigateur, build natif iOS/Android en parallèle. Zéro fragmentation de codebase.</p>
-      <div class="r-deliverable">→ Catalogue itch.io + apps mobiles</div>
-    </div>
-    <div class="r-card reveal d2">
-      <div class="r-num">03</div>
-      <h3>Web3 · si le<br>succès est là</h3>
-      <p>P2E uniquement si les métriques Web2 le justifient. Token via pump.fun ou micropaiements via x402. La décision suit les données.</p>
-      <div class="r-deliverable">→ pump.fun ou x402 · Solana</div>
-    </div>
-  </div>
-</section>
-
-<!-- P2E -->
-<section id="p2e" class="p2e-section">
-  <div class="p2e-grid">
-    <div class="reveal">
-      <div class="section-label">02 — Modèle P2E</div>
-      <h2>Simple.<br>Direct.<br>Entre joueurs.</h2>
-      <p style="font-size:17px; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.8; margin-bottom:0">
-        La mécanique challenger / attaquant fonctionne en Web2 pur
-        et se branche sur Solana si le projet franchit le cap du succès.
+      <h1>
+        Construire.<br>
+        <span class="word-yellow">Jouer.</span><br>
+        <span class="word-blue">Gagner.</span>
+      </h1>
+      <p class="hero-desc">
+        Block'n Dice crée des mini-jeux en Solar2D — un seul moteur Lua
+        pour le navigateur et le mobile. Web2 sur itch.io d'abord,
+        Web3 sur Solana si le succès est au rendez-vous.
       </p>
-      <div class="p2e-callout">
-        « Web2 d'abord. Web3 si les joueurs sont là. »
+      <div class="hero-actions">
+        <a href="#roadmap" class="btn-primary">Voir la roadmap</a>
+        <a href="#p2e" class="btn-ghost">Modèle P2E →</a>
       </div>
-
-      <div class="web3-options">
-        <div class="web3-opt web3-opt-a">
-          <div class="web3-opt-label">OPTION A</div>
-          <div class="web3-opt-name">pump.fun</div>
-          <p>Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate, récompenses en token.</p>
-        </div>
-        <div class="web3-opt web3-opt-b">
-          <div class="web3-opt-label">OPTION B</div>
-          <div class="web3-opt-name">x402</div>
-          <p>Micropaiements USDC machine-à-machine. Escrow auto, zéro token custom, distribution directe.</p>
-        </div>
-      </div>
-
-      <p class="web3-note">// décision selon le profil du jeu et la taille de sa communauté</p>
     </div>
 
-    <div class="reveal d1">
-      <div class="mechanic">
-        <div class="mechanic-bar">
-          <span class="mechanic-bar-title">mécanique des défis</span>
-          <span class="mechanic-bar-badge">web2 → web3 si succès</span>
+    <div class="hero-visual reveal">
+      <div class="phase-card">
+        <div class="phase-card-head">
+          <span class="phase-card-head-title">project.phases</span>
+          <span class="live-badge"><span class="live-dot"></span>live</span>
         </div>
-        <div class="players">
-          <div class="player">
-            <div class="player-tag tag-c">Challenger</div>
-            <div class="player-name">Pose un défi</div>
-            <p>Choisit un objectif précis. Mise une récompense. Attend que quelqu'un relève.</p>
-          </div>
-          <div class="vs-col">
-            <div class="vs-badge">vs</div>
-          </div>
-          <div class="player">
-            <div class="player-tag tag-a">Attaquant</div>
-            <div class="player-name">Tente de gagner</div>
-            <p>N'importe quel joueur peut tenter de remplir le défi dans le temps imparti.</p>
-          </div>
-        </div>
-        <div class="results">
-          <div class="result">
-            <div class="result-label rl-win">
-              <span class="result-icon icon-win">✓</span>
-              Objectif atteint
+        <div class="phase-rows">
+          <div class="phase-row active">
+            <div class="phase-num-box num-active">01</div>
+            <div class="phase-row-info">
+              <div class="phase-row-name">Consolider le processus</div>
+              <div class="phase-row-sub">Solar2D · pipeline · standards</div>
             </div>
-            <p>L'Attaquant reçoit la récompense. Vérifié automatiquement.</p>
+            <span class="phase-status s-now">maintenant</span>
           </div>
-          <div class="result">
-            <div class="result-label rl-lose">
-              <span class="result-icon icon-lose">✗</span>
-              Non atteint
+          <div class="phase-row">
+            <div class="phase-num-box num-next">02</div>
+            <div class="phase-row-info">
+              <div class="phase-row-name">Web + Mobile · itch.io</div>
+              <div class="phase-row-sub">Solar2D · Lua · web + mobile</div>
             </div>
-            <p>Le Challenger récupère sa mise intégralement. Défi invaincu.</p>
+            <span class="phase-status s-next">phase II</span>
+          </div>
+          <div class="phase-row">
+            <div class="phase-num-box num-later">03</div>
+            <div class="phase-row-info">
+              <div class="phase-row-name">Web3 · si succès Web2</div>
+              <div class="phase-row-sub">pump.fun ou x402 · Solana</div>
+            </div>
+            <span class="phase-status s-tbd">phase III</span>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section>
 
-<!-- STACK -->
-<section id="stack" class="stack-section">
-  <div class="section-label">03 — Stack</div>
-  <h2>La bonne tech,<br>au bon moment.</h2>
-  <p class="section-lead">
-    Un moteur unique pour toutes les plateformes.
-    Web2 en fondation — Web3 conditionné au succès.
-  </p>
-
-  <!-- Phase I & II — Moteur unique -->
-  <div class="stack-block-label lbl-yellow" style="margin-bottom:12px">MOTEUR UNIQUE — Phase I &amp; II</div>
-  <div class="stack-list reveal" style="grid-template-columns: 2fr 1fr; margin-bottom:24px">
-    <div class="stack-item p1">
-      <span class="stack-phase-tag pt1">Web + Mobile · Phase I &amp; II</span>
-      <div class="stack-tech">Solar2D</div>
-      <div class="stack-desc">Moteur Lua open-source. Export HTML5 pour itch.io et navigateur, build natif iOS/Android pour mobile. Une seule codebase, toutes les plateformes. Physique Box2D, audio, sprites intégrés.</div>
-    </div>
-    <div class="stack-item p1">
-      <span class="stack-phase-tag pt1">Distribution · Phase I</span>
-      <div class="stack-tech">itch.io</div>
-      <div class="stack-desc">Publication HTML5 via export Solar2D. Audience indie, analytics, zéro friction.</div>
-    </div>
-  </div>
-
-  <!-- Phase II — Backend -->
-  <div class="stack-block-label lbl-blue" style="margin-bottom:12px">BACKEND — Phase II</div>
-  <div class="stack-list reveal d1" style="grid-template-columns: 1fr; margin-bottom:24px">
-    <div class="stack-item p2">
-      <span class="stack-phase-tag pt2">Backend · Phase II</span>
-      <div class="stack-tech">Supabase</div>
-      <div class="stack-desc">Leaderboards temps réel, profils joueurs, métriques d'engagement. Partagé entre version web et mobile Solar2D.</div>
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-track">
+      <span class="ticker-item"><span class="t-accent">●</span> Solar2D · Lua <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Web + Mobile · 1 moteur <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> itch.io · Web2 <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Box2D · physique <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Supabase · leaderboards <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Solana · si succès <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> pump.fun · token <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> x402 · micropaiements <span
+          class="ticker-sep">·</span></span>
+      <!-- duplicate -->
+      <span class="ticker-item"><span class="t-accent">●</span> Solar2D · Lua <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Web + Mobile · 1 moteur <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> itch.io · Web2 <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Box2D · physique <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Supabase · leaderboards <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Solana · si succès <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> pump.fun · token <span
+          class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> x402 · micropaiements <span
+          class="ticker-sep">·</span></span>
     </div>
   </div>
 
-  <!-- Phase III — Web3 conditionnel -->
-  <div class="stack-block-label lbl-ghost" style="margin-bottom:12px">WEB3 — Phase III · conditionnel au succès Web2</div>
-  <div class="stack-list reveal d2">
-    <div class="stack-item p3">
-      <span class="stack-phase-tag pt3">P2E · Option A</span>
-      <div class="stack-tech">pump.fun</div>
-      <div class="stack-desc">Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate. Récompenses en token natif.</div>
+  <!-- ROADMAP -->
+  <section id="roadmap" class="roadmap-section">
+    <div class="section-label">01 — Roadmap</div>
+    <h2>La méthode<br>avant le produit.</h2>
+    <p class="section-lead">
+      Chaque phase déverrouille la suivante. Pas d'annonce prématurée —
+      des livrables concrets à chaque étape.
+    </p>
+
+    <div class="roadmap-grid">
+      <div class="r-card active reveal">
+        <div class="r-num">01</div>
+        <h3>Consolider<br>le Processus</h3>
+        <p>Pipeline Solar2D reproductible. Templates Lua, conventions, CI/CD pour itch.io. La fondation qui accélère
+          tout le reste.</p>
+        <div class="r-deliverable">→ Pipeline + 2 jeux pilotes web</div>
+      </div>
+      <div class="r-card reveal d1">
+        <div class="r-num">02</div>
+        <h3>Web + Mobile<br>Solar2D</h3>
+        <p>Un seul moteur Lua pour tout. Export HTML5 pour itch.io et le navigateur, build natif iOS/Android en
+          parallèle. Zéro fragmentation de codebase.</p>
+        <div class="r-deliverable">→ Catalogue itch.io + apps mobiles</div>
+      </div>
+      <div class="r-card reveal d2">
+        <div class="r-num">03</div>
+        <h3>Web3 · si le<br>succès est là</h3>
+        <p>P2E uniquement si les métriques Web2 le justifient. Token via pump.fun ou micropaiements via x402. La
+          décision suit les données.</p>
+        <div class="r-deliverable">→ pump.fun ou x402 · Solana</div>
+      </div>
     </div>
-    <div class="stack-item p3">
-      <span class="stack-phase-tag pt3">P2E · Option B</span>
-      <div class="stack-tech">x402</div>
-      <div class="stack-desc">Protocole HTTP micropaiements USDC. Escrow automatique challenger/attaquant. Zéro token custom requis.</div>
+  </section>
+
+  <!-- P2E -->
+  <section id="p2e" class="p2e-section">
+    <div class="p2e-grid">
+      <div class="reveal">
+        <div class="section-label">02 — Modèle P2E</div>
+        <h2>Simple.<br>Direct.<br>Entre joueurs.</h2>
+        <p style="font-size:17px; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.8; margin-bottom:0">
+          La mécanique challenger / attaquant fonctionne en Web2 pur
+          et se branche sur Solana si le projet franchit le cap du succès.
+        </p>
+        <div class="p2e-callout">
+          « Web2 d'abord. Web3 si les joueurs sont là. »
+        </div>
+
+        <div class="web3-options">
+          <div class="web3-opt web3-opt-a">
+            <div class="web3-opt-label">OPTION A</div>
+            <div class="web3-opt-name">pump.fun</div>
+            <p>Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate, récompenses en token.</p>
+          </div>
+          <div class="web3-opt web3-opt-b">
+            <div class="web3-opt-label">OPTION B</div>
+            <div class="web3-opt-name">x402</div>
+            <p>Micropaiements USDC machine-à-machine. Escrow auto, zéro token custom, distribution directe.</p>
+          </div>
+        </div>
+
+        <p class="web3-note">// décision selon le profil du jeu et la taille de sa communauté</p>
+      </div>
+
+      <div class="reveal d1">
+        <div class="mechanic">
+          <div class="mechanic-bar">
+            <span class="mechanic-bar-title">mécanique des défis</span>
+            <span class="mechanic-bar-badge">web2 → web3 si succès</span>
+          </div>
+          <div class="players">
+            <div class="player">
+              <div class="player-tag tag-c">Challenger</div>
+              <div class="player-name">Pose un défi</div>
+              <p>Choisit un objectif précis. Mise une récompense. Attend que quelqu'un relève.</p>
+            </div>
+            <div class="vs-col">
+              <div class="vs-badge">vs</div>
+            </div>
+            <div class="player">
+              <div class="player-tag tag-a">Attaquant</div>
+              <div class="player-name">Tente de gagner</div>
+              <p>N'importe quel joueur peut tenter de remplir le défi dans le temps imparti.</p>
+            </div>
+          </div>
+          <div class="results">
+            <div class="result">
+              <div class="result-label rl-win">
+                <span class="result-icon icon-win">✓</span>
+                Objectif atteint
+              </div>
+              <p>L'Attaquant reçoit la récompense. Vérifié automatiquement.</p>
+            </div>
+            <div class="result">
+              <div class="result-label rl-lose">
+                <span class="result-icon icon-lose">✗</span>
+                Non atteint
+              </div>
+              <p>Le Challenger récupère sa mise intégralement. Défi invaincu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="stack-item p3">
-      <span class="stack-phase-tag pt3">Infra · Phase III</span>
-      <div class="stack-tech">Solana · Anchor</div>
-      <div class="stack-desc">Smart contracts Rust audités. Wallet Phantom. Frais quasi-nuls, exécution instantanée.</div>
+  </section>
+
+  <!-- STACK -->
+  <section id="stack" class="stack-section">
+    <div class="section-label">03 — Stack</div>
+    <h2>La bonne tech,<br>au bon moment.</h2>
+    <p class="section-lead">
+      Un moteur unique pour toutes les plateformes.
+      Web2 en fondation — Web3 conditionné au succès.
+    </p>
+
+    <!-- Phase I & II — Moteur unique -->
+    <div class="stack-block-label lbl-yellow" style="margin-bottom:12px">MOTEUR UNIQUE — Phase I &amp; II</div>
+    <div class="stack-list reveal" style="grid-template-columns: 2fr 1fr; margin-bottom:24px">
+      <div class="stack-item p1">
+        <span class="stack-phase-tag pt1">Web + Mobile · Phase I &amp; II</span>
+        <div class="stack-tech">Solar2D</div>
+        <div class="stack-desc">Moteur Lua open-source. Export HTML5 pour itch.io et navigateur, build natif iOS/Android
+          pour mobile. Une seule codebase, toutes les plateformes. Physique Box2D, audio, sprites intégrés.</div>
+      </div>
+      <div class="stack-item p1">
+        <span class="stack-phase-tag pt1">Distribution · Phase I</span>
+        <div class="stack-tech">itch.io</div>
+        <div class="stack-desc">Publication HTML5 via export Solar2D. Audience indie, analytics, zéro friction.</div>
+      </div>
     </div>
-  </div>
-</section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <h2>Web2 d'abord.<br><span class="highlight">Web3 si on y arrive.</span></h2>
-  <p>
-    On construit, on mesure, on décide.
-    Suis la progression de Block'n Dice sur itch.io.
-  </p>
-  <div class="cta-btns">
-    <a href="#" class="btn-cta-main">Suivre sur itch.io</a>
-    <a href="#" class="btn-cta-border">Lire le White Paper →</a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-left">
-    <!-- Même logo que la nav, version footer -->
-    <svg class="footer-logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Block'n Dice">
-      <rect x="1" y="5" width="28" height="28" rx="5" fill="#F5A623"/>
-      <rect x="1" y="5" width="28" height="28" rx="5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5"/>
-      <circle cx="8"  cy="12" r="2.5" fill="#080c12"/>
-      <circle cx="22" cy="12" r="2.5" fill="#080c12"/>
-      <circle cx="15" cy="19" r="2.5" fill="#080c12"/>
-      <circle cx="8"  cy="26" r="2.5" fill="#080c12"/>
-      <circle cx="22" cy="26" r="2.5" fill="#080c12"/>
-      <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white" letter-spacing="-0.3">BLOCK'N</text>
-      <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="#F5A623" letter-spacing="-0.3">DICE</text>
-    </svg>
-    <div>
-      <div class="footer-brand-text">Block'n Dice</div>
-      <div class="footer-brand-sub">© 2026 — White Paper v1.0</div>
+    <!-- Phase II — Backend -->
+    <div class="stack-block-label lbl-blue" style="margin-bottom:12px">BACKEND — Phase II</div>
+    <div class="stack-list reveal d1" style="grid-template-columns: 1fr; margin-bottom:24px">
+      <div class="stack-item p2">
+        <span class="stack-phase-tag pt2">Backend · Phase II</span>
+        <div class="stack-tech">Supabase</div>
+        <div class="stack-desc">Leaderboards temps réel, profils joueurs, métriques d'engagement. Partagé entre version
+          web et mobile Solar2D.</div>
+      </div>
     </div>
-  </div>
 
-  <ul class="footer-links">
-    <li><a href="#">itch.io</a></li>
-    <li><a href="#">White Paper</a></li>
-    <li><a href="#">GitHub</a></li>
-    <li><a href="#">Discord</a></li>
-    <li><a href="#">Twitter</a></li>
-  </ul>
+    <!-- Phase III — Web3 conditionnel -->
+    <div class="stack-block-label lbl-ghost" style="margin-bottom:12px">WEB3 — Phase III · conditionnel au succès Web2
+    </div>
+    <div class="stack-list reveal d2">
+      <div class="stack-item p3">
+        <span class="stack-phase-tag pt3">P2E · Option A</span>
+        <div class="stack-tech">pump.fun</div>
+        <div class="stack-desc">Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate.
+          Récompenses en token natif.</div>
+      </div>
+      <div class="stack-item p3">
+        <span class="stack-phase-tag pt3">P2E · Option B</span>
+        <div class="stack-tech">x402</div>
+        <div class="stack-desc">Protocole HTTP micropaiements USDC. Escrow automatique challenger/attaquant. Zéro token
+          custom requis.</div>
+      </div>
+      <div class="stack-item p3">
+        <span class="stack-phase-tag pt3">Infra · Phase III</span>
+        <div class="stack-tech">Solana · Anchor</div>
+        <div class="stack-desc">Smart contracts Rust audités. Wallet Phantom. Frais quasi-nuls, exécution instantanée.
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <div class="footer-right">blockndice.io<br>build · play · earn</div>
-</footer>
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Web2 d'abord.<br><span class="highlight">Web3 si on y arrive.</span></h2>
+    <p>
+      On construit, on mesure, on décide.
+      Suis la progression de Block'n Dice sur itch.io.
+    </p>
+    <div class="cta-btns">
+      <a href="#" class="btn-cta-main">Suivre sur itch.io</a>
+      <a href="#" class="btn-cta-border">Lire le White Paper →</a>
+    </div>
+  </section>
 
-<script>
-  const els = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-  }, { threshold: 0.1 });
-  els.forEach(el => obs.observe(el));
-</script>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <!-- Même logo que la nav, version footer -->
+      <svg class="footer-logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg"
+        aria-label="Block'n Dice">
+        <rect x="1" y="5" width="28" height="28" rx="5" fill="#F5A623" />
+        <rect x="1" y="5" width="28" height="28" rx="5" stroke="rgba(0,0,0,0.15)" stroke-width="0.5" />
+        <circle cx="8" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="12" r="2.5" fill="#080c12" />
+        <circle cx="15" cy="19" r="2.5" fill="#080c12" />
+        <circle cx="8" cy="26" r="2.5" fill="#080c12" />
+        <circle cx="22" cy="26" r="2.5" fill="#080c12" />
+        <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white"
+          letter-spacing="-0.3">BLOCK'N</text>
+        <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="#F5A623"
+          letter-spacing="-0.3">DICE</text>
+      </svg>
+      <div>
+        <div class="footer-brand-text">Block'n Dice</div>
+        <div class="footer-brand-sub">© 2026 — White Paper v1.0</div>
+      </div>
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="#">itch.io</a></li>
+      <li><a href="#">White Paper</a></li>
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Discord</a></li>
+      <li><a href="#">Twitter</a></li>
+    </ul>
+
+    <div class="footer-right">blockndice.io<br>build · play · earn</div>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
+    els.forEach(el => obs.observe(el));
+  </script>
 </body>
+
 </html>
