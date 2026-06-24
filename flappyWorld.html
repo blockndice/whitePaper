@@ -3,24 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White Paper - Prototype de Mini-Jeu Web3</title>
+    <title>White Paper — Flappy World</title>
     <link rel="stylesheet" href="asset/css/whitepaper.css">
     <link rel="stylesheet" href="asset/css/projetstatut.css">
     <link rel="stylesheet" href="asset/css/language-switcher.css">
     <link rel="stylesheet" href="asset/css/theme-switcher.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="asset/img/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -14 36 30'%3E%3Cg transform='rotate(-20)'%3E%3Crect x='-13' y='-11' width='26' height='22' fill='%23f5d600'/%3E%3Crect x='-9' y='3' width='16' height='6' fill='%23fff3a0'/%3E%3Crect x='-13' y='0' width='10' height='7' fill='%23d4a800'/%3E%3Crect x='3' y='-8' width='9' height='9' fill='%23fff'/%3E%3Crect x='7' y='-5' width='4' height='4' fill='%23111'/%3E%3Crect x='11' y='-3' width='9' height='5' fill='%23ff8800'/%3E%3Crect x='11' y='1' width='9' height='2' fill='%23cc6600'/%3E%3C/g%3E%3C/svg%3E">
 </head>
 <body>
     <div class="container">
+
+        <!-- HEADER -->
         <header class="header banniereUp">
-            <img src="asset/img/og-banner.jpg" alt="Block'n Dice banner" class="header-banner">
-            <div class="header-icon">🎮</div>
-            <h1 class="main-title" data-i18n="header-title">Early Projet de Mini-Jeu Web3</h1>
-            <p class="subtitle" data-i18n="header-subtitle">White Paper v0</p>
+            <img src="asset/img/og-banner.jpg" alt="Flappy World banner" class="header-banner">
+            <div class="header-icon">🐦</div>
+            <h1 class="main-title" data-i18n="header-title">Flappy World</h1>
+            <p class="subtitle" data-i18n="header-subtitle">White Paper v0.20 — Mini-Jeu Web3</p>
         </header>
 
+        <!-- STATUT -->
         <div class="notification-wrapper">
             <div class="status-banner">
                 <div class="status-header">
@@ -30,7 +33,7 @@
                 <div class="status-bar">
                     <div class="status-step completed">
                         <div class="status-dot"></div>
-                        <span class="status-label" data-i18n="status-1">Fondation</span>
+                        <span class="status-label" data-i18n="status-1">Prototype</span>
                     </div>
                     <div class="status-step completed">
                         <div class="status-dot"></div>
@@ -38,16 +41,21 @@
                     </div>
                     <div class="status-step active">
                         <div class="status-dot"></div>
-                        <span class="status-label" data-i18n="status-3">Testing</span>
+                        <span class="status-label" data-i18n="status-3">Alpha<br>Testing</span>
                     </div>
                     <div class="status-step">
                         <div class="status-dot"></div>
                         <span class="status-label" data-i18n="status-4">Playable<br>Itch.io</span>
                     </div>
+                    <div class="status-step">
+                        <div class="status-dot"></div>
+                        <span class="status-label" data-i18n="status-5">Intégration<br>Web3</span>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <!-- RETOUR -->
         <div class="back-button-wrapper">
             <a href="whitePaper.html" class="back-button">
                 <span class="back-button-icon">←</span>
@@ -55,114 +63,283 @@
             </a>
         </div>
 
+        <!-- TABLE DES MATIÈRES -->
         <nav class="table-of-contents">
             <h2 data-i18n="toc-title">Table des matières</h2>
             <ul>
-                <li><a href="#objectif" data-i18n="toc-objectif">Objectif</a></li>
-                <li><a href="#objectifs-detailles" data-i18n="toc-objectifs-detailles">Objectifs détaillés</a></li>
-                <li><a href="#methodologie" data-i18n="toc-methodologie">Méthodologie</a></li>
-                <li><a href="#recompenses" data-i18n="toc-recompenses">Système de récompense</a></li>
+                <li><a href="#vision" data-i18n="toc-vision">Vision</a></li>
+                <li><a href="#gameplay" data-i18n="toc-gameplay">Gameplay</a></li>
+                <li><a href="#economie" data-i18n="toc-economie">Économie In-Game</a></li>
+                <li><a href="#shop" data-i18n="toc-shop">Boutique & Cosmétiques</a></li>
+                <li><a href="#web3" data-i18n="toc-web3">Intégration Web3</a></li>
+                <li><a href="#recompenses" data-i18n="toc-recompenses">Système de Récompenses</a></li>
+                <li><a href="#roadmap" data-i18n="toc-roadmap">Roadmap</a></li>
+                <li><a href="#technique" data-i18n="toc-technique">Architecture Technique</a></li>
                 <li><a href="#note" data-i18n="toc-note">Note finale</a></li>
             </ul>
         </nav>
 
-        <section id="objectif" class="section">
+        <!-- VISION -->
+        <section id="vision" class="section">
             <div class="section-header">
                 <span class="icon">🎯</span>
-                <h2 data-i18n="section-objectif-title">Objectif</h2>
+                <h2 data-i18n="section-vision-title">Vision</h2>
             </div>
             <div class="content-box">
-                <p data-i18n="objectif-p1">Découvrir l'intersection entre le jeu vidéo et la blockchain à travers la création de petits jeux Web3 jouables.</p>
-                <p data-i18n="objectif-p2">Le white paper constitue l'étape numéro 1 afin de poser les fondations et l'orientation du projet. Au fil du temps, il sera complété, cependant les principaux éléments sont listés ci-dessous.</p>
+                <p data-i18n="vision-p1">Flappy World est un mini-jeu Web3 accessible immédiatement dans le navigateur — aucune installation, aucun wallet requis pour jouer. L'objectif est de démontrer qu'un jeu blockchain peut être <strong>simple, fun et immédiatement jouable</strong>, avant d'y intégrer des mécaniques on-chain.</p>
+                <p data-i18n="vision-p2">Le projet explore l'intersection entre le jeu vidéo casual et la blockchain Solana, en construisant d'abord un gameplay solide, puis en y greffant une économie tokenisée.</p>
+                <p data-i18n="vision-p3">Le code source du jeu est <strong>open source</strong>. Seule l'architecture Web3 (gestion du token, distribution des récompenses) restera privée pour des raisons de sécurité.</p>
             </div>
         </section>
 
-        <section id="objectifs-detailles" class="section">
+        <!-- GAMEPLAY -->
+        <section id="gameplay" class="section">
             <div class="section-header">
-                <span class="icon">📌</span>
-                <h2 data-i18n="section-objectifs-detailles-title">Objectifs détaillés</h2>
+                <span class="icon">🕹️</span>
+                <h2 data-i18n="section-gameplay-title">Gameplay</h2>
             </div>
             <div class="content-box">
-                <ul class="objectives-list">
-                    <li data-i18n="objectif-1">Concevoir des mini-jeux <strong>simples et fun</strong> intégrant des fonctionnalités Web3 (NFTs, portefeuilles, récompenses on-chain).</li>
-                    <li data-i18n="objectif-2">Tester le gameplay et recueillir des retours sur <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> en priorité.</li>
-                    <li data-i18n="objectif-3">Expérimenter et itérer les mécaniques blockchain selon les retours des joueurs et la faisabilité technique.</li>
-                </ul>
+                <p data-i18n="gameplay-intro">Flappy World est un jeu de type Flappy Bird revisité. Le joueur contrôle un oiseau pixel qui doit traverser des tuyaux en collectant des pièces. Un seul bouton suffit : <strong>clic, espace ou toucher</strong>.</p>
+            </div>
+
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="card-number">①</div>
+                    <h3 data-i18n="gameplay-1-title">Contrôle</h3>
+                    <p data-i18n="gameplay-1-desc">Un tap/clic fait battre les ailes. Maintenir prolonge légèrement le vol (physique "float"). Lâcher déclenche la chute.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">②</div>
+                    <h3 data-i18n="gameplay-2-title">Score</h3>
+                    <p data-i18n="gameplay-2-desc">Chaque pièce collectée entre deux tuyaux vaut 1 point. Le top 10 des meilleurs scores est sauvegardé localement.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">③</div>
+                    <h3 data-i18n="gameplay-3-title">Modes</h3>
+                    <p data-i18n="gameplay-3-desc"><strong>Free Run</strong> : jeu libre sans limite. <strong>Adventure</strong> : mode à venir avec conditions et récompenses.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">④</div>
+                    <h3 data-i18n="gameplay-4-title">Tricks</h3>
+                    <p data-i18n="gameplay-4-desc">Tous les 3 sauts, un trick s'active (Looping, Toupie). La Toupie offre un effet planeur en maintien — une mécanique de survie.</p>
+                </div>
+            </div>
+
+            <div class="content-box" style="margin-top:1.2rem;">
+                <p data-i18n="gameplay-cycle"><strong>Cycle de jeu :</strong> Intro cinématique → Compte à rebours → Partie → Game Over → Rejouer ou quitter</p>
             </div>
         </section>
 
-        <section id="methodologie" class="section">
+        <!-- ÉCONOMIE IN-GAME -->
+        <section id="economie" class="section">
             <div class="section-header">
-                <span class="icon">🛠️</span>
-                <h2 data-i18n="section-methodologie-title">Méthodologie</h2>
+                <span class="icon">💰</span>
+                <h2 data-i18n="section-economie-title">Économie In-Game</h2>
             </div>
+            <div class="content-box">
+                <p data-i18n="economie-intro">Flappy World repose sur un système à deux devises :</p>
+            </div>
+
+            <div class="rewards-container">
+                <div class="reward-card">
+                    <div class="reward-icon">🪙</div>
+                    <h3 data-i18n="economie-coins-title">Pièces (Coins)</h3>
+                    <p data-i18n="economie-coins-desc">Gagnées en jeu à chaque tuyau franchi. Persistent localement (localStorage). Utilisées pour acheter des cosmétiques dans la boutique. Échangeables contre des $token (à venir).</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">💎</div>
+                    <h3 data-i18n="economie-gems-title">$Token (Gems)</h3>
+                    <p data-i18n="economie-gems-desc">Devise blockchain sur Solana. Obtenue via l'échange de pièces ou les récompenses de mission. Fonctionnalité en cours de développement.</p>
+                </div>
+            </div>
+
+            <div class="content-box" style="margin-top:1.2rem;">
+                <p data-i18n="economie-note">Les pièces n'ont aucune valeur financière. Seul le $token est une devise on-chain. Le ratio d'échange pièces → $token sera défini lors de l'intégration Web3.</p>
+            </div>
+        </section>
+
+        <!-- BOUTIQUE -->
+        <section id="shop" class="section">
+            <div class="section-header">
+                <span class="icon">🛒</span>
+                <h2 data-i18n="section-shop-title">Boutique & Cosmétiques</h2>
+            </div>
+            <div class="content-box">
+                <p data-i18n="shop-intro">La boutique propose des cosmétiques qui modifient l'apparence et les effets visuels sans impacter l'équilibre du jeu. Chaque article peut être prévisualisé avant achat.</p>
+            </div>
+
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="card-number">🎨</div>
+                    <h3 data-i18n="shop-skins-title">Skins (Couleurs)</h3>
+                    <p data-i18n="shop-skins-desc">Vert · Rouge · Rose · Bleu · Violet · Orange · Multicolor (cycle chromatique fluide) · Phosphor (animation lumineuse). Prix : 10–80 pièces.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">✨</div>
+                    <h3 data-i18n="shop-trails-title">Traînées (Trails)</h3>
+                    <p data-i18n="shop-trails-desc">Arc-en-ciel · Nuage · Miasma (bulles vertes toxiques). Effets particules laissés dans le sillage de l'oiseau. Prix : 30–400 pièces.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">💥</div>
+                    <h3 data-i18n="shop-jumps-title">Effets de Saut</h3>
+                    <p data-i18n="shop-jumps-desc">Anneau · Fart (nuage vert) · Firework (explosion colorée). Animations jouées à chaque battement d'ailes. Prix : 30–80 pièces.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">🔄</div>
+                    <h3 data-i18n="shop-tricks-title">Tricks</h3>
+                    <p data-i18n="shop-tricks-desc">Pirouette (looping complet toutes les 3 impulsions) · Toupie (flip vertical + mode planeur au maintien). Prix : 60–100 pièces.</p>
+                </div>
+            </div>
+
+            <div class="content-box" style="margin-top:1.2rem;">
+                <p data-i18n="shop-note">Les achats sont persistants via localStorage. Un cheat mode est disponible (maintien du soleil 3s en écran titre) pour tester tous les articles sans les acheter.</p>
+            </div>
+        </section>
+
+        <!-- WEB3 -->
+        <section id="web3" class="section">
+            <div class="section-header">
+                <span class="icon">⛓️</span>
+                <h2 data-i18n="section-web3-title">Intégration Web3 — Solana</h2>
+            </div>
+            <div class="content-box">
+                <p data-i18n="web3-intro">L'écosystème blockchain choisi est <strong>Solana</strong>, pour ses frais bas et sa rapidité. Le token est déployé via <strong>Pump.fun</strong>.</p>
+            </div>
+
             <div class="methodology-grid">
                 <div class="methodology-card">
                     <div class="card-number">1</div>
-                    <h3 data-i18n="methodo-1-title">Prototyper</h3>
-                    <p data-i18n="methodo-1-desc">Développer le jeu avec HTML5/JavaScript, avec une évolution future vers Unreal Engine.</p>
+                    <h3 data-i18n="web3-1-title">Token $token</h3>
+                    <p data-i18n="web3-1-desc">Token Solana natif du projet Block'n Dice. Flappy World en est le premier vecteur de distribution. Obtenable en jeu sans spéculation.</p>
                 </div>
                 <div class="methodology-card">
                     <div class="card-number">2</div>
-                    <h3 data-i18n="methodo-2-title">Publier</h3>
-                    <p data-i18n="methodo-2-desc">Déployer une version jouable sur itch.io pour obtenir du feedback de la communauté.</p>
+                    <h3 data-i18n="web3-2-title">Swap in-game</h3>
+                    <p data-i18n="web3-2-desc">Fenêtre de swap intégrée (v0.19.6) permettant d'échanger des pièces contre des $token. Connexion wallet à implémenter.</p>
                 </div>
                 <div class="methodology-card">
                     <div class="card-number">3</div>
-                    <h3 data-i18n="methodo-3-title">Intégrer Web3</h3>
-                    <p data-i18n="methodo-3-desc">Utiliser l'écosystème <strong>Solana</strong> et <strong>Pump.fun</strong> pour la gestion du token.</p>
+                    <h3 data-i18n="web3-3-title">Mode Adventure</h3>
+                    <p data-i18n="web3-3-desc">Limite de runs journalière (3 runs / reboot à 7h). Potentiel de gain plafonné à 1 000 pièces/jour. Incentive à jouer régulièrement.</p>
                 </div>
                 <div class="methodology-card">
                     <div class="card-number">4</div>
-                    <h3 data-i18n="methodo-4-title">Open Source</h3>
-                    <p data-i18n="methodo-4-desc">Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L'architecture reste <strong>privée</strong> pour des raisons de sécurité.</p>
+                    <h3 data-i18n="web3-4-title">Profil joueur</h3>
+                    <p data-i18n="web3-4-desc">À venir : pseudo et équipements visibles des autres joueurs dans l'animation d'intro (le groupe d'oiseaux sera composé des profils réels).</p>
                 </div>
             </div>
         </section>
 
+        <!-- RÉCOMPENSES -->
         <section id="recompenses" class="section">
             <div class="section-header">
                 <span class="icon">🎁</span>
-                <h2 data-i18n="section-recompenses-title">Système de Récompense</h2>
+                <h2 data-i18n="section-recompenses-title">Système de Récompenses</h2>
             </div>
             <div class="rewards-container">
                 <div class="reward-card">
                     <div class="reward-icon">🎰</div>
                     <h3 data-i18n="reward-1-title">Loterie</h3>
-                    <p data-i18n="reward-1-desc">Le joueur reçoit une récompense aléatoire parmi une sélection d'objets ou de bonus possibles.</p>
-                </div>
-                <div class="reward-card">
-                    <div class="reward-icon">🗺️</div>
-                    <h3 data-i18n="reward-2-title">Carte au trésor</h3>
-                    <p data-i18n="reward-2-desc">Le joueur suit des indices ou une carte pour trouver une récompense cachée dans le monde du jeu.</p>
+                    <p data-i18n="reward-1-desc">Récompense aléatoire parmi une sélection d'objets cosmétiques ou de $token lors d'événements spéciaux.</p>
                 </div>
                 <div class="reward-card">
                     <div class="reward-icon">🎯</div>
-                    <h3 data-i18n="reward-3-title">Objectif</h3>
-                    <p data-i18n="reward-3-desc">Une récompense est donnée lorsque le joueur atteint un score précis, un temps record, ou un autre objectif mesurable.</p>
+                    <h3 data-i18n="reward-2-title">Score Cible</h3>
+                    <p data-i18n="reward-2-desc">Récompense déclenchée à l'atteinte d'un score précis ou d'un record personnel. Encourage la progression.</p>
                 </div>
                 <div class="reward-card">
                     <div class="reward-icon">⚔️</div>
-                    <h3 data-i18n="reward-4-title">Mission</h3>
-                    <p data-i18n="reward-4-desc">Le joueur complète une ou plusieurs missions (quêtes, défis, mini-jeux) pour débloquer une récompense spécifique.</p>
+                    <h3 data-i18n="reward-3-title">Missions</h3>
+                    <p data-i18n="reward-3-desc">Défis quotidiens ou hebdomadaires (ex : collecter 50 pièces, enchaîner 10 tuyaux). Reward en $token ou article boutique.</p>
+                </div>
+                <div class="reward-card">
+                    <div class="reward-icon">📅</div>
+                    <h3 data-i18n="reward-4-title">Distribution Périodique</h3>
+                    <p data-i18n="reward-4-desc">Snapshot des scores sur une période. Les meilleurs joueurs reçoivent une part du pool de récompenses en $token.</p>
                 </div>
             </div>
         </section>
 
-        <section id="note" class="section note-section">
+        <!-- ROADMAP -->
+        <section id="roadmap" class="section">
             <div class="section-header">
-                <span class="icon">💬</span>
-                <h2 data-i18n="section-note-title">Note</h2>
+                <span class="icon">🗺️</span>
+                <h2 data-i18n="section-roadmap-title">Roadmap</h2>
             </div>
-            <div class="content-box note-box">
-                <p data-i18n="note-final"><strong>Projet de taille humaine en développement</strong></p>
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="card-number">✅</div>
+                    <h3 data-i18n="roadmap-1-title">Phase 1 — Fondation</h3>
+                    <p data-i18n="roadmap-1-desc">Prototype jouable · Physique oiseau · Système de pièces · Top 10 scores · Boutique cosmétiques · Sound design · PWA mobile</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">🔄</div>
+                    <h3 data-i18n="roadmap-2-title">Phase 2 — Alpha</h3>
+                    <p data-i18n="roadmap-2-desc">Tests joueurs · Équilibrage physique · Fenêtre swap $token · Documentation technique · Correction bugs</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">⬜</div>
+                    <h3 data-i18n="roadmap-3-title">Phase 3 — Publication</h3>
+                    <p data-i18n="roadmap-3-desc">Déploiement Itch.io · Profil joueur · Mode Adventure · Niveaux thématiques (plage, montagne, automne)</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">⬜</div>
+                    <h3 data-i18n="roadmap-4-title">Phase 4 — Web3</h3>
+                    <p data-i18n="roadmap-4-desc">Connexion wallet Solana · Distribution $token · Missions on-chain · Leaderboard global · Boutique thématique par page</p>
+                </div>
             </div>
         </section>
 
-        <footer class="footer">
-            <p data-i18n="footer-text">© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0</p>
-            <p class="footer-note" data-i18n="footer-note">Document évolutif - Les spécifications peuvent être mises à jour au fil du développement</p>
+        <!-- ARCHITECTURE TECHNIQUE -->
+        <section id="technique" class="section">
+            <div class="section-header">
+                <span class="icon">🛠️</span>
+                <h2 data-i18n="section-technique-title">Architecture Technique</h2>
+            </div>
+            <div class="content-box">
+                <p data-i18n="technique-intro">Flappy World est développé en <strong>HTML5 / JavaScript pur</strong>, sans framework, rendu sur un canvas 400×600px.</p>
+            </div>
 
+            <div class="methodology-grid">
+                <div class="methodology-card">
+                    <div class="card-number">⚙️</div>
+                    <h3 data-i18n="tech-1-title">Moteur de jeu</h3>
+                    <p data-i18n="tech-1-desc">Boucle à pas fixe 60Hz (accumulateur STEP = 16.67ms). Physique constante quelle que soit la fréquence d'écran. Rendu natif requestAnimationFrame.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">🎨</div>
+                    <h3 data-i18n="tech-2-title">Graphismes</h3>
+                    <p data-i18n="tech-2-desc">Pixel art procédural dessiné en Canvas 2D. Sprites codés en JavaScript pur (rectangles, arcs). Prêt pour remplacement par drawImage().</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">💾</div>
+                    <h3 data-i18n="tech-3-title">Persistance</h3>
+                    <p data-i18n="tech-3-desc">localStorage pour scores top 10, pièces, état boutique. Aucun serveur requis en phase alpha. Migration vers backend Solana prévue.</p>
+                </div>
+                <div class="methodology-card">
+                    <div class="card-number">📱</div>
+                    <h3 data-i18n="tech-4-title">Compatibilité</h3>
+                    <p data-i18n="tech-4-desc">PWA compatible mobile et desktop. Viewport adaptatif. Immersion plein écran. Support tactile natif.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTE -->
+        <section id="note" class="section note-section">
+            <div class="section-header">
+                <span class="icon">💬</span>
+                <h2 data-i18n="section-note-title">Note finale</h2>
+            </div>
+            <div class="content-box note-box">
+                <p data-i18n="note-p1"><strong>Projet de taille humaine, en développement actif.</strong></p>
+                <p data-i18n="note-p2" style="margin-top:0.8rem;">Flappy World est actuellement en phase Alpha (v0.20). Le gameplay de base est fonctionnel et jouable. L'intégration Web3 viendra en phase 4, une fois le jeu stabilisé et testé par une communauté de joueurs. Ce document évoluera avec le projet.</p>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p data-i18n="footer-text">© 2025 Block'n Dice — Flappy World White Paper v0.20</p>
+            <p class="footer-note" data-i18n="footer-note">Document évolutif — Les spécifications peuvent être mises à jour au fil du développement</p>
             <div id="social-network" class="social-links">
                 <a href="https://x.com/blockndice" target="_blank" rel="noopener" class="social-icon x" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
                 <a href="#" target="_blank" rel="noopener" class="social-icon github" title="GitHub"><i class="fab fa-github"></i></a>
@@ -170,8 +347,10 @@
                 <a href="#" target="_blank" rel="noopener" class="social-icon youtube" title="YouTube"><i class="fab fa-youtube"></i></a>
             </div>
         </footer>
+
     </div>
 
+    <!-- LANGUAGE SWITCHER -->
     <div class="language-switcher">
         <button class="lang-btn" data-lang="fr" data-tooltip="Français">
             <span class="fi fi-fr"></span>
