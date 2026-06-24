@@ -16,7 +16,8 @@ const translations = {
         'toc-roadmap': 'Roadmap',
         'toc-note': 'Note finale',
         'toc-social': 'Réseaux Sociaux',
-        
+        'toc-about': 'A propos',
+
         // Section Objectif
         "section-objectif-title": "Objectif",
         "objectif-p1": "Créer des jeux fun et à fort intérêt, qui incitent les joueurs non seulement à jouer, mais aussi à investir dans leur développement. Si la démo du jeu a suscité assez d'intérêt et de satisfaction auprès des joueurs, développer le jeu complet en play-to-earn.",
@@ -40,12 +41,16 @@ const translations = {
         'methodo-1-title': 'Documentation',
         'methodo-1-desc': 'Rédiger le projet du jeu, son cahier des charges et exprimer le choix de l\'asset sur itch.io. Ces point seront   accessible dans l\'onglet de ce whitepaper, pour <strong>informer</strong> la communauté.',
         'methodo-2-title': 'Prototyper',
-        'methodo-2-desc': 'Le développement du jeu sur <strong>Navigateur Web</strong> à l\’aide du moteur Solar2D (anciennement Corona SDK) permettra de faciliter un portage ultérieur vers Android, iOS, Windows et macOS, en fonction de la demande du public.',
+        ‘methodo-2-desc’: ‘Développer le jeu en <strong>JavaScript natif</strong>, jouable sur navigateur, mobile et tablette. Sécurité renforcée à chaque build.’,
         'methodo-3-title': 'Publier',
         'methodo-3-desc': 'Déployer une version jouable sur <strong>itch.io</strong> pour obtenir le feedback de la <strong>communauté</strong>.',
         'methodo-4-title': 'Marketing',
         'methodo-4-desc': 'Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L\'architecture reste <strong>privée</strong> pour des raisons de sécurité.',
-        
+        'methodo-5-title': 'Open Source',
+        'methodo-5-desc': 'Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L\'architecture reste <strong>privée</strong> pour des raisons de sécurité.',
+        'methodo-6-title': 'Open Source',
+        'methodo-6-desc': 'Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L\'architecture reste <strong>privée</strong> pour des raisons de sécurité.',
+
         // Section Récompenses
         'section-recompenses-title': 'Système de récompense',
         'reward-1-title': 'Loterie',
@@ -109,12 +114,19 @@ const translations = {
         'roadmap-5-4': 'Auditer la sécurité des contrats',
         'roadmap-5-5': 'Lancer la version Web3 officielle',
         
+        // Section A propos
+        'section-about-title': 'A propos du fondateur',
+        'about-p1': 'Créer des jeux vidéo est le rêve de mon enfance réalisé à l\'âge adulte. J\'ai commencé par coder des prototypes, ensuite des game jams, mais vite confronté aux obstacles pour en vivre. Grâce à une veille technologique, j\'ai découvert une alternative pour créer et financer un jeu en conservant un lien avec la communauté. Aujourd\'hui, je veux transformer cette vision en réalité.',
+        'about-p2': 'Cette vision n\'a rien de révolutionnaire, juste une alternative à la voie classique, simple mais encore peu adoptée, comme la blockchain ou le Cloud auparavant. Ça permettrait au solo dev de vivre directement de sa création, grâce au soutien de sa communauté et de ses joueurs, un peu comme les streamers et YouTubeurs.',
+        'about-p3': 'Un joueur veut de la passion, de la confiance et des récompenses. Ces valeurs seront insufflées dans Block\'n Dice, pour maximiser une bonne expérience.',
+        'about-p4': 'Mon succès en inspira d\'autres...',
+
         // Footer
         'footer-text': '© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0',
         'footer-note': 'Document évolutif - Les spécifications peuvent être mises à jour au fil du développement',
         'note-final': '<strong>Projet de taille humaine en développement</strong>',
     },
-    
+
     en: {
         // Header
         'header-title': 'Early Web3 Mini-Game Project',
@@ -131,7 +143,8 @@ const translations = {
         'toc-roadmap': 'Roadmap',
         'toc-note': 'Final Note',
         'toc-social': 'Social Networks',
-        
+        'toc-about': 'About',
+
         // Objective Section
         "section-objectif-title": "Objective",
         "objectif-p1": "Create fun and highly engaging games that encourage players not only to play but also to invest in their development. If the game demo generates enough interest and satisfaction among players, develop the full play-to-earn version.",
@@ -159,7 +172,11 @@ const translations = {
         'methodo-3-desc': 'Use the <strong>Solana</strong> ecosystem and <strong>Pump.fun</strong> for token management.',
         'methodo-4-title': 'Open Source',
         'methodo-4-desc': 'The game source code will be <strong>open source</strong> to encourage creativity. The architecture remains <strong>private</strong> for security reasons.',
-        
+        'methodo-5-title': 'Open Source',
+        'methodo-5-desc': 'The game source code will be <strong>open source</strong> to encourage creativity. The architecture remains <strong>private</strong> for security reasons.',
+        'methodo-6-title': 'Open Source',
+        'methodo-6-desc': 'The game source code will be <strong>open source</strong> to encourage creativity. The architecture remains <strong>private</strong> for security reasons.',
+
         // Rewards Section
         'section-recompenses-title': 'Reward System',
         'reward-1-title': 'Lottery',
@@ -223,12 +240,19 @@ const translations = {
         'roadmap-5-4': 'Audit contract security',
         'roadmap-5-5': 'Launch official Web3 version',
         
+        // About Section
+        'section-about-title': 'About the Founder',
+        'about-p1': 'Creating video games is the dream of my childhood realized in adulthood. I started by coding prototypes, then game jams, but quickly faced obstacles to making a living from it. Through technology research, I discovered an alternative to create and fund a game while maintaining a connection with the community. Today, I want to turn this vision into reality.',
+        'about-p2': 'This vision isn\'t revolutionary, just an alternative to the classic path, simple but still little adopted, like blockchain or the Cloud before. It would allow the solo dev to live directly from their creation, thanks to the support of their community and players, a bit like streamers and YouTubers.',
+        'about-p3': 'A player wants passion, trust, and rewards. These values will be instilled in Block\'n Dice, to maximize a great experience.',
+        'about-p4': 'My success inspired others...',
+
         // Footer
         'footer-text': '© 2025 - Web3 Mini-Game Prototype - White Paper v0.0',
         'footer-note': 'Evolving document - Specifications may be updated during development',
         'note-final': '<strong>Human-sized project in development</strong>',
     },
-    
+
     es: {
         // Header
         'header-title': 'Proyecto Early de Mini-Juego Web3',
@@ -245,7 +269,8 @@ const translations = {
         'toc-roadmap': 'Roadmap',
         'toc-note': 'Nota Final',
         'toc-social': 'Redes Sociales',
-        
+        'toc-about': 'Acerca de',
+
         // Sección Objetivo
         "section-objectif-title": "Objetivo",
         "objectif-p1": "Crear juegos divertidos y de gran interés que motiven a los jugadores no solo a jugar, sino también a invertir en su desarrollo. Si la demostración del juego genera suficiente interés y satisfacción entre los jugadores, desarrollar la versión completa en formato play-to-earn.",
@@ -273,7 +298,11 @@ const translations = {
         'methodo-3-desc': 'Utilizar el ecosistema <strong>Solana</strong> y <strong>Pump.fun</strong> para la gestión del token.',
         'methodo-4-title': 'Código Abierto',
         'methodo-4-desc': 'El código fuente del juego será <strong>open source</strong> para fomentar la creatividad. La arquitectura permanece <strong>privada</strong> por razones de seguridad.',
-        
+        'methodo-5-title': 'Código Abierto',
+        'methodo-5-desc': 'El código fuente del juego será <strong>open source</strong> para fomentar la creatividad. La arquitectura permanece <strong>privada</strong> por razones de seguridad.',
+        'methodo-6-title': 'Código Abierto',
+        'methodo-6-desc': 'El código fuente del juego será <strong>open source</strong> para fomentar la creatividad. La arquitectura permanece <strong>privada</strong> por razones de seguridad.',
+
         // Sección Recompensas
         'section-recompenses-title': 'Sistema de Recompensas',
         'reward-1-title': 'Lotería',
@@ -337,6 +366,13 @@ const translations = {
         'roadmap-5-4': 'Auditar seguridad de contratos',
         'roadmap-5-5': 'Lanzar versión Web3 oficial',
         
+        // Sección Acerca de
+        'section-about-title': 'Sobre el Fundador',
+        'about-p1': 'Crear videojuegos es el sueño de mi infancia hecho realidad en la edad adulta. Empecé programando prototipos, luego game jams, pero pronto me enfrenté a los obstáculos para vivir de ello. Gracias a una investigación tecnológica, descubrí una alternativa para crear y financiar un juego manteniendo un vínculo con la comunidad. Hoy quiero transformar esta visión en realidad.',
+        'about-p2': 'Esta visión no tiene nada de revolucionario, solo es una alternativa al camino clásico, sencilla pero todavía poco adoptada, como la blockchain o la nube antes. Permitiría al desarrollador en solitario vivir directamente de su creación, gracias al apoyo de su comunidad y sus jugadores, un poco como los streamers y YouTubers.',
+        'about-p3': 'Un jugador quiere pasión, confianza y recompensas. Estos valores se infundirán en Block\'n Dice para maximizar una buena experiencia.',
+        'about-p4': 'Mi éxito inspirará a otros...',
+
         // Footer
         'footer-text': '© 2025 - Prototipo de Mini-Juego Web3 - White Paper v0.0',
         'footer-note': 'Documento evolutivo - Las especificaciones pueden actualizarse durante el desarrollo',
@@ -344,53 +380,30 @@ const translations = {
     }
 };
 
-// Fonction pour changer la langue
 function changeLanguage(lang) {
-    // Sauvegarder la préférence
-    localStorage.setItem('preferredLanguage', lang);
-    
-    // Appliquer les traductions
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            // Cas spécial pour les éléments <span> dans les <li> de la roadmap
-            // On utilise textContent pour ne pas écraser le HTML
-            if (element.tagName === 'SPAN' && element.parentElement.tagName === 'LI') {
-                element.textContent = translations[lang][key].replace(/<[^>]*>/g, '');
-            } else {
-                element.innerHTML = translations[lang][key];
-            }
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang]?.[key]) {
+            el.innerHTML = translations[lang][key];
         }
     });
-    
-    // Mettre à jour les boutons actifs
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
-    
-    // Animation de transition
+
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const active = document.querySelector(`[data-lang="${lang}"]`);
+    if (active) active.classList.add('active');
+
     document.body.style.opacity = '0.95';
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 200);
+    setTimeout(() => { document.body.style.opacity = '1'; }, 200);
 }
 
-// Initialisation au chargement de la page
 document.addEventListener('DOMContentLoaded', () => {
-    // Détecter la langue du navigateur ou charger la préférence
-    const savedLang = localStorage.getItem('preferredLanguage');
-    const browserLang = navigator.language.split('-')[0]; // 'fr', 'en', 'es'
-    const defaultLang = savedLang || (translations[browserLang] ? browserLang : 'fr');
-    
-    // Appliquer la langue par défaut
+    const browserLang = navigator.language.split('-')[0];
+    const defaultLang = translations[browserLang] ? browserLang : 'fr';
     changeLanguage(defaultLang);
-    
-    // Ajouter les événements sur les boutons
+
     document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const lang = e.currentTarget.getAttribute('data-lang');
-            changeLanguage(lang);
+        btn.addEventListener('click', e => {
+            changeLanguage(e.currentTarget.getAttribute('data-lang'));
         });
     });
 });

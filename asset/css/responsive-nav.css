@@ -154,6 +154,11 @@
         left: 1rem;
         width: 45px;
         height: 45px;
+        transition: left 0.3s ease, top 0.3s ease, all 0.3s ease;
+    }
+
+    .menu-toggle.active {
+        left: calc(260px + 0.5rem);
     }
 
     .menu-toggle span {
@@ -302,6 +307,10 @@
         height: 40px;
         top: 0.75rem;
         left: 0.75rem;
+    }
+
+    .menu-toggle.active {
+        left: calc(230px + 0.5rem);
     }
 
     .menu-toggle span {

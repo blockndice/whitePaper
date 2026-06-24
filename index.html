@@ -11,7 +11,9 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Outfit:wght@300;400;500&family=Fira+Code:wght@300;400&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="asset/css/language-switcher.css">
   <link rel="stylesheet" href="asset/css/index.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -60,7 +62,7 @@
     <div class="hero-left">
       <div class="hero-eyebrow">
         <span class="eyebrow-dot"></span>
-        Phase I — En développement
+        <span data-i18n="hero-phase">Phase III — En développement</span>
       </div>
       <img
         src="asset/img/logo_banner.png"
@@ -71,18 +73,18 @@
         loading="eager"
       >
       <h1>
-        Construire.<br>
-        <span class="word-yellow">Jouer.</span><br>
-        <span class="word-blue">Récompenser.</span>
+        <span data-i18n="hero-word-1">Construire.</span><br>
+        <span class="word-yellow" data-i18n="hero-word-2">Jouer.</span><br>
+        <span class="word-blue" data-i18n="hero-word-3">Récompenser.</span>
       </h1>
-      <p class="hero-desc">
+      <p class="hero-desc" data-i18n="hero-desc">
         Block'n Dice crée des mini-jeux en JavaScript natif jouables
         sur navigateur, mobile et tablette. On prototype, on teste, on
         sécurise. Web3 via Solana et pump.fun.
       </p>
       <div class="hero-actions">
-        <a href="#roadmap" class="btn-primary">Voir la roadmap</a>
-        <a href="#p2e" class="btn-ghost">Modèle P2E →</a>
+        <a href="#roadmap" class="btn-primary" data-i18n="hero-btn-primary">Voir la roadmap</a>
+        <a href="#p2e" class="btn-ghost" data-i18n="hero-btn-ghost">Modèle P2E →</a>
       </div>
     </div>
 
@@ -97,25 +99,25 @@
             <div class="phase-num-box num-active">01</div>
             <div class="phase-row-info">
               <div class="phase-row-name">Prototype</div>
-              <div class="phase-row-sub">JS natif · sécurité · browser</div>
+              <div class="phase-row-sub" data-i18n="phase-1-sub">JS natif · sécurité · browser</div>
             </div>
-            <span class="phase-status s-now">maintenant</span>
+            <span class="phase-status s-now" data-i18n="phase-1-status">maintenant</span>
           </div>
           <div class="phase-row">
             <div class="phase-num-box num-next">02</div>
             <div class="phase-row-info">
-              <div class="phase-row-name">Test sur itch.io</div>
-              <div class="phase-row-sub">web · mobile · tablette</div>
+              <div class="phase-row-name" data-i18n="phase-2-name">Test sur itch.io</div>
+              <div class="phase-row-sub" data-i18n="phase-2-sub">web · mobile · tablette</div>
             </div>
-            <span class="phase-status s-next">phase II</span>
+            <span class="phase-status s-next" data-i18n="phase-2-status">phase II</span>
           </div>
           <div class="phase-row">
             <div class="phase-num-box num-later">03</div>
             <div class="phase-row-info">
               <div class="phase-row-name">Web3 · Solana + pump.fun</div>
-              <div class="phase-row-sub">rewards</div>
+              <div class="phase-row-sub" data-i18n="phase-3-sub">rewards</div>
             </div>
-            <span class="phase-status s-tbd">phase III</span>
+            <span class="phase-status s-tbd" data-i18n="phase-3-status">phase III</span>
           </div>
         </div>
       </div>
@@ -148,8 +150,8 @@
   <!-- ROADMAP -->
   <section id="roadmap" class="roadmap-section">
     <div class="section-label">01 — Roadmap</div>
-    <h2>La méthode<br>avant le produit.</h2>
-    <p class="section-lead">
+    <h2 data-i18n="roadmap-h2">La méthode<br>avant le produit.</h2>
+    <p class="section-lead" data-i18n="roadmap-lead">
       Chaque phase déverrouille la suivante. Pas d'annonce prématurée —
       des livrables concrets à chaque étape.
     </p>
@@ -157,21 +159,21 @@
     <div class="roadmap-grid">
       <div class="r-card active reveal">
         <div class="r-num">01</div>
-        <h3>Expérimenter<br> + Prototype </h3>
-        <p>Développer les jeux en JavaScript natif, jouables sur navigateur, mobile et tablette. On teste plusieurs technologies, la sécurité renforcée à l'IA est au cœur de chaque build.</p>
-        <div class="r-deliverable">→ Jeux JS · browser · responsive</div>
+        <h3 data-i18n="roadmap-1-title">Expérimenter<br>+ Prototype</h3>
+        <p data-i18n="roadmap-1-desc">Développer les jeux en JavaScript natif, jouables sur navigateur, mobile et tablette. On teste plusieurs technologies, la sécurité renforcée à l'IA est au cœur de chaque build.</p>
+        <div class="r-deliverable" data-i18n="roadmap-1-deliverable">→ Jeux JS · browser · responsive</div>
       </div>
       <div class="r-card reveal d1">
         <div class="r-num">02</div>
-        <h3>recueillir les avis des joueurs sur<br>itch.io</h3>
-        <p>Déploiement sur itch.io pour recueillir les retours de la communauté. Validation du gameplay, de la rétention et de la robustesse technique avant toute intégration Web3.</p>
-        <div class="r-deliverable">→ Jeux publiés · feedback réel</div>
+        <h3 data-i18n="roadmap-2-title">Recueillir les avis<br>des joueurs sur itch.io</h3>
+        <p data-i18n="roadmap-2-desc">Déploiement sur itch.io pour recueillir les retours de la communauté. Validation du gameplay, de la rétention et de la robustesse technique avant toute intégration Web3.</p>
+        <div class="r-deliverable" data-i18n="roadmap-2-deliverable">→ Jeux publiés · feedback réel</div>
       </div>
       <div class="r-card reveal d2">
         <div class="r-num">03</div>
-        <h3>Web3 · Solana<br>+ pump.fun</h3>
-        <p>Dès que l'économie du jeu est décidé : nous déploiement des rewards via pump.fun sur Solana. Token communautaire, récompenses directes aux joueurs.</p>
-        <div class="r-deliverable">→ pump.fun · Solana · rewards</div>
+        <h3 data-i18n="roadmap-3-title">Web3 · Solana<br>+ pump.fun</h3>
+        <p data-i18n="roadmap-3-desc">Dès que l'économie du jeu est décidée : déploiement des rewards via pump.fun sur Solana. Token communautaire, récompenses directes aux joueurs.</p>
+        <div class="r-deliverable" data-i18n="roadmap-3-deliverable">→ pump.fun · Solana · rewards</div>
       </div>
     </div>
   </section>
@@ -181,12 +183,12 @@
     <div class="p2e-grid">
       <div class="reveal">
         <div class="section-label">02 — Modèle P2E</div>
-        <h2>Simple.<br>Direct.<br>Entre joueurs.</h2>
-        <p style="font-size:17px; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.8; margin-bottom:0">
+        <h2 data-i18n="p2e-h2">Simple.<br>Direct.<br>Entre joueurs.</h2>
+        <p style="font-size:17px; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.8; margin-bottom:0" data-i18n="p2e-desc">
           La mécanique challenger / attaquant fonctionne en Web2 pur
           et se branche sur Solana + pump.fun si le projet franchit le cap du succès.
         </p>
-        <div class="p2e-callout">
+        <div class="p2e-callout" data-i18n="p2e-callout">
           « Prototype d'abord. Rewards si les joueurs sont là. »
         </div>
 
@@ -194,53 +196,53 @@
           <div class="web3-opt web3-opt-a">
             <div class="web3-opt-label">REWARDS</div>
             <div class="web3-opt-name">pump.fun</div>
-            <p>Token communautaire sur Solana. systeme de saison où évènement éphémère, récompenses directes aux joueurs.</p>
+            <p data-i18n="web3-a-desc">Token communautaire sur Solana. Système de saison où évènement éphémère, récompenses directes aux joueurs.</p>
           </div>
           <div class="web3-opt web3-opt-b">
             <div class="web3-opt-label">SÉCURITÉ</div>
             <div class="web3-opt-name">IA · Audit</div>
-            <p>Analyse renforcée à l'IA sur chaque composant. Audit avant tout déploiement Web3. Zéro compromis sur la sécurité.</p>
+            <p data-i18n="web3-b-desc">Analyse renforcée à l'IA sur chaque composant. Revue de code, détection de vulnérabilités, audit de sécurité avant tout déploiement. Zéro compromis sur la sécurité.</p>
           </div>
         </div>
 
-        <p class="web3-note">// on teste, on consolide, on déploie — dans cet ordre</p>
+        <p class="web3-note" data-i18n="p2e-note">// on teste, on consolide, on déploie — dans cet ordre</p>
       </div>
 
       <div class="reveal d1">
         <div class="mechanic">
           <div class="mechanic-bar">
-            <span class="mechanic-bar-title">mécanique des défis</span>
-            <span class="mechanic-bar-badge">web2 → web3 si succès</span>
+            <span class="mechanic-bar-title" data-i18n="mechanic-title">mécanique des défis</span>
+            <span class="mechanic-bar-badge" data-i18n="mechanic-badge">web2 → web3 si succès</span>
           </div>
           <div class="players">
             <div class="player">
-              <div class="player-tag tag-c">Challenger</div>
-              <div class="player-name">Pose un défi</div>
-              <p>Choisit un objectif précis. Mise une récompense. Attend que quelqu'un relève.</p>
+              <div class="player-tag tag-c" data-i18n="challenger-tag">Challenger</div>
+              <div class="player-name" data-i18n="challenger-name">Pose un défi</div>
+              <p data-i18n="challenger-desc">Choisit un objectif précis. Mise une récompense. Attend que quelqu'un relève.</p>
             </div>
             <div class="vs-col">
               <div class="vs-badge">vs</div>
             </div>
             <div class="player">
-              <div class="player-tag tag-a">Attaquant</div>
-              <div class="player-name">Tente de gagner</div>
-              <p>N'importe quel joueur peut tenter de remplir le défi dans le temps imparti.</p>
+              <div class="player-tag tag-a" data-i18n="attaquant-tag">Attaquant</div>
+              <div class="player-name" data-i18n="attaquant-name">Tente de gagner</div>
+              <p data-i18n="attaquant-desc">N'importe quel joueur peut tenter de remplir le défi dans le temps imparti.</p>
             </div>
           </div>
           <div class="results">
             <div class="result">
               <div class="result-label rl-win">
                 <span class="result-icon icon-win">✓</span>
-                Objectif atteint
+                <span data-i18n="result-win-label">Objectif atteint</span>
               </div>
-              <p>L'Attaquant reçoit la récompense. Vérifié automatiquement.</p>
+              <p data-i18n="result-win-desc">L'Attaquant reçoit la récompense. Vérifié automatiquement.</p>
             </div>
             <div class="result">
               <div class="result-label rl-lose">
                 <span class="result-icon icon-lose">✗</span>
-                Non atteint
+                <span data-i18n="result-lose-label">Non atteint</span>
               </div>
-              <p>Le Challenger récupère sa mise intégralement. Défi invaincu.</p>
+              <p data-i18n="result-lose-desc">Le Challenger récupère sa mise intégralement. Défi invaincu.</p>
             </div>
           </div>
         </div>
@@ -251,8 +253,8 @@
   <!-- STACK -->
   <section id="stack" class="stack-section">
     <div class="section-label">03 — Stack</div>
-    <h2>La bonne tech,<br>au bon moment.</h2>
-    <p class="section-lead">
+    <h2 data-i18n="stack-h2">La bonne tech,<br>au bon moment.</h2>
+    <p class="section-lead" data-i18n="stack-lead">
       JavaScript natif en fondation — sécurité renforcée à l'IA.
       Web3 conditionné au succès des prototypes.
     </p>
@@ -262,12 +264,12 @@
       <div class="stack-item p1">
         <span class="stack-phase-tag pt1">Jeux · Phase I</span>
         <div class="stack-tech">JavaScript Natif</div>
-        <div class="stack-desc">Développement en JS natif, sans framework lourd. Jeux jouables sur navigateur, mobile et tablette. Responsive by design, on teste plusieurs approches techniques en restant sur des bases simples et maîtrisées.</div>
+        <div class="stack-desc" data-i18n="stack-1-desc">Développement en JS natif, sans framework lourd. Jeux jouables sur navigateur, mobile et tablette. Responsive by design, on teste plusieurs approches techniques en restant sur des bases simples et maîtrisées.</div>
       </div>
       <div class="stack-item p1">
         <span class="stack-phase-tag pt1">Distribution · Phase I</span>
         <div class="stack-tech">itch.io</div>
-        <div class="stack-desc">Publication et tests sur itch.io. Audience indie, feedback direct, analytics — zéro friction pour itérer vite.</div>
+        <div class="stack-desc" data-i18n="stack-2-desc">Publication et tests sur itch.io. Audience indie, feedback direct, analytics — zéro friction pour itérer vite.</div>
       </div>
     </div>
 
@@ -276,7 +278,7 @@
       <div class="stack-item p2">
         <span class="stack-phase-tag pt2">Sécurité · Phase I &amp; II</span>
         <div class="stack-tech">IA · Audit</div>
-        <div class="stack-desc">Analyse renforcée à l'IA sur chaque composant du projet. Revue de code, détection de vulnérabilités, audit de sécurité avant tout déploiement. La sécurité n'est pas une option — c'est la fondation.</div>
+        <div class="stack-desc" data-i18n="stack-3-desc">Analyse renforcée à l'IA sur chaque composant du projet. Revue de code, détection de vulnérabilités, audit de sécurité avant tout déploiement. La sécurité n'est pas une option — c'est la fondation.</div>
       </div>
     </div>
 
@@ -285,25 +287,28 @@
       <div class="stack-item p3">
         <span class="stack-phase-tag pt3">Rewards · Phase III</span>
         <div class="stack-tech">pump.fun</div>
-        <div class="stack-desc">Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate. Récompenses directes aux joueurs via le token natif.</div>
+        <div class="stack-desc" data-i18n="stack-4-desc">Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate. Récompenses directes aux joueurs via le token natif.</div>
       </div>
       <div class="stack-item p3">
         <span class="stack-phase-tag pt3">Infra · Phase III</span>
         <div class="stack-tech">Solana · Anchor</div>
-        <div class="stack-desc">Smart contracts Rust audités. Wallet Phantom. Frais quasi-nuls, exécution instantanée. Déployé uniquement si les métriques Web2 le justifient.</div>
+        <div class="stack-desc" data-i18n="stack-5-desc">Smart contracts Rust audités. Wallet Phantom. Frais quasi-nuls, exécution instantanée. Déployé uniquement si les métriques Web2 le justifient.</div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section" id="cta">
-    <h2>Créer pour jouer.<br><span class="highlight">Récompenser les défis.</span></h2>
-    <p>
+    <h2>
+      <span data-i18n="cta-h2-1">Créer pour jouer.</span><br>
+      <span class="highlight" data-i18n="cta-h2-2">Récompenser les défis.</span>
+    </h2>
+    <p data-i18n="cta-desc">
       Divertissement, défis entre joueurs, récompenses on-chain.
     </p>
     <div class="cta-btns">
-      <a href="https://blockndice.itch.io/" target="_blank" class="btn-cta-main">Suivre sur itch.io</a>
-      <a href="whitePaper.html" target="_blank" class="btn-cta-border">Lire le White Paper →</a>
+      <a href="https://blockndice.itch.io/" target="_blank" class="btn-cta-main" data-i18n="cta-btn-main">Suivre sur itch.io</a>
+      <a href="whitePaper.html" target="_blank" class="btn-cta-border" data-i18n="cta-btn-border">Lire le White Paper →</a>
     </div>
   </section>
 
@@ -326,7 +331,15 @@
     <div class="footer-right">blockndice.io<br>build · play · earn</div>
   </footer>
 
+  <!-- LANGUAGE SWITCHER -->
+  <div class="language-switcher">
+    <button class="lang-btn" data-lang="fr" data-tooltip="Français"><span class="fi fi-fr"></span></button>
+    <button class="lang-btn" data-lang="en" data-tooltip="English"><span class="fi fi-gb"></span></button>
+    <button class="lang-btn" data-lang="es" data-tooltip="Español"><span class="fi fi-es"></span></button>
+  </div>
+
   <script src="asset/js/index.js"></script>
+  <script src="asset/js/language-home.js"></script>
 </body>
 
 </html>
