@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Block'n Dice — Build. Play. Earn.</title>
   <link rel="icon" type="image/svg+xml" href="asset/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;700;900&family=Outfit:wght@300;400;500&family=Fira+Code:wght@300;400&display=swap"
     rel="stylesheet">
@@ -16,17 +18,14 @@
       --cobalt-dark: #001f5c;
       --cobalt-mid: #1a5cc8;
       --cobalt-pale: #d4e3ff;
-      --cobalt-xpale: #eaf1ff;
       --yellow: #F5A623;
       --yellow-light: #ffd47a;
       --yellow-pale: #fff3dc;
       --black: #080c12;
       --black-mid: #111827;
       --white: #ffffff;
-      --offwhite: #f7f9ff;
-      --muted: rgba(255, 255, 255, 0.55);
+      --muted: rgba(255, 255, 255, 0.72);
       --border: rgba(255, 255, 255, 0.1);
-      --border-dark: rgba(0, 71, 171, 0.18);
     }
 
     *,
@@ -39,6 +38,39 @@
 
     html {
       scroll-behavior: smooth;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 16px;
+      z-index: 999;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Fira Code', monospace;
+      font-size: 13px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ── FOCUS RINGS ── */
+    :focus-visible {
+      outline: 2px solid var(--yellow);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* ── REDUCED MOTION ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
 
     body {
@@ -61,9 +93,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(0, 31, 92, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: var(--black);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.12);
     }
 
     .nav-logo {
@@ -73,29 +104,11 @@
       text-decoration: none;
     }
 
-    /* Logo image — remplace le src par ton fichier final */
     .logo-img {
       height: 38px;
       width: auto;
       display: block;
-      /* fallback si l'image ne charge pas */
       min-width: 38px;
-    }
-
-    .logo-mark {
-      width: 36px;
-      height: 36px;
-      background: var(--yellow);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .logo-mark svg {
-      width: 20px;
-      height: 20px;
     }
 
     .logo-text {
@@ -104,6 +117,17 @@
       font-weight: 700;
       color: var(--white);
       letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .logo-text span {
+      display: block;
+      font-size: 9px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      color: var(--yellow);
+      text-transform: uppercase;
+      font-family: 'Fira Code', monospace;
     }
 
     .nav-links {
@@ -120,6 +144,8 @@
       text-decoration: none;
       transition: color 0.2s;
       letter-spacing: 0.01em;
+      cursor: pointer;
+      padding: 8px 4px;
     }
 
     .nav-links a:hover {
@@ -137,17 +163,87 @@
       text-decoration: none;
       letter-spacing: 0.04em;
       transition: all 0.2s;
+      cursor: pointer;
+      touch-action: manipulation;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .btn-nav:hover {
       background: var(--yellow-light);
       transform: translateY(-1px);
+      box-shadow: 0 0 16px rgba(245, 166, 35, 0.4);
+    }
+
+    /* ── HAMBURGER (mobile) ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 8px;
+      background: none;
+      border: none;
+      touch-action: manipulation;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .nav-hamburger:hover { background: rgba(255, 255, 255, 0.06); }
+
+    .nav-hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: transform 0.22s ease, opacity 0.18s ease;
+      transform-origin: center;
+    }
+
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile menu dropdown */
+    .nav-links.mobile-open {
+      display: flex !important;
+      flex-direction: column;
+      position: absolute;
+      top: 56px;
+      left: 0;
+      right: 0;
+      background: var(--black);
+      border-bottom: 1px solid rgba(245, 166, 35, 0.12);
+      padding: 8px 20px 20px;
+      gap: 0;
+      animation: menuSlide 0.2s ease;
+      z-index: 99;
+    }
+
+    .nav-links.mobile-open li { border-bottom: 1px solid var(--border); }
+    .nav-links.mobile-open li:last-child { border-bottom: none; }
+    .nav-links.mobile-open a {
+      font-size: 15px;
+      padding: 14px 4px;
+      color: var(--muted);
+      display: block;
+    }
+    .nav-links.mobile-open a:hover { color: var(--white); }
+
+    @keyframes menuSlide {
+      from { opacity: 0; transform: translateY(-6px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* ── HERO ── */
     .hero {
-      min-height: calc(100vh - 68px);
-      padding: 80px 64px 80px;
+      min-height: calc(100dvh - 68px);
+      padding: 80px 64px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
@@ -156,7 +252,6 @@
       overflow: hidden;
     }
 
-    /* Geometric background shapes */
     .hero-shapes {
       position: absolute;
       inset: 0;
@@ -191,6 +286,7 @@
       right: 220px;
       top: 80px;
       background: rgba(245, 166, 35, 0.04);
+      border: none;
     }
 
     .shape-dot-grid {
@@ -229,15 +325,8 @@
     }
 
     @keyframes blink {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: 0.25;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
     }
 
     .hero h1 {
@@ -250,10 +339,7 @@
       color: var(--white);
     }
 
-    .hero h1 .word-yellow {
-      color: var(--yellow);
-    }
-
+    .hero h1 .word-yellow { color: var(--yellow); }
     .hero h1 .word-blue {
       color: var(--cobalt-pale);
       -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
@@ -287,13 +373,18 @@
       letter-spacing: 0.04em;
       transition: all 0.2s;
       border: 2px solid var(--yellow);
+      cursor: pointer;
+      touch-action: manipulation;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .btn-primary:hover {
       background: var(--yellow-light);
       border-color: var(--yellow-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(245, 166, 35, 0.25);
+      box-shadow: 0 8px 24px rgba(245, 166, 35, 0.35), 0 0 40px rgba(245, 166, 35, 0.15);
     }
 
     .btn-ghost {
@@ -301,21 +392,39 @@
       font-size: 13px;
       padding: 14px 28px;
       background: transparent;
-      color: rgba(255, 255, 255, 0.7);
+      color: rgba(255, 255, 255, 0.8);
       border-radius: 6px;
       text-decoration: none;
       font-weight: 400;
       letter-spacing: 0.04em;
       border: 2px solid var(--border);
       transition: all 0.2s;
+      cursor: pointer;
+      touch-action: manipulation;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .btn-ghost:hover {
-      border-color: rgba(255, 255, 255, 0.3);
+      border-color: rgba(255, 255, 255, 0.4);
       color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
     }
 
-    /* Hero visual */
+    /* Hero banner image */
+    .hero-banner-img {
+      width: 100%;
+      max-width: 560px;
+      height: auto;
+      display: block;
+      margin-bottom: 28px;
+      border-radius: 12px;
+      image-rendering: pixelated;
+      filter: drop-shadow(0 0 24px rgba(245, 166, 35, 0.25)) drop-shadow(0 0 8px rgba(0, 71, 171, 0.4));
+    }
+
+    /* Hero phase card */
     .hero-visual {
       position: relative;
       z-index: 1;
@@ -362,9 +471,7 @@
       animation: blink 1.5s ease-in-out infinite;
     }
 
-    .phase-rows {
-      padding: 8px 0;
-    }
+    .phase-rows { padding: 8px 0; }
 
     .phase-row {
       display: grid;
@@ -375,13 +482,8 @@
       transition: background 0.15s;
     }
 
-    .phase-row:hover {
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .phase-row.active {
-      background: rgba(245, 166, 35, 0.07);
-    }
+    .phase-row:hover { background: rgba(255, 255, 255, 0.04); }
+    .phase-row.active { background: rgba(245, 166, 35, 0.07); }
 
     .phase-num-box {
       width: 40px;
@@ -395,24 +497,17 @@
       font-weight: 700;
     }
 
-    .num-active {
-      background: var(--yellow);
-      color: var(--black);
-    }
-
+    .num-active { background: var(--yellow); color: var(--black); }
     .num-next {
       background: rgba(0, 71, 171, 0.4);
       color: var(--cobalt-pale);
       border: 1px solid rgba(0, 71, 171, 0.6);
     }
-
     .num-later {
       background: rgba(255, 255, 255, 0.05);
       color: rgba(255, 255, 255, 0.3);
       border: 1px solid var(--border);
     }
-
-    .phase-row-info {}
 
     .phase-row-name {
       font-size: 14px;
@@ -421,9 +516,7 @@
       margin-bottom: 2px;
     }
 
-    .phase-row.active .phase-row-name {
-      color: var(--yellow-light);
-    }
+    .phase-row.active .phase-row-name { color: var(--yellow-light); }
 
     .phase-row-sub {
       font-family: 'Fira Code', monospace;
@@ -446,13 +539,11 @@
       color: var(--yellow);
       border: 1px solid rgba(245, 166, 35, 0.25);
     }
-
     .s-next {
       background: rgba(0, 71, 171, 0.2);
       color: var(--cobalt-pale);
       border: 1px solid rgba(0, 71, 171, 0.35);
     }
-
     .s-tbd {
       background: rgba(255, 255, 255, 0.04);
       color: rgba(255, 255, 255, 0.3);
@@ -472,17 +563,12 @@
     .ticker-track {
       display: inline-flex;
       gap: 0;
-      animation: ticker 28s linear infinite;
+      animation: ticker 32s linear infinite;
     }
 
     @keyframes ticker {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
     .ticker-item {
@@ -496,21 +582,16 @@
       letter-spacing: 0.08em;
     }
 
-    .ticker-item .t-accent {
-      color: var(--yellow);
-    }
-
-    .ticker-item .t-blue {
-      color: var(--cobalt-pale);
-    }
-
-    .ticker-sep {
-      color: rgba(245, 166, 35, 0.25);
-    }
+    .t-accent { color: var(--yellow); }
+    .t-blue { color: var(--cobalt-pale); }
+    .ticker-sep { color: rgba(245, 166, 35, 0.25); }
 
     /* ── SECTIONS ── */
-    section {
-      padding: 96px 64px;
+    section { padding: 96px 64px; }
+
+    .section-inner {
+      max-width: 1280px;
+      margin: 0 auto;
     }
 
     .section-label {
@@ -546,16 +627,14 @@
     .section-lead {
       font-size: 17px;
       color: var(--muted);
-      max-width: 540px;
+      max-width: 560px;
       line-height: 1.8;
       font-weight: 300;
       margin-bottom: 60px;
     }
 
     /* ── ROADMAP ── */
-    .roadmap-section {
-      background: var(--cobalt-dark);
-    }
+    .roadmap-section { background: var(--cobalt-dark); }
 
     .roadmap-grid {
       display: grid;
@@ -574,13 +653,12 @@
       transition: background 0.2s;
     }
 
-    .r-card:hover {
-      background: rgba(0, 31, 92, 0.9);
-    }
+    .r-card:hover { background: rgba(0, 31, 92, 0.9); }
 
     .r-card.active {
       background: rgba(0, 71, 171, 0.25);
       border-left: 3px solid var(--yellow);
+      box-shadow: inset 0 0 40px rgba(245, 166, 35, 0.05), 0 0 0 1px rgba(245, 166, 35, 0.1);
     }
 
     .r-card.active::after {
@@ -607,9 +685,7 @@
       color: rgba(255, 255, 255, 0.06);
     }
 
-    .r-card.active .r-num {
-      color: rgba(245, 166, 35, 0.15);
-    }
+    .r-card.active .r-num { color: rgba(245, 166, 35, 0.15); }
 
     .r-card h3 {
       font-family: 'Unbounded', sans-serif;
@@ -670,6 +746,63 @@
       letter-spacing: -0.01em;
     }
 
+    .web3-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .web3-opt {
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+
+    .web3-opt-a {
+      background: rgba(245, 166, 35, 0.06);
+      border: 1px solid rgba(245, 166, 35, 0.18);
+    }
+
+    .web3-opt-b {
+      background: rgba(0, 71, 171, 0.12);
+      border: 1px solid rgba(0, 71, 171, 0.3);
+    }
+
+    .web3-opt-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      margin-bottom: 8px;
+    }
+
+    .web3-opt-a .web3-opt-label { color: var(--yellow); }
+    .web3-opt-b .web3-opt-label { color: var(--cobalt-pale); }
+
+    .web3-opt-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .web3-opt p {
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.35);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .web3-note {
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+    }
+
+    /* Mechanic card */
     .mechanic {
       background: var(--cobalt-dark);
       border: 1px solid var(--border);
@@ -709,13 +842,8 @@
       align-items: center;
     }
 
-    .player {
-      padding: 28px 24px;
-    }
-
-    .player:first-child {
-      border-right: 1px solid var(--border);
-    }
+    .player { padding: 28px 24px; }
+    .player:first-child { border-right: 1px solid var(--border); }
 
     .player-tag {
       font-family: 'Fira Code', monospace;
@@ -725,13 +853,8 @@
       margin-bottom: 10px;
     }
 
-    .tag-c {
-      color: var(--cobalt-pale);
-    }
-
-    .tag-a {
-      color: var(--yellow);
-    }
+    .tag-c { color: var(--cobalt-pale); }
+    .tag-a { color: var(--yellow); }
 
     .player-name {
       font-family: 'Unbounded', sans-serif;
@@ -776,13 +899,8 @@
       grid-template-columns: 1fr 1fr;
     }
 
-    .result {
-      padding: 20px 24px;
-    }
-
-    .result:first-child {
-      border-right: 1px solid var(--border);
-    }
+    .result { padding: 20px 24px; }
+    .result:first-child { border-right: 1px solid var(--border); }
 
     .result-label {
       font-family: 'Fira Code', monospace;
@@ -794,13 +912,8 @@
       gap: 7px;
     }
 
-    .rl-win {
-      color: var(--yellow);
-    }
-
-    .rl-lose {
-      color: rgba(255, 255, 255, 0.3);
-    }
+    .rl-win { color: var(--yellow); }
+    .rl-lose { color: rgba(255, 255, 255, 0.3); }
 
     .result-icon {
       width: 16px;
@@ -813,15 +926,8 @@
       flex-shrink: 0;
     }
 
-    .icon-win {
-      background: rgba(245, 166, 35, 0.2);
-      color: var(--yellow);
-    }
-
-    .icon-lose {
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.3);
-    }
+    .icon-win { background: rgba(245, 166, 35, 0.2); color: var(--yellow); }
+    .icon-lose { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.3); }
 
     .result p {
       font-size: 13px;
@@ -830,9 +936,31 @@
     }
 
     /* ── STACK ── */
-    .stack-section {
-      background: var(--cobalt-dark);
+    .stack-section { background: var(--cobalt-dark); }
+
+    .stack-block-label {
+      font-family: 'Fira Code', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
+
+    .stack-block-label::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      display: block;
+    }
+
+    .lbl-yellow { color: var(--yellow); }
+    .lbl-yellow::before { background: var(--yellow); }
+    .lbl-blue { color: var(--cobalt-pale); }
+    .lbl-blue::before { background: var(--cobalt-pale); }
+    .lbl-ghost { color: rgba(255, 255, 255, 0.25); }
+    .lbl-ghost::before { background: rgba(255, 255, 255, 0.2); }
 
     .stack-list {
       display: grid;
@@ -842,6 +970,7 @@
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
+      margin-bottom: 16px;
     }
 
     .stack-item {
@@ -863,21 +992,10 @@
       transition: background 0.2s;
     }
 
-    .stack-item.p1::before {
-      background: var(--yellow);
-    }
-
-    .stack-item.p2::before {
-      background: var(--cobalt);
-    }
-
-    .stack-item.p3::before {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .stack-item:hover {
-      background: rgba(0, 31, 92, 0.8);
-    }
+    .stack-item.p1::before { background: var(--yellow); }
+    .stack-item.p2::before { background: var(--cobalt); }
+    .stack-item.p3::before { background: rgba(255, 255, 255, 0.2); }
+    .stack-item:hover { background: rgba(0, 31, 92, 0.8); }
 
     .stack-phase-tag {
       font-family: 'Fira Code', monospace;
@@ -894,13 +1012,11 @@
       color: var(--yellow);
       border: 1px solid rgba(245, 166, 35, 0.2);
     }
-
     .pt2 {
       background: rgba(0, 71, 171, 0.2);
       color: var(--cobalt-pale);
       border: 1px solid rgba(0, 71, 171, 0.35);
     }
-
     .pt3 {
       background: rgba(255, 255, 255, 0.04);
       color: rgba(255, 255, 255, 0.3);
@@ -968,13 +1084,12 @@
       z-index: 1;
     }
 
-    .cta-section h2 .highlight {
-      color: var(--yellow);
-    }
+    .cta-section h2 .highlight { color: var(--yellow); }
 
     .cta-section p {
       font-size: 17px;
       color: rgba(255, 255, 255, 0.6);
+      max-width: 460px;
       margin: 0 auto 44px;
       font-weight: 300;
       line-height: 1.75;
@@ -1002,12 +1117,17 @@
       letter-spacing: 0.06em;
       border: 2px solid var(--yellow);
       transition: all 0.2s;
+      cursor: pointer;
+      touch-action: manipulation;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .btn-cta-main:hover {
       background: var(--yellow-light);
       border-color: var(--yellow-light);
-      box-shadow: 0 8px 28px rgba(245, 166, 35, 0.3);
+      box-shadow: 0 8px 28px rgba(245, 166, 35, 0.4), 0 0 60px rgba(245, 166, 35, 0.2);
       transform: translateY(-2px);
     }
 
@@ -1016,17 +1136,23 @@
       font-size: 13px;
       padding: 15px 32px;
       background: transparent;
-      color: rgba(255, 255, 255, 0.75);
+      color: rgba(255, 255, 255, 0.85);
       border-radius: 6px;
       text-decoration: none;
       letter-spacing: 0.06em;
-      border: 2px solid rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.25);
       transition: all 0.2s;
+      cursor: pointer;
+      touch-action: manipulation;
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
     }
 
     .btn-cta-border:hover {
-      border-color: rgba(255, 255, 255, 0.5);
+      border-color: rgba(255, 255, 255, 0.6);
       color: var(--white);
+      background: rgba(255, 255, 255, 0.06);
     }
 
     /* ── FOOTER ── */
@@ -1043,7 +1169,7 @@
     .footer-left {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     .footer-logo-img {
@@ -1051,22 +1177,6 @@
       width: auto;
       display: block;
       opacity: 0.9;
-    }
-
-    .footer-logo-mark {
-      width: 32px;
-      height: 32px;
-      background: var(--yellow);
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-
-    .footer-logo-mark svg {
-      width: 18px;
-      height: 18px;
     }
 
     .footer-brand-text {
@@ -1099,9 +1209,7 @@
       letter-spacing: 0.02em;
     }
 
-    .footer-links a:hover {
-      color: var(--yellow);
-    }
+    .footer-links a:hover { color: var(--yellow); }
 
     .footer-right {
       font-family: 'Fira Code', monospace;
@@ -1123,119 +1231,146 @@
       transform: translateY(0);
     }
 
-    .d1 {
-      transition-delay: 0.1s;
+    .d1 { transition-delay: 0.1s; }
+    .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; }
+
+    /* ── TABLET ── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 32px; }
+      .hero { padding: 64px 32px; gap: 40px; }
+      section { padding: 80px 32px; }
+      .cta-section { padding: 80px 32px; }
+      footer { padding: 40px 32px; }
+      .roadmap-grid { grid-template-columns: 1fr 1fr; }
+      .stack-list { grid-template-columns: 1fr 1fr !important; }
+      .hero-banner-img { max-width: 100%; }
     }
 
-    .d2 {
-      transition-delay: 0.2s;
-    }
-
-    .d3 {
-      transition-delay: 0.3s;
-    }
-
-    @media (max-width: 900px) {
-      nav {
-        padding: 0 20px;
-      }
-
-      .nav-links {
-        display: none;
-      }
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; height: 56px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .logo-text span { font-size: 7px; letter-spacing: 0.15em; }
+      .btn-nav { font-size: 11px; padding: 8px 14px; letter-spacing: 0.02em; min-height: 36px; }
 
       .hero {
         grid-template-columns: 1fr;
-        padding: 56px 20px 56px;
+        padding: 48px 20px;
         min-height: auto;
-        gap: 48px;
+        gap: 40px;
       }
 
-      .hero-shapes {
-        display: none;
-      }
+      .hero-shapes { display: none; }
+      .hero-banner-img { width: 100%; border-radius: 8px; }
+      .hero-actions { gap: 10px; }
 
-      section {
-        padding: 64px 20px;
-      }
-
-      .roadmap-grid {
-        grid-template-columns: 1fr;
-      }
+      section { padding: 56px 20px; }
+      .section-lead { font-size: 15px; margin-bottom: 40px; }
+      .roadmap-grid { grid-template-columns: 1fr; }
 
       .p2e-grid {
         grid-template-columns: 1fr;
         gap: 40px;
       }
 
-      .stack-list {
+      .players {
         grid-template-columns: 1fr;
       }
-
-      .cta-section {
-        padding: 64px 20px;
+      .player:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
       }
+      .vs-col {
+        height: 44px;
+        border-right: none;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .results { grid-template-columns: 1fr; }
+      .result:first-child {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stack-list { grid-template-columns: 1fr !important; }
+      .web3-options { grid-template-columns: 1fr; }
+      .cta-section { padding: 56px 20px; }
+      .cta-btns { flex-direction: column; align-items: center; }
+      .btn-cta-main, .btn-cta-border { width: 100%; max-width: 320px; justify-content: center; }
 
       footer {
         flex-direction: column;
         padding: 36px 20px;
         text-align: center;
       }
-
       .footer-links {
         flex-wrap: wrap;
         justify-content: center;
       }
+      .footer-right { text-align: center; }
+    }
 
-      .footer-right {
-        text-align: center;
-      }
+    /* ── SMALL MOBILE ── */
+    @media (max-width: 480px) {
+
+      .hero { padding: 36px 16px; gap: 32px; }
+      .hero h1 { font-size: 28px; }
+
+      .phase-row { padding: 10px 16px; gap: 8px; }
+      .phase-status { display: none; }
+      .phase-num-box { width: 34px; height: 34px; font-size: 12px; }
+
+      .r-card { padding: 24px 20px; }
+      .r-num { font-size: 40px; }
+
+      .mechanic-bar { flex-direction: column; align-items: flex-start; gap: 6px; }
+      .stack-item { padding: 22px 18px; }
+
+      section { padding: 48px 16px; }
+      .cta-section { padding: 48px 16px; }
+      footer { padding: 28px 16px; }
     }
   </style>
 </head>
 
 <body>
 
+  <a href="#main-content" class="skip-link">Aller au contenu</a>
+
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">
-      <!--
-      LOGO IMAGE — remplace le src ci-dessous par le chemin vers ton fichier logo.
-      Formats recommandés : SVG (idéal) ou PNG avec fond transparent.
-      Exemple : src="assets/blockndice-logo.svg"
-
-      En attendant, un logo SVG de substitution est généré inline.
-    -->
-      <svg class="logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg"
-        aria-label="Block'n Dice logo">
-
-        <!-- Dé gauche (jaune d'origine) -->
-        <rect x="1" y="5" width="28" height="28" rx="5" fill="var(--yellow)" />
-        <rect x="1" y="5" width="28" height="28" rx="5" stroke="var(--cobalt-dark)" stroke-width="1" />
-
-        <!-- Points (2) -->
-        <circle cx="22" cy="12" r="2.5" fill="#080c12" />
-        <circle cx="8" cy="26" r="2.5" fill="#080c12" />
-
-        <!-- Texte -->
-        <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white"
-          letter-spacing="-0.3">BLOCK'N</text>
-
-        <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="var(--yellow)"
-          letter-spacing="-0.3">DICE</text>
-
+      <img class="logo-img" src="asset/img/logo_avatar.png" alt="Block'n Dice logo"
+        width="44" height="44"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <svg class="logo-img" style="display:none" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <rect x="2" y="6" width="30" height="30" rx="5" fill="#F5A623"/>
+        <circle cx="9" cy="13" r="2.5" fill="#080c12"/><circle cx="23" cy="13" r="2.5" fill="#080c12"/>
+        <circle cx="16" cy="21" r="2.5" fill="#080c12"/>
+        <circle cx="9" cy="29" r="2.5" fill="#080c12"/><circle cx="23" cy="29" r="2.5" fill="#080c12"/>
       </svg>
+      <div class="logo-text">
+        BLOCK'N DICE
+        <span>build · play · earn</span>
+      </div>
     </a>
+
     <ul class="nav-links">
       <li><a href="#roadmap">Roadmap</a></li>
-      <li><a href="#p2e">P2E Model</a></li>
+      <li><a href="#p2e">P2E</a></li>
       <li><a href="#stack">Stack</a></li>
+      <li><a href="#cta">White Paper</a></li>
     </ul>
-    <a href="https://blockndice.itch.io" class="btn-nav" target="_blank">itch.io →</a>
+    <a href="https://blockndice.itch.io/" target="_blank" class="btn-nav">itch.io</a>
+    <button class="nav-hamburger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
+  <div class="hero" id="main-content">
     <div class="hero-shapes">
       <div class="shape-circle shape-1"></div>
       <div class="shape-circle shape-2"></div>
@@ -1248,14 +1383,23 @@
         <span class="eyebrow-dot"></span>
         Phase I — En développement
       </div>
+      <img
+        src="asset/img/logo_banner.png"
+        alt="Block'n Dice — Play. Collect. Earn. — bannière pixel art avec dé doré et icônes gaming"
+        class="hero-banner-img"
+        width="700"
+        height="219"
+        loading="eager"
+      >
       <h1>
-        Tester.<br>
+        Construire.<br>
         <span class="word-yellow">Jouer.</span><br>
         <span class="word-blue">Gagner.</span>
       </h1>
       <p class="hero-desc">
-        Block'n Dice crée des mini-jeux navigateur avec méthode —
-        de itch.io à Solana, avec un modèle Play-to-Earn centré sur les défis entre joueurs.
+        Block'n Dice crée des mini-jeux en Solar2D — un seul moteur Lua
+        pour le navigateur et le mobile. Web2 sur itch.io d'abord,
+        Web3 sur Solana si le succès est au rendez-vous.
       </p>
       <div class="hero-actions">
         <a href="#roadmap" class="btn-primary">Voir la roadmap</a>
@@ -1274,23 +1418,23 @@
             <div class="phase-num-box num-active">01</div>
             <div class="phase-row-info">
               <div class="phase-row-name">Consolider le processus</div>
-              <div class="phase-row-sub">Démo · retour XP · Update</div>
+              <div class="phase-row-sub">Solar2D · pipeline · standards</div>
             </div>
             <span class="phase-status s-now">maintenant</span>
           </div>
           <div class="phase-row">
             <div class="phase-num-box num-next">02</div>
             <div class="phase-row-info">
-              <div class="phase-row-name">Mini-jeux sur itch.io</div>
-              <div class="phase-row-sub">publish · mesure · itération</div>
+              <div class="phase-row-name">Web + Mobile · itch.io</div>
+              <div class="phase-row-sub">Solar2D · Lua · web + mobile</div>
             </div>
             <span class="phase-status s-next">phase II</span>
           </div>
           <div class="phase-row">
             <div class="phase-num-box num-later">03</div>
             <div class="phase-row-info">
-              <div class="phase-row-name">Play-to-Earn · Solana</div>
-              <div class="phase-row-sub">smart contracts · récompenses</div>
+              <div class="phase-row-name">Web3 · si succès Web2</div>
+              <div class="phase-row-sub">pump.fun ou x402 · Solana</div>
             </div>
             <span class="phase-status s-tbd">phase III</span>
           </div>
@@ -1302,23 +1446,23 @@
   <!-- TICKER -->
   <div class="ticker">
     <div class="ticker-track">
-      <span class="ticker-item"><span class="t-accent">●</span> HTML5 Canvas <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Solar2D <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-accent">●</span> itch.io <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Supabase <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-accent">●</span> Solana <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Anchor / Rust <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-accent">●</span> Phantom Wallet <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Play-to-Earn <span class="ticker-sep">·</span></span>
-      <!-- duplicate for seamless loop -->
-      <span class="ticker-item"><span class="t-accent">●</span> HTML5 Canvas <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Solar2D <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-accent">●</span> itch.io <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Supabase <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-accent">●</span> Solana <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Anchor / Rust <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-accent">●</span> Phantom Wallet <span class="ticker-sep">·</span></span>
-      <span class="ticker-item"><span class="t-blue">▸</span> Play-to-Earn <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Solar2D · Lua <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Web + Mobile · 1 moteur <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> itch.io · Web2 <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Box2D · physique <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Supabase · leaderboards <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Solana · si succès <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> pump.fun · token <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> x402 · micropaiements <span class="ticker-sep">·</span></span>
+      <!-- duplicate -->
+      <span class="ticker-item"><span class="t-accent">●</span> Solar2D · Lua <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Web + Mobile · 1 moteur <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> itch.io · Web2 <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Box2D · physique <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> Supabase · leaderboards <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> Solana · si succès <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-accent">●</span> pump.fun · token <span class="ticker-sep">·</span></span>
+      <span class="ticker-item"><span class="t-blue">▸</span> x402 · micropaiements <span class="ticker-sep">·</span></span>
     </div>
   </div>
 
@@ -1335,20 +1479,20 @@
       <div class="r-card active reveal">
         <div class="r-num">01</div>
         <h3>Consolider<br>le Processus</h3>
-        <p>Coder des jeux simples jusqu’à une démo testable, afin d’améliorer le gameplay et sécuriser le code avant chaque évolution.</p>
-        <div class="r-deliverable">→ prototypes + retour XP</div>
+        <p>Pipeline Solar2D reproductible. Templates Lua, conventions, CI/CD pour itch.io. La fondation qui accélère tout le reste.</p>
+        <div class="r-deliverable">→ Pipeline + 2 jeux pilotes web</div>
       </div>
       <div class="r-card reveal d1">
         <div class="r-num">02</div>
-        <h3>Mini-Jeux<br>sur itch.io</h3>
-        <p>Publier, mesurer, itérer. Rétention, partage, commentaires. Les données orientent la Phase III.</p>
-        <div class="r-deliverable">→ Catalogue + métriques engagement</div>
+        <h3>Web + Mobile<br>Solar2D</h3>
+        <p>Un seul moteur Lua pour tout. Export HTML5 pour itch.io et le navigateur, build natif iOS/Android en parallèle. Zéro fragmentation de codebase.</p>
+        <div class="r-deliverable">→ Catalogue itch.io + apps mobiles</div>
       </div>
       <div class="r-card reveal d2">
         <div class="r-num">03</div>
-        <h3>Play-to-Earn<br>sur Solana</h3>
-        <p>Intégrer le modèle P2E sur les hits identifiés. Récompenses on-chain, vérifiables et automatiques.</p>
-        <div class="r-deliverable">→ Smart contracts + Wallet Phantom</div>
+        <h3>Web3 · si le<br>succès est là</h3>
+        <p>P2E uniquement si les métriques Web2 le justifient. Token via pump.fun ou micropaiements via x402. La décision suit les données.</p>
+        <div class="r-deliverable">→ pump.fun ou x402 · Solana</div>
       </div>
     </div>
   </section>
@@ -1360,24 +1504,34 @@
         <div class="section-label">02 — Modèle P2E</div>
         <h2>Simple.<br>Direct.<br>Entre joueurs.</h2>
         <p style="font-size:17px; color:rgba(255,255,255,0.5); font-weight:300; line-height:1.8; margin-bottom:0">
-          Pas de tokenomics opaques, pas de pay-to-win.
-          Un défi posé, une récompense mise, un résultat
-          arbitré par le jeu lui-même.
+          La mécanique challenger / attaquant fonctionne en Web2 pur
+          et se branche sur Solana si le projet franchit le cap du succès.
         </p>
         <div class="p2e-callout">
-          « Si tu peux accomplir l'objectif, tu gagnes. »
+          « Web2 d'abord. Web3 si les joueurs sont là. »
         </div>
-        <p style="font-size:14px; color:rgba(255,255,255,0.35); line-height:1.8; font-weight:300">
-          Récompenses distribuées automatiquement via smart contracts Solana.
-          Frais quasi-nuls, exécution instantanée, zéro intermédiaire.
-        </p>
+
+        <div class="web3-options">
+          <div class="web3-opt web3-opt-a">
+            <div class="web3-opt-label">OPTION A</div>
+            <div class="web3-opt-name">pump.fun</div>
+            <p>Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate, récompenses en token.</p>
+          </div>
+          <div class="web3-opt web3-opt-b">
+            <div class="web3-opt-label">OPTION B</div>
+            <div class="web3-opt-name">x402</div>
+            <p>Micropaiements USDC machine-à-machine. Escrow auto, zéro token custom, distribution directe.</p>
+          </div>
+        </div>
+
+        <p class="web3-note">// décision selon le profil du jeu et la taille de sa communauté</p>
       </div>
 
       <div class="reveal d1">
         <div class="mechanic">
           <div class="mechanic-bar">
             <span class="mechanic-bar-title">mécanique des défis</span>
-            <span class="mechanic-bar-badge">on-chain · solana</span>
+            <span class="mechanic-bar-badge">web2 → web3 si succès</span>
           </div>
           <div class="players">
             <div class="player">
@@ -1400,7 +1554,7 @@
                 <span class="result-icon icon-win">✓</span>
                 Objectif atteint
               </div>
-              <p>Le Runner reçoit la récompense. Vérifié on-chain, automatique.</p>
+              <p>L'Attaquant reçoit la récompense. Vérifié automatiquement.</p>
             </div>
             <div class="result">
               <div class="result-label rl-lose">
@@ -1420,101 +1574,108 @@
     <div class="section-label">03 — Stack</div>
     <h2>La bonne tech,<br>au bon moment.</h2>
     <p class="section-lead">
-      Simple au départ, puissant à l'arrivée.
-      Chaque couche est introduite quand elle a du sens.
+      Un moteur unique pour toutes les plateformes.
+      Web2 en fondation — Web3 conditionné au succès.
     </p>
 
-    <div class="stack-list reveal">
+    <div class="stack-block-label lbl-yellow" style="margin-bottom:12px">MOTEUR UNIQUE — Phase I &amp; II</div>
+    <div class="stack-list reveal" style="grid-template-columns: 2fr 1fr; margin-bottom:24px">
       <div class="stack-item p1">
-        <span class="stack-phase-tag pt1">Phase I</span>
-        <div class="stack-tech">HTML5 Canvas</div>
-        <div class="stack-desc">Rendu natif navigateur. Zéro dépendance, zéro installation.</div>
-      </div>
-      <div class="stack-item p1">
-        <span class="stack-phase-tag pt1">Phase I</span>
+        <span class="stack-phase-tag pt1">Web + Mobile · Phase I &amp; II</span>
         <div class="stack-tech">Solar2D</div>
-        <div class="stack-desc">Framework jeu 2D mature. Sprites, physique, audio.</div>
+        <div class="stack-desc">Moteur Lua open-source. Export HTML5 pour itch.io et navigateur, build natif iOS/Android pour mobile. Une seule codebase, toutes les plateformes. Physique Box2D, audio, sprites intégrés.</div>
       </div>
       <div class="stack-item p1">
-        <span class="stack-phase-tag pt1">Phase I</span>
+        <span class="stack-phase-tag pt1">Distribution · Phase I</span>
         <div class="stack-tech">itch.io</div>
-        <div class="stack-desc">Distribution indie. Audience réelle, analytics intégrés.</div>
+        <div class="stack-desc">Publication HTML5 via export Solar2D. Audience indie, analytics, zéro friction.</div>
       </div>
+    </div>
+
+    <div class="stack-block-label lbl-blue" style="margin-bottom:12px">BACKEND — Phase II</div>
+    <div class="stack-list reveal d1" style="grid-template-columns: 1fr; margin-bottom:24px">
       <div class="stack-item p2">
-        <span class="stack-phase-tag pt2">Phase II</span>
+        <span class="stack-phase-tag pt2">Backend · Phase II</span>
         <div class="stack-tech">Supabase</div>
-        <div class="stack-desc">Backend temps réel. Leaderboards, profils, métriques.</div>
+        <div class="stack-desc">Leaderboards temps réel, profils joueurs, métriques d'engagement. Partagé entre version web et mobile Solar2D.</div>
+      </div>
+    </div>
+
+    <div class="stack-block-label lbl-ghost" style="margin-bottom:12px">WEB3 — Phase III · conditionnel au succès Web2</div>
+    <div class="stack-list reveal d2">
+      <div class="stack-item p3">
+        <span class="stack-phase-tag pt3">P2E · Option A</span>
+        <div class="stack-tech">pump.fun</div>
+        <div class="stack-desc">Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate. Récompenses en token natif.</div>
       </div>
       <div class="stack-item p3">
-        <span class="stack-phase-tag pt3">Phase III</span>
-        <div class="stack-tech">Solana</div>
-        <div class="stack-desc">Blockchain haute perf. Frais minimes, idéal micropaiements.</div>
+        <span class="stack-phase-tag pt3">P2E · Option B</span>
+        <div class="stack-tech">x402</div>
+        <div class="stack-desc">Protocole HTTP micropaiements USDC. Escrow automatique challenger/attaquant. Zéro token custom requis.</div>
       </div>
       <div class="stack-item p3">
-        <span class="stack-phase-tag pt3">Phase III</span>
-        <div class="stack-tech">Anchor / Rust</div>
-        <div class="stack-desc">Smart contracts audtables. Gestion escrow sécurisée.</div>
+        <span class="stack-phase-tag pt3">Infra · Phase III</span>
+        <div class="stack-tech">Solana · Anchor</div>
+        <div class="stack-desc">Smart contracts Rust audités. Wallet Phantom. Frais quasi-nuls, exécution instantanée.</div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="cta-section">
-    <h2>On expérimente d'abord.<br><span class="highlight">Le reste suivra.</span></h2>
+  <section class="cta-section" id="cta">
+    <h2>Web2 d'abord.<br><span class="highlight">Web3 si on y arrive.</span></h2>
     <p>
-      Rejoignez la communauté Block'n Dice et suivez
-      la progression Phase par Phase.
+      On construit, on mesure, on décide.
+      Suis la progression de Block'n Dice sur itch.io.
     </p>
     <div class="cta-btns">
-      <a href="https://blockndice.itch.io" class="btn-cta-main" target="_blank">Suivre sur itch.io</a>
-      <a href="whitePaper.html" class="btn-cta-border" target="_blank">Lire le White Paper →</a>
+      <a href="https://blockndice.itch.io/" target="_blank" class="btn-cta-main">Suivre sur itch.io</a>
+      <a href="whitePaper.html" target="_blank" class="btn-cta-border">Lire le White Paper →</a>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="footer-left">
-      <!-- Même logo que la nav, version footer -->
-      <svg class="logo-img" viewBox="0 0 120 38" fill="none" xmlns="http://www.w3.org/2000/svg"
-        aria-label="Block'n Dice logo">
-
-        <!-- Dé gauche (jaune d'origine) -->
-        <rect x="1" y="5" width="28" height="28" rx="5" fill="var(--yellow)" />
-        <rect x="1" y="5" width="28" height="28" rx="5" stroke="var(--cobalt-dark)" stroke-width="1" />
-
-        <!-- Points (2) -->
-        <circle cx="22" cy="12" r="2.5" fill="#080c12" />
-        <circle cx="8" cy="26" r="2.5" fill="#080c12" />
-
-        <!-- Texte -->
-        <text x="36" y="17" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="white"
-          letter-spacing="-0.3">BLOCK'N</text>
-
-        <text x="36" y="31" font-family="'Unbounded', sans-serif" font-size="11" font-weight="700" fill="var(--yellow)"
-          letter-spacing="-0.3">DICE</text>
-
-      </svg>
+      <img class="footer-logo-img" src="asset/img/logo_avatar.png" alt="Block'n Dice logo" width="44" height="44" loading="lazy">
       <div>
-        <!-- <div class="footer-brand-text">Block'n Dice</div> -->
+        <div class="footer-brand-text">Block'n Dice</div>
         <div class="footer-brand-sub">© 2026 — White Paper v1.0</div>
       </div>
     </div>
+
     <ul class="footer-links">
-      <li><a href="https://blockndice.itch.io" target="_blank">itch.io</a></li>
-      <li><a href="whitePaper.html" target="_blank">White Paper</a></li>
+      <li><a href="https://blockndice.itch.io/" target="_blank">itch.io</a></li>
       <li><a href="https://github.com/blockndice" target="_blank">GitHub</a></li>
-      <!-- <li><a href="#">Discord</a></li> -->
-      <li><a href="https://x.com/blockndice" target="_blank">Twitter</a></li>
+      <li><a href="https://x.com/blockndice" target="_blank">X</a></li>
     </ul>
-    <div class="footer-right">Block'n Dice<br>build · play · earn</div>
+
+    <div class="footer-right">blockndice.io<br>build · play · earn</div>
   </footer>
 
   <script>
+    // Reveal on scroll
     const els = document.querySelectorAll('.reveal');
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
     }, { threshold: 0.1 });
     els.forEach(el => obs.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.querySelector('.nav-hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (hamburger && navLinks) {
+      const close = () => {
+        navLinks.classList.remove('mobile-open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      };
+      hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.contains('mobile-open');
+        isOpen ? close() : (navLinks.classList.add('mobile-open'), hamburger.classList.add('open'), hamburger.setAttribute('aria-expanded', 'true'));
+      });
+      navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    }
   </script>
 </body>
 
