@@ -59,7 +59,7 @@ const translations = {
         'shop-tricks-desc': 'Pirouette (looping complet toutes les 3 impulsions) · Toupie (flip vertical + mode planeur au maintien). Prix : 60–100 pièces.',
 
         'section-web3-title': 'Intégration Web3 — Solana',
-        'web3-intro': 'L\'écosystème blockchain choisi est <strong>Solana</strong>, pour ses frais bas et sa rapidité. Le token est déployé via <strong>Pump.fun</strong>.',
+        'web3-intro': 'La tokenomique de Flappy World est pensée pour faire durer le jeu et récompenser la fidélité du joueur ainsi que son temps de jeu, à la hauteur des challenges réalisés.',
         'web3-1-title': 'Token $token',
         'web3-1-desc': 'Token Solana natif du projet Block\'n Dice. Flappy World en est le premier vecteur de distribution. Obtenable en jeu sans spéculation.',
         'web3-2-title': 'Swap in-game',
@@ -166,7 +166,7 @@ const translations = {
         'shop-tricks-desc': 'Pirouette (full loop every 3 impulses) · Spinner (vertical flip + glide mode on hold). Price: 60–100 coins.',
 
         'section-web3-title': 'Web3 Integration — Solana',
-        'web3-intro': 'The chosen blockchain ecosystem is <strong>Solana</strong>, for its low fees and speed. The token is deployed via <strong>Pump.fun</strong>.',
+        'web3-intro': 'Flappy World\'s tokenomics are designed to extend the game\'s lifespan and reward player loyalty and time invested, proportional to the challenges completed.',
         'web3-1-title': 'Token $token',
         'web3-1-desc': 'Native Solana token of the Block\'n Dice project. Flappy World is its first distribution vector. Earnable in-game without speculation.',
         'web3-2-title': 'In-game Swap',
@@ -273,7 +273,7 @@ const translations = {
         'shop-tricks-desc': 'Pirueta (looping completo cada 3 impulsos) · Trompo (flip vertical + modo planeo al mantener). Precio: 60–100 monedas.',
 
         'section-web3-title': 'Integración Web3 — Solana',
-        'web3-intro': 'El ecosistema blockchain elegido es <strong>Solana</strong>, por sus bajas comisiones y rapidez. El token se despliega mediante <strong>Pump.fun</strong>.',
+        'web3-intro': 'La tokenómica de Flappy World está diseñada para alargar la vida del juego y recompensar la fidelidad del jugador y su tiempo de juego, a la altura de los desafíos completados.',
         'web3-1-title': 'Token $token',
         'web3-1-desc': 'Token Solana nativo del proyecto Block\'n Dice. Flappy World es su primer vector de distribución. Obtenible en el juego sin especulación.',
         'web3-2-title': 'Swap in-game',

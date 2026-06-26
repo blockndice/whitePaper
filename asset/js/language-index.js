@@ -28,12 +28,11 @@ const translations = {
         'section-objectifs-detailles-title': 'Objectifs détaillés',
         'objectif-1': 'Concevoir des mini-jeux <strong>simples et fun</strong> du genre RPG ou rogue-like avec des challenges pour une rejouabilité élevée.',
         'objectif-2': 'Tester le gameplay et recueillir des retours sur <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> en priorité.',
-        'objectif-3': 'L\'accès du play-to-earn se fera via un <strong>NFT</strong> minté sur <a href="https://opensea.io" target="_blank" rel="noopener noreferrer">OpenSea</a>.',
+        'objectif-3': 'L\'accès au play-to-Earn se fera en holdant le token ou via un <strong>NFT</strong> mint sur <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a>.',
         'objectif-4': 'Avec <a href="https://pump.fun/" target="_blank" rel="noopener">Pump Fun</a>, constituer la pool de liquidité puis la destiner au cash prize pour le play2Earn.',
         'objectif-5': 'Optimiser les coûts en utilisant les assets graphiques de <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>, ou commander des assets personnalisés sur cette plateforme.',
         'objectif-6': 'Afficher le code du jeu en open source sur <a href="https://github.com/blockndice" target="_blank" rel="noopener">GitHub</a> pour plus de transparence.',
-        'objectif-7': 'La sécurité sera renforcée par plusieurs outils d’analyse ainsi qu’un audit.',
-        'objectif-8': 'L\'accès du play-to-earn se fera via un <strong>NFT</strong> minté sur <a href="https://opensea.io" target="_blank" rel="noopener noreferrer">OpenSea</a>.',
+        'objectif-7': 'La sécurité sera renforcée par plusieurs outils d\'analyse ainsi qu\'un audit.',
 
         
         // Section Méthodologie
@@ -41,15 +40,15 @@ const translations = {
         'methodo-1-title': 'Documentation',
         'methodo-1-desc': 'Rédiger le projet du jeu, son cahier des charges et exprimer le choix de l\'asset sur itch.io. Ces point seront   accessible dans l\'onglet de ce whitepaper, pour <strong>informer</strong> la communauté.',
         'methodo-2-title': 'Prototyper',
-        ‘methodo-2-desc’: ‘Développer le jeu en <strong>JavaScript natif</strong>, jouable sur navigateur, mobile et tablette. Sécurité renforcée à chaque build.’,
+        'methodo-2-desc': 'Développer le jeu en <strong>JavaScript natif</strong>, jouable sur navigateur, mobile et tablette. Sécurité renforcée à chaque build.',
         'methodo-3-title': 'Publier',
         'methodo-3-desc': 'Déployer une version jouable sur <strong>itch.io</strong> pour obtenir le feedback de la <strong>communauté</strong>.',
-        'methodo-4-title': 'Marketing',
-        'methodo-4-desc': 'Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L\'architecture reste <strong>privée</strong> pour des raisons de sécurité.',
+        'methodo-4-title': 'Intégrer les reward',
+        'methodo-4-desc': 'Réflexion globale sur la tokenomique pour satisfaire le joueur et faire durer le jeu : mise en place des conditions de récompenses, du nombre de tokens à holder pour obtenir l\'accès au contenu, etc.',
         'methodo-5-title': 'Open Source',
         'methodo-5-desc': 'Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L\'architecture reste <strong>privée</strong> pour des raisons de sécurité.',
-        'methodo-6-title': 'Open Source',
-        'methodo-6-desc': 'Le code source du jeu sera <strong>open source</strong> pour encourager la créativité. L\'architecture reste <strong>privée</strong> pour des raisons de sécurité.',
+        'methodo-6-title': 'Marketing',
+        'methodo-6-desc': 'Pour faire connaître les jeux P2E de Block\'n Dice, nous nous reposons d\'abord sur le bouche à oreille pour construire sans pression. Nous ne cherchons pas la hype, plutôt un bon jeu avec des récompenses à la hauteur du temps passé et des défis réalisables.',
 
         // Section Récompenses
         'section-recompenses-title': 'Système de récompense',
@@ -62,7 +61,7 @@ const translations = {
         'reward-4-title': 'Mission',
         'reward-4-desc': 'Le joueur complète une ou plusieurs missions (quêtes, défis, mini-jeux) pour débloquer une récompense spécifique.',
         'reward-5-title': 'Keep to win',
-        'reward-5-desc': 'Le joueur gagnent des bonus en gardant leurs tokens dans leur wallet (auto-staking).',
+        'reward-5-desc': 'Holder les tokens dans votre wallet vous permet d\'accéder au contenu du jeu et obtenir des bonus.',
         'reward-examples-title': '💎 Exemple de récompense',
         'reward-ex-1': '<strong>Contenu exclusifs</strong> : Des objets rares liés au jeu',
         'reward-ex-2': '<strong>Tokens du jeu</strong> : Monnaie native permettant d\'accéder à des avantages',
@@ -116,15 +115,18 @@ const translations = {
         
         // Section A propos
         'section-about-title': 'A propos du fondateur',
-        'about-p1': 'Créer des jeux vidéo est le rêve de mon enfance réalisé à l\'âge adulte. J\'ai commencé par coder des prototypes, ensuite des game jams, mais vite confronté aux obstacles pour en vivre. Grâce à une veille technologique, j\'ai découvert une alternative pour créer et financer un jeu en conservant un lien avec la communauté. Aujourd\'hui, je veux transformer cette vision en réalité.',
-        'about-p2': 'Cette vision n\'a rien de révolutionnaire, juste une alternative à la voie classique, simple mais encore peu adoptée, comme la blockchain ou le Cloud auparavant. Ça permettrait au solo dev de vivre directement de sa création, grâce au soutien de sa communauté et de ses joueurs, un peu comme les streamers et YouTubeurs.',
-        'about-p3': 'Un joueur veut de la passion, de la confiance et des récompenses. Ces valeurs seront insufflées dans Block\'n Dice, pour maximiser une bonne expérience.',
-        'about-p4': 'Mon succès en inspira d\'autres...',
+        'about-p1': 'Créer des jeux vidéo est le rêve de mon enfance réalisé à l\'âge adulte. J\'ai commencé par coder des prototypes en Lua avec LOVE2D, ensuite des game jams, mais vite confronté aux obstacles pour en vivre. Grâce à l\'IA, la montagne de temps et de travail est devenue surmontable pour créer et financer un jeu en conservant un lien avec la communauté. Aujourd\'hui, je peux transformer ma vision en réalité.',
+        'about-p2': 'Cette vision n\'a rien de révolutionnaire, juste une alternative à la voie classique, simple mais encore peu adoptée — comme la blockchain et l\'IA le permettent, donc allons-y ! Ça permettrait au solo dev de vivre directement de sa création, grâce au soutien de sa communauté et de récompenser ses joueurs de plusieurs manières différentes.',
+        'about-p3': 'Un joueur veut de la passion, de la confiance et des récompenses. Ces valeurs seront insufflées dans Block\'n Dice, pour maximiser une bonne expérience et valoriser le temps de jeu passé à réussir les challenges.',
+        'about-p4': 'Qu\'importe les échecs, il suffit d\'un succès pour en inspirer d\'autres...',
+
+        // Section Note
+        'section-note-title': 'Note',
+        'note-final': '<strong>Projet de taille humaine en développement</strong>',
 
         // Footer
         'footer-text': '© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0',
         'footer-note': 'Document évolutif - Les spécifications peuvent être mises à jour au fil du développement',
-        'note-final': '<strong>Projet de taille humaine en développement</strong>',
     },
 
     en: {
@@ -155,12 +157,11 @@ const translations = {
         'section-objectifs-detailles-title': 'Detailed Objectives',
         'objectif-1': 'Design <strong>simple and fun</strong> mini-games in the RPG or rogue-like style with challenges for high replayability.',
         'objectif-2': 'Test gameplay and collect feedback primarily on <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>.',
-        'objectif-3': 'Access to play-to-earn will be granted through an <strong>NFT</strong> minted on <a href="https://opensea.io" target="_blank" rel="noopener noreferrer">OpenSea</a>.',
+        'objectif-3': 'Access to play-to-Earn will be done by holding the token or via an <strong>NFT</strong> minted on <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a>.',
         'objectif-4': 'With <a href="https://pump.fun/" target="_blank" rel="noopener">Pump Fun</a>, create the liquidity pool and allocate it to the cash prize for play2Earn.',
         'objectif-5': 'Optimize costs by using graphic assets from <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>, or by ordering custom assets on the platform.',
-        'objectif-6': 'Publish the game’s code as open source on <a href="https://github.com/blockndice" target="_blank" rel="noopener">GitHub</a> for greater transparency.',
+        'objectif-6': 'Publish the game\'s code as open source on <a href="https://github.com/blockndice" target="_blank" rel="noopener">GitHub</a> for greater transparency.',
         'objectif-7': 'Security will be reinforced with several analysis tools and an audit.',
-        'objectif-8': 'Access to play-to-earn will be granted through an <strong>NFT</strong> minted on <a href="https://opensea.io" target="_blank" rel="noopener noreferrer">OpenSea</a>.',
         
         // Methodology Section
         'section-methodologie-title': 'Methodology',
@@ -170,12 +171,12 @@ const translations = {
         'methodo-2-desc': 'Deploy a playable version on itch.io to get community feedback.',
         'methodo-3-title': 'Integrate Web3',
         'methodo-3-desc': 'Use the <strong>Solana</strong> ecosystem and <strong>Pump.fun</strong> for token management.',
-        'methodo-4-title': 'Open Source',
-        'methodo-4-desc': 'The game source code will be <strong>open source</strong> to encourage creativity. The architecture remains <strong>private</strong> for security reasons.',
+        'methodo-4-title': 'Integrate Rewards',
+        'methodo-4-desc': 'Global tokenomics reflection to satisfy the player and extend the game\'s lifespan: setting up reward conditions, the number of tokens to hold for content access, etc.',
         'methodo-5-title': 'Open Source',
         'methodo-5-desc': 'The game source code will be <strong>open source</strong> to encourage creativity. The architecture remains <strong>private</strong> for security reasons.',
-        'methodo-6-title': 'Open Source',
-        'methodo-6-desc': 'The game source code will be <strong>open source</strong> to encourage creativity. The architecture remains <strong>private</strong> for security reasons.',
+        'methodo-6-title': 'Marketing',
+        'methodo-6-desc': 'To promote Block\'n Dice P2E games, we rely first on word of mouth to build without pressure. We are not chasing hype — just a good game with rewards worth the time invested and achievable challenges.',
 
         // Rewards Section
         'section-recompenses-title': 'Reward System',
@@ -188,7 +189,7 @@ const translations = {
         'reward-4-title': 'Mission',
         'reward-4-desc': 'The player completes one or more missions (quests, challenges, mini-games) to unlock a specific reward.',
         'reward-5-title': 'Keep to win',
-        'reward-5-desc': 'Players earn bonuses by keeping their tokens in their wallet (auto-staking).',
+        'reward-5-desc': 'Holding tokens in your wallet gives you access to game content and earns you bonuses.',
         'reward-examples-title': '💎 Reward Examples',
         'reward-ex-1': '<strong>Exclusive Content</strong>: Rare game-related items',
         'reward-ex-2': '<strong>Game Tokens</strong>: Native currency providing access to advantages',
@@ -242,15 +243,18 @@ const translations = {
         
         // About Section
         'section-about-title': 'About the Founder',
-        'about-p1': 'Creating video games is the dream of my childhood realized in adulthood. I started by coding prototypes, then game jams, but quickly faced obstacles to making a living from it. Through technology research, I discovered an alternative to create and fund a game while maintaining a connection with the community. Today, I want to turn this vision into reality.',
-        'about-p2': 'This vision isn\'t revolutionary, just an alternative to the classic path, simple but still little adopted, like blockchain or the Cloud before. It would allow the solo dev to live directly from their creation, thanks to the support of their community and players, a bit like streamers and YouTubers.',
-        'about-p3': 'A player wants passion, trust, and rewards. These values will be instilled in Block\'n Dice, to maximize a great experience.',
-        'about-p4': 'My success inspired others...',
+        'about-p1': 'Creating video games is the dream of my childhood realized in adulthood. I started by coding prototypes in Lua with LOVE2D, then game jams, but quickly faced obstacles to making a living from it. Thanks to AI, the mountain of time and work has become surmountable to create and fund a game while maintaining a connection with the community. Today, I can turn my vision into reality.',
+        'about-p2': 'This vision isn\'t revolutionary, just an alternative to the classic path, still little adopted — as blockchain and AI now make possible, so let\'s go! It would allow solo devs to live directly from their creation, thanks to the support of their community and by rewarding their players in several different ways.',
+        'about-p3': 'A player wants passion, trust, and rewards. These values will be instilled in Block\'n Dice, to maximize a great experience and honor the time spent overcoming challenges.',
+        'about-p4': 'No matter the failures, it only takes one success to inspire others...',
+
+        // Section Note
+        'section-note-title': 'Note',
+        'note-final': '<strong>Human-sized project in development</strong>',
 
         // Footer
         'footer-text': '© 2025 - Web3 Mini-Game Prototype - White Paper v0.0',
         'footer-note': 'Evolving document - Specifications may be updated during development',
-        'note-final': '<strong>Human-sized project in development</strong>',
     },
 
     es: {
@@ -281,12 +285,11 @@ const translations = {
         'section-objectifs-detailles-title': 'Objetivos detallados',
         'objectif-1': 'Diseñar mini-juegos <strong>simples y divertidos</strong> del estilo RPG o rogue-like con desafíos para una alta rejugabilidad.',
         'objectif-2': 'Probar la jugabilidad y recopilar comentarios principalmente en <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a>.',
-        'objectif-3': 'El acceso al play-to-earn se realizará a través de un <strong>NFT</strong> acuñado en <a href="https://opensea.io" target="_blank" rel="noopener noreferrer">OpenSea</a>.',
+        'objectif-3': 'El acceso al play-to-Earn se realizará manteniendo el token o mediante un <strong>NFT</strong> minteado en <a href="" target="_blank" rel="noopener noreferrer">Open Sea</a>.',
         'objectif-4': 'Con <a href="https://pump.fun/" target="_blank" rel="noopener">Pump Fun</a>, formar el fondo de liquidez y destinarlo al premio en efectivo para el play2Earn.',
         'objectif-5': 'Optimizar los costos utilizando recursos gráficos de <a href="https://itch.io" target="_blank" rel="noopener">itch.io</a> o encargando recursos personalizados en la plataforma.',
         'objectif-6': 'Publicar el código del juego como código abierto en <a href="https://github.com/blockndice" target="_blank" rel="noopener">GitHub</a> para mayor transparencia.',
         'objectif-7': 'La seguridad se reforzará con varias herramientas de análisis y una auditoría.',
-        'objectif-8': 'El acceso al play-to-earn se realizará a través de un <strong>NFT</strong> acuñado en <a href="https://opensea.io" target="_blank" rel="noopener noreferrer">OpenSea</a>.',
         
         // Sección Metodología
         'section-methodologie-title': 'Metodología',
@@ -296,12 +299,12 @@ const translations = {
         'methodo-2-desc': 'Implementar una versión jugable en itch.io para obtener feedback de la comunidad.',
         'methodo-3-title': 'Integrar Web3',
         'methodo-3-desc': 'Utilizar el ecosistema <strong>Solana</strong> y <strong>Pump.fun</strong> para la gestión del token.',
-        'methodo-4-title': 'Código Abierto',
-        'methodo-4-desc': 'El código fuente del juego será <strong>open source</strong> para fomentar la creatividad. La arquitectura permanece <strong>privada</strong> por razones de seguridad.',
+        'methodo-4-title': 'Integrar Recompensas',
+        'methodo-4-desc': 'Reflexión global sobre la tokenómica para satisfacer al jugador y alargar la vida del juego: establecimiento de condiciones de recompensas, número de tokens a mantener para acceder al contenido, etc.',
         'methodo-5-title': 'Código Abierto',
         'methodo-5-desc': 'El código fuente del juego será <strong>open source</strong> para fomentar la creatividad. La arquitectura permanece <strong>privada</strong> por razones de seguridad.',
-        'methodo-6-title': 'Código Abierto',
-        'methodo-6-desc': 'El código fuente del juego será <strong>open source</strong> para fomentar la creatividad. La arquitectura permanece <strong>privada</strong> por razones de seguridad.',
+        'methodo-6-title': 'Marketing',
+        'methodo-6-desc': 'Para dar a conocer los juegos P2E de Block\'n Dice, nos apoyamos primero en el boca a boca para construir sin presión. No buscamos el hype, sino un buen juego con recompensas acordes al tiempo invertido y desafíos alcanzables.',
 
         // Sección Recompensas
         'section-recompenses-title': 'Sistema de Recompensas',
@@ -313,8 +316,8 @@ const translations = {
         'reward-3-desc': 'Se otorga una recompensa cuando el jugador alcanza una puntuación específica, un tiempo récord u otro objetivo medible.',
         'reward-4-title': 'Misión',
         'reward-4-desc': 'El jugador completa una o varias misiones (misiones, desafíos, mini-juegos) para desbloquear una recompensa específica.',
-        'reward-5-title': 'Mantén para ganar',
-        'reward-5-desc': 'Los jugadores ganan bonificaciones manteniendo sus tokens en su cartera (auto-staking).',
+        'reward-5-title': 'Keep to win',
+        'reward-5-desc': 'Mantener los tokens en tu wallet te permite acceder al contenido del juego y obtener bonificaciones.',
         'reward-examples-title': '💎 Ejemplos de Recompensas',
         'reward-ex-1': '<strong>Contenido Exclusivo</strong>: Objetos raros relacionados con el juego',
         'reward-ex-2': '<strong>Tokens del Juego</strong>: Moneda nativa que permite acceder a ventajas',
@@ -368,15 +371,18 @@ const translations = {
         
         // Sección Acerca de
         'section-about-title': 'Sobre el Fundador',
-        'about-p1': 'Crear videojuegos es el sueño de mi infancia hecho realidad en la edad adulta. Empecé programando prototipos, luego game jams, pero pronto me enfrenté a los obstáculos para vivir de ello. Gracias a una investigación tecnológica, descubrí una alternativa para crear y financiar un juego manteniendo un vínculo con la comunidad. Hoy quiero transformar esta visión en realidad.',
-        'about-p2': 'Esta visión no tiene nada de revolucionario, solo es una alternativa al camino clásico, sencilla pero todavía poco adoptada, como la blockchain o la nube antes. Permitiría al desarrollador en solitario vivir directamente de su creación, gracias al apoyo de su comunidad y sus jugadores, un poco como los streamers y YouTubers.',
-        'about-p3': 'Un jugador quiere pasión, confianza y recompensas. Estos valores se infundirán en Block\'n Dice para maximizar una buena experiencia.',
-        'about-p4': 'Mi éxito inspirará a otros...',
+        'about-p1': 'Crear videojuegos es el sueño de mi infancia hecho realidad en la edad adulta. Empecé programando prototipos en Lua con LOVE2D, luego game jams, pero pronto me enfrenté a los obstáculos para vivir de ello. Gracias a la IA, la montaña de tiempo y trabajo se ha vuelto superable para crear y financiar un juego manteniendo un vínculo con la comunidad. Hoy puedo transformar mi visión en realidad.',
+        'about-p2': 'Esta visión no tiene nada de revolucionario, solo es una alternativa al camino clásico, todavía poco adoptada — como la blockchain y la IA lo permiten ahora, ¡así que adelante! Permitiría al desarrollador en solitario vivir directamente de su creación, gracias al apoyo de su comunidad y recompensando a sus jugadores de varias maneras diferentes.',
+        'about-p3': 'Un jugador quiere pasión, confianza y recompensas. Estos valores se infundirán en Block\'n Dice, para maximizar una buena experiencia y valorar el tiempo invertido en superar los desafíos.',
+        'about-p4': 'Sin importar los fracasos, basta con un éxito para inspirar a otros...',
+
+        // Section Note
+        'section-note-title': 'Nota',
+        'note-final': '<strong>Proyecto de tamaño humano en desarrollo</strong>',
 
         // Footer
         'footer-text': '© 2025 - Prototipo de Mini-Juego Web3 - White Paper v0.0',
         'footer-note': 'Documento evolutivo - Las especificaciones pueden actualizarse durante el desarrollo',
-        'note-final': '<strong>Proyecto de tamaño humano en desarrollo</strong>',
     }
 };
 
