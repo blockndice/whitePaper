@@ -34,6 +34,7 @@ v1.02.0 : rework landing page blockndice
 v1.02.1 : rework whitepaper blockndice + whitepaper flappyWorld + fix traduction fr/en/es
 v1.02.2 : balises Open Graph + Twitter Card
 v1.03.0 : Correction whitepaper
+v1.03.1 : Update favicon blockndice
 
 ** Next step **
 s'inspirer de mes jeux wow / starcraft / mini jeu soul fighter de lol / fellowship / Card Game Magic / Tetris game Super puyo puyo
