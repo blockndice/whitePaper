@@ -9,10 +9,11 @@ const translations = {
         'hero-btn-ghost':   'Modèle P2E →',
 
         'phase-1-sub':    'JS natif · sécurité · browser',
-        'phase-1-status': 'maintenant',
+        'phase-1-status': 'phase I',
         'phase-2-name':   'Test sur itch.io',
         'phase-2-sub':    'web · mobile · tablette',
-        'phase-2-status': 'phase II',
+        'phase-2-status': 'maintenant',
+        'phase-more-info':'Plus d\'infos',
         'phase-3-sub':    'rewards',
         'phase-3-status': 'phase III',
 
@@ -72,10 +73,11 @@ const translations = {
         'hero-btn-ghost':   'P2E model →',
 
         'phase-1-sub':    'Native JS · security · browser',
-        'phase-1-status': 'now',
+        'phase-1-status': 'phase I',
         'phase-2-name':   'Test on itch.io',
         'phase-2-sub':    'web · mobile · tablet',
-        'phase-2-status': 'phase II',
+        'phase-2-status': 'now',
+        'phase-more-info':'Learn more',
         'phase-3-sub':    'rewards',
         'phase-3-status': 'phase III',
 
@@ -135,10 +137,11 @@ const translations = {
         'hero-btn-ghost':   'Modelo P2E →',
 
         'phase-1-sub':    'JS nativo · seguridad · navegador',
-        'phase-1-status': 'ahora',
+        'phase-1-status': 'fase I',
         'phase-2-name':   'Test en itch.io',
         'phase-2-sub':    'web · móvil · tablet',
-        'phase-2-status': 'fase II',
+        'phase-2-status': 'ahora',
+        'phase-more-info':'Más info',
         'phase-3-sub':    'recompensas',
         'phase-3-status': 'fase III',
 

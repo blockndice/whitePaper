@@ -414,14 +414,28 @@ nav {
 .hero-visual {
   position: relative;
   z-index: 1;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.hero-visual::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../img/og-banner.jpg') center / cover no-repeat;
+  z-index: 0;
+}
+
+.hero-visual .phase-card {
+  position: relative;
+  z-index: 1;
 }
 
 .phase-card {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(0, 10, 28, 0.72);
   border: 1px solid var(--border);
   border-radius: 16px;
   overflow: hidden;
-  backdrop-filter: blur(8px);
 }
 
 .phase-card-head {
@@ -436,7 +450,7 @@ nav {
   font-family: 'Fira Code', monospace;
   font-size: 11px;
   letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .live-badge {
@@ -491,7 +505,7 @@ nav {
 }
 .num-later {
   background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.7);
   border: 1px solid var(--border);
 }
 
@@ -507,7 +521,7 @@ nav {
 .phase-row-sub {
   font-family: 'Fira Code', monospace;
   font-size: 11px;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.7);
   letter-spacing: 0.04em;
 }
 
@@ -531,9 +545,45 @@ nav {
   border: 1px solid rgba(0, 71, 171, 0.35);
 }
 .s-tbd {
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.num-done {
+  background: rgba(74, 222, 128, 0.1);
+  color: rgba(74, 222, 128, 0.75);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  font-size: 18px;
+}
+.s-done {
+  background: rgba(74, 222, 128, 0.08);
+  color: rgba(74, 222, 128, 0.75);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+}
+.phase-row.done { opacity: 0.6; }
+
+.phase-card-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: center;
+}
+.btn-phase-info {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  padding: 8px 22px;
   border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: 0.08em;
+  transition: all 0.2s;
+}
+.btn-phase-info:hover {
+  border-color: rgba(245, 166, 35, 0.45);
+  color: var(--yellow);
+  background: rgba(245, 166, 35, 0.06);
 }
 
 /* ── TICKER ── */
