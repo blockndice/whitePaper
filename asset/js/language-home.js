@@ -1,9 +1,9 @@
 const translations = {
     fr: {
         'hero-phase':       'Phase III — En développement',
-        'hero-word-1':      'Construire.',
-        'hero-word-2':      'Jouer.',
-        'hero-word-3':      'Récompenser.',
+        'hero-word-1':      'Je construis,',
+        'hero-word-2':      'vous jouez,',
+        'hero-word-3':      'nous récompensons.',
         'hero-desc':        'Block\'n Dice crée des mini-jeux en JavaScript natif jouables sur navigateur, mobile et tablette. On prototype, on teste, on sécurise. Web3 via Solana et pump.fun.',
         'hero-btn-primary': 'Voir la roadmap',
         'hero-btn-ghost':   'Modèle P2E →',
@@ -55,7 +55,7 @@ const translations = {
         'stack-4-desc':'Token communautaire sur Solana. Bonding curve automatique, liquidité immédiate. Récompenses directes aux joueurs via le token natif.',
         'stack-5-desc':'Smart contracts Rust audités. Wallet Phantom. Frais quasi-nuls, exécution instantanée. Déployé uniquement si les métriques Web2 le justifient.',
 
-        'cta-h2-1':       'Créer pour jouer.',
+        'cta-h2-1':       'Créer du fun.',
         'cta-h2-2':       'Récompenser les défis.',
         'cta-desc':       'Divertissement, défis entre joueurs, récompenses on-chain.',
         'cta-btn-main':   'Suivre sur itch.io',
@@ -64,9 +64,9 @@ const translations = {
 
     en: {
         'hero-phase':       'Phase III — In development',
-        'hero-word-1':      'Build.',
-        'hero-word-2':      'Play.',
-        'hero-word-3':      'Reward.',
+        'hero-word-1':      'I build,',
+        'hero-word-2':      'you play,',
+        'hero-word-3':      'we reward.',
         'hero-desc':        'Block\'n Dice creates mini-games in native JavaScript playable on browser, mobile, and tablet. We prototype, test, and secure. Web3 via Solana and pump.fun.',
         'hero-btn-primary': 'View the roadmap',
         'hero-btn-ghost':   'P2E model →',
@@ -118,7 +118,7 @@ const translations = {
         'stack-4-desc':'Community token on Solana. Automatic bonding curve, immediate liquidity. Direct player rewards via native token.',
         'stack-5-desc':'Audited Rust smart contracts. Phantom wallet. Near-zero fees, instant execution. Deployed only if Web2 metrics justify it.',
 
-        'cta-h2-1':       'Build to play.',
+        'cta-h2-1':       'Create fun.',
         'cta-h2-2':       'Reward the challenges.',
         'cta-desc':       'Entertainment, player challenges, on-chain rewards.',
         'cta-btn-main':   'Follow on itch.io',
@@ -127,9 +127,9 @@ const translations = {
 
     es: {
         'hero-phase':       'Fase III — En desarrollo',
-        'hero-word-1':      'Construir.',
-        'hero-word-2':      'Jugar.',
-        'hero-word-3':      'Recompensar.',
+        'hero-word-1':      'Yo construyo,',
+        'hero-word-2':      'vosotros jugáis,',
+        'hero-word-3':      'recompensamos.',
         'hero-desc':        'Block\'n Dice crea mini-juegos en JavaScript nativo jugables en navegador, móvil y tablet. Prototipamos, probamos y aseguramos. Web3 vía Solana y pump.fun.',
         'hero-btn-primary': 'Ver la hoja de ruta',
         'hero-btn-ghost':   'Modelo P2E →',
@@ -181,7 +181,7 @@ const translations = {
         'stack-4-desc':'Token comunitario en Solana. Bonding curve automática, liquidez inmediata. Recompensas directas a jugadores vía token nativo.',
         'stack-5-desc':'Smart contracts en Rust auditados. Wallet Phantom. Comisiones casi nulas, ejecución instantánea. Desplegado solo si las métricas Web2 lo justifican.',
 
-        'cta-h2-1':       'Construir para jugar.',
+        'cta-h2-1':       'Crear diversión.',
         'cta-h2-2':       'Recompensar los desafíos.',
         'cta-desc':       'Entretenimiento, desafíos entre jugadores, recompensas on-chain.',
         'cta-btn-main':   'Seguir en itch.io',
