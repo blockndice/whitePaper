@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <title>Flappy World — Documentation Technique</title>
@@ -500,17 +500,17 @@
       <rect x="11" y="1" width="9" height="2" fill="#cc6600"/>
     </g>
   </svg>
-  <div class="cover-tag" data-i18n="cover.tag">Documentation Technique</div>
+  <div class="cover-tag" data-i18n="cover.tag">Technical Documentation</div>
   <h1>Flappy World</h1>
-  <h2 data-i18n="cover.h2">Architecture &amp; Cycle de jeu</h2>
+  <h2 data-i18n="cover.h2">Architecture &amp; Game Loop</h2>
   <div class="cover-divider"></div>
   <div class="cover-meta" data-i18n-html="cover.meta">
-    <strong>Version courante</strong> v0.19.3<br>
-    <strong>Dépôt</strong> github.com/blockndice/flappyWorld<br>
-    <strong>Branche</strong> main<br>
-    <strong>Technologie</strong> Vanilla JS · Canvas 2D · HTML5 Audio<br>
-    <strong>Résolution interne</strong> 400 × 600 px<br>
-    <strong>Date</strong> Juin 2026
+    <strong>Current version</strong> v0.19.3<br>
+    <strong>Repository</strong> github.com/blockndice/flappyWorld<br>
+    <strong>Branch</strong> main<br>
+    <strong>Technology</strong> Vanilla JS · Canvas 2D · HTML5 Audio<br>
+    <strong>Internal resolution</strong> 400 × 600 px<br>
+    <strong>Date</strong> June 2026
   </div>
   <div class="cover-version">v0.19.3</div>
 </div>
@@ -520,14 +520,14 @@
      PAGE 2 — SOMMAIRE
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="toc-title" data-i18n="toc.title">Sommaire</div>
+  <div class="toc-title" data-i18n="toc.title">Contents</div>
   <ul class="toc-list">
-    <li><span class="toc-num">1</span><span class="toc-label" data-i18n="toc.1">Structure des fichiers</span><span class="toc-page">page <strong>3</strong></span></li>
-    <li><span class="toc-num">2</span><span class="toc-label" data-i18n="toc.2">Machine d'états du jeu</span><span class="toc-page">page <strong>4</strong></span></li>
-    <li><span class="toc-num">3</span><span class="toc-label" data-i18n="toc.3">Physique &amp; Boucle principale</span><span class="toc-page">page <strong>5</strong></span></li>
-    <li><span class="toc-num">4</span><span class="toc-label" data-i18n="toc.4">Système audio</span><span class="toc-page">page <strong>6</strong></span></li>
-    <li><span class="toc-num">5</span><span class="toc-label" data-i18n="toc.5">Shop &amp; Articles</span><span class="toc-page">page <strong>7</strong></span></li>
-    <li><span class="toc-num">6</span><span class="toc-label" data-i18n="toc.6">Persistance &amp; Responsive</span><span class="toc-page">page <strong>8</strong></span></li>
+    <li><span class="toc-num">1</span><span class="toc-label" data-i18n="toc.1">File structure</span><span class="toc-page">page <strong>3</strong></span></li>
+    <li><span class="toc-num">2</span><span class="toc-label" data-i18n="toc.2">Game state machine</span><span class="toc-page">page <strong>4</strong></span></li>
+    <li><span class="toc-num">3</span><span class="toc-label" data-i18n="toc.3">Physics &amp; Main loop</span><span class="toc-page">page <strong>5</strong></span></li>
+    <li><span class="toc-num">4</span><span class="toc-label" data-i18n="toc.4">Audio system</span><span class="toc-page">page <strong>6</strong></span></li>
+    <li><span class="toc-num">5</span><span class="toc-label" data-i18n="toc.5">Shop &amp; Items</span><span class="toc-page">page <strong>7</strong></span></li>
+    <li><span class="toc-num">6</span><span class="toc-label" data-i18n="toc.6">Persistence &amp; Responsive</span><span class="toc-page">page <strong>8</strong></span></li>
   </ul>
 </div>
 
@@ -536,9 +536,9 @@
      PAGE 3 — STRUCTURE DES FICHIERS
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="section-header"><div class="num">1</div><h2 data-i18n="s1.h2">Structure des fichiers</h2></div>
+  <div class="section-header"><div class="num">1</div><h2 data-i18n="s1.h2">File structure</h2></div>
 
-  <h3 data-i18n="s1.h3.tree">Arborescence du projet</h3>
+  <h3 data-i18n="s1.h3.tree">Project tree</h3>
   <pre>flappySol/
 ├── index.html               <span class="cmt"># Point d'entrée — charge les 3 scripts dans l'ordre</span>
 ├── asset/
@@ -552,9 +552,9 @@
 │   └── img/                 <span class="cmt"># Images OG / icônes</span>
 └── doc_technique.html       <span class="cmt"># Ce document</span></pre>
 
-  <div class="note" data-i18n-html="s1.note">Les scripts sont chargés dans l'ordre : <code>sound.js</code> → <code>shop.js</code> → <code>game.js</code>. Chaque fichier expose ses fonctions au scope global ; <code>game.js</code> les consomme.</div>
+  <div class="note" data-i18n-html="s1.note">Scripts are loaded in order: <code>sound.js</code> → <code>shop.js</code> → <code>game.js</code>. Each file exposes its functions to the global scope; <code>game.js</code> consumes them.</div>
 
-  <h3 data-i18n="s1.h3.roles">Rôle de chaque fichier JS</h3>
+  <h3 data-i18n="s1.h3.roles">Role of each JS file</h3>
   <table>
     <tr><th>Fichier</th><th>Lignes</th><th>Responsabilité</th></tr>
     <tr><td><span class="file-badge">sound.js</span></td><td>172</td><td>Déclaration des 16 sons, moteur de chargement avec timeout secours 5 s, volume maître, déverrouillage AudioContext mobile, chaînage musiques (startRun → travelMusic → dead → resumeMusic).</td></tr>
@@ -562,7 +562,7 @@
     <tr><td><span class="file-badge">game.js</span></td><td>1 719</td><td>Constantes physiques, machine d'états, boucle <code>loop()</code>, <code>update()</code>, <code>render()</code>, sprites pixel-art, UI pop-up (score / leaderboard / try-again), responsive scaling, favicon dynamique, persistance localStorage.</td></tr>
   </table>
 
-  <h3 data-i18n="s1.h3.order">Ordre d'exécution au démarrage</h3>
+  <h3 data-i18n="s1.h3.order">Startup execution order</h3>
   <pre><span class="cmt">1. sound.js  — crée les Audio(), lance le chargement, installe _unlockAudio</span>
 <span class="cmt">2. shop.js   — définit SHOP_ITEMS, relit localStorage (équipements, pièces)</span>
 <span class="cmt">3. game.js   — relit localStorage (scores, version), setFavicon(), init(), loop()</span>
@@ -576,9 +576,9 @@
      PAGE 3 — MACHINE D'ÉTATS
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="section-header"><div class="num">2</div><h2 data-i18n="s2.h2">Machine d'états du jeu</h2></div>
+  <div class="section-header"><div class="num">2</div><h2 data-i18n="s2.h2">Game state machine</h2></div>
 
-  <h3 data-i18n="s2.h3.diagram">Diagramme de flux</h3>
+  <h3 data-i18n="s2.h3.diagram">Flow diagram</h3>
   <div class="diagram"><span class="accent">╔══════════════════════════════════════════════════════════════╗
 ║                        CYCLE DE JEU                         ║
 ╚══════════════════════════════════════════════════════════════╝</span>
@@ -605,7 +605,7 @@
       <span class="dim">No (→ init())</span> <span class="arrow">◄──────────────────────┘</span>  <span class="dim">Yes → countdown</span>
 </div>
 
-  <h3 data-i18n="s2.h3.states">Les 6 états en détail</h3>
+  <h3 data-i18n="s2.h3.states">The 6 states in detail</h3>
   <div class="state-grid">
     <div class="state-card">
       <div class="state-name">intro1</div>
@@ -633,7 +633,7 @@
     </div>
   </div>
 
-  <h3 data-i18n-html="s2.h3.subpages">Sous-pages de <code>intro1</code></h3>
+  <h3 data-i18n-html="s2.h3.subpages">Sub-pages of <code>intro1</code></h3>
   <table>
     <tr><th>intro1Page</th><th>Contenu affiché</th><th>Transition</th></tr>
     <tr><td><code>1</code></td><td>Message "Clic / Espace / Toucher" — attend <code>soundsReady</code></td><td>Clic → page 2</td></tr>
@@ -648,9 +648,9 @@
      PAGE 4 — PHYSIQUE & BOUCLE
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="section-header"><div class="num">3</div><h2 data-i18n="s3.h2">Physique &amp; Boucle principale</h2></div>
+  <div class="section-header"><div class="num">3</div><h2 data-i18n="s3.h2">Physics &amp; Main loop</h2></div>
 
-  <h3 data-i18n="s3.h3.consts">Constantes physiques</h3>
+  <h3 data-i18n="s3.h3.consts">Physics constants</h3>
   <table>
     <tr><th>Constante</th><th>Valeur</th><th>Rôle</th></tr>
     <tr><td><code>GRAVITY</code></td><td>0.38</td><td>Accélération vers le bas par frame</td></tr>
@@ -664,7 +664,7 @@
     <tr><td><code>GLIDE_DAMP</code></td><td>0.12</td><td>Amortissement (lerp) vers la vitesse cible</td></tr>
   </table>
 
-  <h3 data-i18n="s3.h3.loop">Boucle principale</h3>
+  <h3 data-i18n="s3.h3.loop">Main loop</h3>
   <pre><span class="kw">function</span> <span class="fn">loop</span>() {
   coinTick++;              <span class="cmt">// anime la pièce (rotation cosinus)</span>
   <span class="cmt">// défilement des nuages (hors dead/score)</span>
@@ -673,7 +673,7 @@
   requestAnimationFrame(<span class="fn">loop</span>);
 }</pre>
 
-  <h3 data-i18n-html="s3.h3.render">Ordre de rendu dans <code>render()</code></h3>
+  <h3 data-i18n-html="s3.h3.render">Render order in <code>render()</code></h3>
   <ol>
     <li>Shake d'écran si <code>dead</code> frame 1–10 (translate aléatoire)</li>
     <li><code>sprBg()</code> — ciel dégradé + soleil + nuages</li>
@@ -685,7 +685,7 @@
     <li><code>drawUI()</code> — HUD, pop-ups, menus selon l'état</li>
   </ol>
 
-  <h3 data-i18n="s3.h3.tricks">Tricks disponibles</h3>
+  <h3 data-i18n="s3.h3.tricks">Available tricks</h3>
   <table>
     <tr><th>Trick</th><th>Déclencheur</th><th>Comportement</th></tr>
     <tr><td><code>toupie</code></td><td>Tous les 3 sauts</td><td>Flip vertical + maintien bouton = planeur (vy → 0.3 par lerp)</td></tr>
@@ -698,9 +698,9 @@
      PAGE 5 — SYSTÈME AUDIO
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="section-header"><div class="num">4</div><h2 data-i18n="s4.h2">Système audio</h2></div>
+  <div class="section-header"><div class="num">4</div><h2 data-i18n="s4.h2">Audio system</h2></div>
 
-  <h3 data-i18n="s4.h3.catalog">Catalogue des sons</h3>
+  <h3 data-i18n="s4.h3.catalog">Sound catalogue</h3>
   <div class="sound-list">
     <div class="sound-item"><span class="sid">jump</span><br><span class="sfile">jump02.mp3 · vol 0.3 · overlap</span></div>
     <div class="sound-item"><span class="sid">jumpPet</span><br><span class="sfile">pet01.mp3 · vol 0.7 · overlap</span></div>
@@ -720,7 +720,7 @@
     <div class="sound-item"><span class="sid">evilLaught</span><br><span class="sfile">evilLaught.mp3 · vol 0.9</span></div>
   </div>
 
-  <h3 data-i18n="s4.h3.chain">Chaînage des musiques</h3>
+  <h3 data-i18n="s4.h3.chain">Music chaining</h3>
   <div class="diagram">  <span class="accent">intro1</span>  <span class="arrow">───►</span>  introMusic (loop)
 
   <span class="accent">Free Run cliqué</span>  <span class="arrow">───►</span>  stopIntroMusic  <span class="arrow">───►</span>  startRun
@@ -741,7 +741,7 @@
 
   <span class="accent">Yes / init()</span>  <span class="arrow">───►</span>  stopResumeMusic  <span class="arrow">───►</span>  startRun  <span class="arrow">───►</span> …</div>
 
-  <h3 data-i18n="s4.h3.strategies">Stratégies de lecture</h3>
+  <h3 data-i18n="s4.h3.strategies">Playback strategies</h3>
   <table>
     <tr><th>Cas</th><th>Mécanisme</th></tr>
     <tr><td>Sons ponctuels superposables (<code>overlap: true</code>)</td><td><code>cloneNode()</code> → lecture parallèle possible (ex : saut rapide)</td></tr>
@@ -757,9 +757,9 @@
      PAGE 6 — SHOP & ARTICLES
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="section-header"><div class="num">5</div><h2 data-i18n="s5.h2">Shop &amp; Articles</h2></div>
+  <div class="section-header"><div class="num">5</div><h2 data-i18n="s5.h2">Shop &amp; Items</h2></div>
 
-  <h3 data-i18n="s5.h3.catalog">Catalogue (17 articles)</h3>
+  <h3 data-i18n="s5.h3.catalog">Catalogue (17 items)</h3>
   <div class="shop-grid">
     <div class="shop-item"><div class="sname">Vert</div><div class="sprice">10 🪙</div><div class="stype">skin</div></div>
     <div class="shop-item"><div class="sname">Rouge</div><div class="sprice">15 🪙</div><div class="stype">skin</div></div>
@@ -780,7 +780,7 @@
     <div class="shop-item"><div class="sname">Pet</div><div class="sprice">20 🪙</div><div class="stype">sndJump</div></div>
   </div>
 
-  <h3 data-i18n="s5.h3.types">Types d'articles</h3>
+  <h3 data-i18n="s5.h3.types">Item types</h3>
   <table>
     <tr><th>Type</th><th>Slot actif</th><th>Effet</th></tr>
     <tr><td><code>skin</code></td><td><code>playerPal</code></td><td>Couleur de l'oiseau. Spéciaux : Phosphor (pal 98, animation HSL), Multicolor (pal 99, lerp entre 7 couleurs)</td></tr>
@@ -790,7 +790,7 @@
     <tr><td><code>sndJump</code></td><td><code>activeJumpSnd</code></td><td>Son alternatif au saut (Pet remplace aussi le deadMusic par deadPet)</td></tr>
   </table>
 
-  <h3 data-i18n="s5.h3.flux">Flux achat / preview</h3>
+  <h3 data-i18n="s5.h3.flux">Buy / preview flow</h3>
   <pre><span class="cmt">Clic carte → setPreview(item)   [intro1Page = 4, affiche preview]</span>
   <span class="cmt">→ Bouton Acheter → shopConfirm = true</span>
     <span class="cmt">→ Confirmer → item.buy = true, totalCoins -= price, equip automatique</span>
@@ -804,9 +804,9 @@
      PAGE 7 — PERSISTANCE & RESPONSIVE
 ══════════════════════════════════════ -->
 <div class="page">
-  <div class="section-header"><div class="num">6</div><h2 data-i18n="s6.h2">Persistance &amp; Responsive</h2></div>
+  <div class="section-header"><div class="num">6</div><h2 data-i18n="s6.h2">Persistence &amp; Responsive</h2></div>
 
-  <h3 data-i18n="s6.h3.ls">Clés localStorage</h3>
+  <h3 data-i18n="s6.h3.ls">localStorage keys</h3>
   <table class="ls-table">
     <tr><th>Clé</th><th>Type</th><th>Contenu</th></tr>
     <tr><td><code>fw_ver</code></td><td>String</td><td>Version du format de sauvegarde (actuellement <code>'4'</code>). Si différente, efface <code>fw_top</code> et <code>fw_best</code>.</td></tr>
@@ -843,7 +843,7 @@
     <tr><td>Tablette portrait</td><td><code>vh/H</code></td><td>Remplit la hauteur (largeur canvas ≤ vp width)</td></tr>
   </table>
 
-  <h3 data-i18n-html="s6.h3.coords">Coords écran → canvas (<code>canvasPos</code>)</h3>
+  <h3 data-i18n-html="s6.h3.coords">Screen → canvas coords (<code>canvasPos</code>)</h3>
   <pre><span class="kw">function</span> <span class="fn">canvasPos</span>(clientX, clientY) {
   <span class="kw">const</span> r = canvas.<span class="fn">getBoundingClientRect</span>(); <span class="cmt">// rect visuel après CSS transform</span>
   <span class="kw">return</span> [(clientX - r.left) * W / r.width,
@@ -851,7 +851,7 @@
 }
 <span class="cmt">// Fonctionne quelle que soit l'échelle CSS ou le transform appliqué</span></pre>
 
-  <h3 data-i18n="s6.h3.fullscreen">Plein écran</h3>
+  <h3 data-i18n="s6.h3.fullscreen">Fullscreen</h3>
   <ul>
     <li><strong>Desktop/tablette</strong> : bouton <code>#fsBtn</code> → <code>requestFullscreen()</code> / <code>exitFullscreen()</code> avec préfixe webkit</li>
     <li><strong>iOS</strong> : ne supporte pas l'API Fullscreen — couvert par les meta PWA (<code>apple-mobile-web-app-capable</code>) pour le mode "ajout à l'écran d'accueil"</li>
@@ -860,11 +860,11 @@
 </div>
 
 <div class="lang-switcher">
-  <button class="lang-btn lang-active" data-lang="fr" onclick="setLang('fr')" title="Français">
-    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect x="0" y="0" width="10" height="30" fill="#002395"/><rect x="10" y="0" width="10" height="30" fill="#fff"/><rect x="20" y="0" width="10" height="30" fill="#ED2939"/></svg>
-  </button>
-  <button class="lang-btn lang-soon" data-lang="en" onclick="setLang('en')" title="English">
+  <button class="lang-btn lang-active" data-lang="en" onclick="setLang('en')" title="English">
     <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect width="30" height="30" fill="#012169"/><line x1="0" y1="0" x2="30" y2="30" stroke="#fff" stroke-width="4"/><line x1="30" y1="0" x2="0" y2="30" stroke="#fff" stroke-width="4"/><line x1="0" y1="0" x2="30" y2="30" stroke="#C8102E" stroke-width="2.5"/><line x1="30" y1="0" x2="0" y2="30" stroke="#C8102E" stroke-width="2.5"/><rect x="12" y="0" width="6" height="30" fill="#fff"/><rect x="0" y="12" width="30" height="6" fill="#fff"/><rect x="13" y="0" width="4" height="30" fill="#C8102E"/><rect x="0" y="13" width="30" height="4" fill="#C8102E"/></svg>
+  </button>
+  <button class="lang-btn lang-soon" data-lang="fr" onclick="setLang('fr')" title="Français">
+    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect x="0" y="0" width="10" height="30" fill="#002395"/><rect x="10" y="0" width="10" height="30" fill="#fff"/><rect x="20" y="0" width="10" height="30" fill="#ED2939"/></svg>
   </button>
   <button class="lang-btn lang-soon" data-lang="es" onclick="setLang('es')" title="Español">
     <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><rect x="0" y="0" width="30" height="8" fill="#c60b1e"/><rect x="0" y="8" width="30" height="14" fill="#ffc400"/><rect x="0" y="22" width="30" height="8" fill="#c60b1e"/></svg>
@@ -933,6 +933,7 @@ function setLang(lang) {
     btn.classList.toggle('lang-soon', !active);
   });
 }
+document.addEventListener('DOMContentLoaded', () => { setLang('en'); });
 </script>
 </body>
 </html>

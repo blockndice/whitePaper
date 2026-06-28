@@ -338,9 +338,7 @@ function changeLanguage(lang) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const browserLang = navigator.language.split('-')[0];
-    const defaultLang = translations[browserLang] ? browserLang : 'fr';
-    changeLanguage(defaultLang);
+    changeLanguage('en');
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
         btn.addEventListener('click', e => {
