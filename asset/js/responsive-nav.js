@@ -86,3 +86,30 @@
         initResponsiveNav();
     }
 })();
+
+// ========== Espacement équitable sidebar (flappyWorld) ==========
+(function() {
+    const GAP = 12;
+
+    function alignSidebar() {
+        const notif   = document.querySelector('.notification-wrapper');
+        const backBtn = document.querySelector('.back-button-wrapper');
+        const toc     = document.querySelector('.table-of-contents');
+
+        if (!notif || !backBtn || !toc) return;
+        if (window.innerWidth <= 1200) return;
+
+        const notifBottom = notif.getBoundingClientRect().bottom;
+        backBtn.style.top = (notifBottom + GAP) + 'px';
+
+        const backBtnBottom = backBtn.getBoundingClientRect().bottom;
+        toc.style.top = (backBtnBottom + GAP) + 'px';
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', alignSidebar);
+    } else {
+        alignSidebar();
+    }
+    window.addEventListener('resize', alignSidebar);
+})();
