@@ -10,7 +10,7 @@ const translations = {
         'status-5': 'Intégration<br>Web3',
 
         'back-button': 'Retour au sommaire',
-        'banner-link': 'Voir le site',
+        'banner-link': 'Visitez notre site web',
 
         'toc-title': 'Table des matières',
         'toc-vision': 'Vision',
@@ -118,7 +118,7 @@ const translations = {
         'status-5': 'Web3<br>Integration',
 
         'back-button': 'Back to summary',
-        'banner-link': 'Visit site',
+        'banner-link': 'Visit our website',
 
         'toc-title': 'Table of Contents',
         'toc-vision': 'Vision',
@@ -226,7 +226,7 @@ const translations = {
         'status-5': 'Integración<br>Web3',
 
         'back-button': 'Volver al resumen',
-        'banner-link': 'Ver el sitio',
+        'banner-link': 'Visite nuestro sitio web',
 
         'toc-title': 'Tabla de Contenidos',
         'toc-vision': 'Visión',

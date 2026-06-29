@@ -124,7 +124,7 @@ const translations = {
         'section-note-title': 'Note',
         'note-final': '<strong>Projet de taille humaine en développement</strong>',
 
-        'banner-link': 'Voir le site',
+        'banner-link': 'Visitez notre site web',
 
         // Footer
         'footer-text': '© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0',
@@ -254,7 +254,7 @@ const translations = {
         'section-note-title': 'Note',
         'note-final': '<strong>Human-sized project in development</strong>',
 
-        'banner-link': 'Visit site',
+        'banner-link': 'Visit our website',
 
         // Footer
         'footer-text': '© 2025 - Web3 Mini-Game Prototype - White Paper v0.0',
@@ -384,7 +384,7 @@ const translations = {
         'section-note-title': 'Nota',
         'note-final': '<strong>Proyecto de tamaño humano en desarrollo</strong>',
 
-        'banner-link': 'Ver el sitio',
+        'banner-link': 'Visite nuestro sitio web',
 
         // Footer
         'footer-text': '© 2025 - Prototipo de Mini-Juego Web3 - White Paper v0.0',
