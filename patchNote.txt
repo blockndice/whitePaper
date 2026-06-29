@@ -40,6 +40,7 @@ v1.03.3 : Update tableau Projet.phase
 v1.03.4 : Update language anglais par défaut
 v1.03.5 : Correction position traduction + Sommaire whitepaper.html
 v1.03.6 : Correction similaire sur flappyWorld.html
+v1.03.7 : Update link site sur la bannière whitepaper
 
 ** Next step **
 s'inspirer de mes jeux wow / starcraft / mini jeu soul fighter de lol / fellowship / Card Game Magic / Tetris game Super puyo puyo
