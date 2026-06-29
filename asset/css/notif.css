@@ -21,7 +21,7 @@
 .table-of-contents {
     position: fixed;
     left: 2rem;
-    top: calc(1rem + 80px + 1rem); /* marge + hauteur estimée de la notif + marge */
+    top: 2rem;
     width: 280px;
     background: var(--bg-card);
     padding: 1.5rem;

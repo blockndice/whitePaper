@@ -653,6 +653,7 @@ body.theme-transitioning {
 .social-icon.itchio:hover { color: #FA5C5C; }
 .social-icon.youtube:hover { color: #FF0000; }
 
+
 /* ========== BANNIÈRE DE NOTIFICATION ========== */
 .notification-banner {
     background: linear-gradient(135deg, #dc2626, #ef4444);
