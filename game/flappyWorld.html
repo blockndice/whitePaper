@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flappy World</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -14 36 30'%3E%3Cg transform='rotate(-20)'%3E%3Crect x='-13' y='-11' width='26' height='22' fill='%23f5d600'/%3E%3Crect x='-9' y='3' width='16' height='6' fill='%23fff3a0'/%3E%3Crect x='-13' y='0' width='10' height='7' fill='%23d4a800'/%3E%3Crect x='3' y='-8' width='9' height='9' fill='%23fff'/%3E%3Crect x='7' y='-5' width='4' height='4' fill='%23111'/%3E%3Crect x='11' y='-3' width='9' height='5' fill='%23ff8800'/%3E%3Crect x='11' y='1' width='9' height='2' fill='%23cc6600'/%3E%3C/g%3E%3C/svg%3E"/>
+
+  <!-- PWA -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0d0d1a" />
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Flappy World" />
+  <meta property="og:description" content="play · collect · earn" />
+  <meta property="og:image"       content="https://blockndice.github.io/flappyWorld/asset/img/og-banner.jpg" />
+  <meta property="og:url"         content="https://blockndice.github.io/flappyWorld/" />
+  <meta property="og:type"        content="website" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/6.11.1/css/flag-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../asset/css/flappyWorld.css">
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<div class="page">
+  <div class="hero">
+
+    <!-- Title -->
+    <div class="title-group">
+      <h1 class="title">Flappy<br>World</h1>
+      <p class="slogan" data-i18n="slogan">play · collect · earn</p>
+    </div>
+
+    <!-- Right: phone + carousel -->
+    <div class="hero-right" id="carousel-section">
+      <div class="phone-wrap">
+        <button class="carr-btn prev" id="prev">&#8249;</button>
+        <button class="carr-btn next" id="next">&#8250;</button>
+
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="track">
+              <img src="../asset/img/Screen1.png" alt="Gameplay" />
+              <img src="../asset/img/Screen2.png" alt="Shop"     />
+              <img src="../asset/img/Screen3.png" alt="Top 10"   />
+              <img src="../asset/img/Screen4.png" alt="Title"    />
+            </div>
+          </div>
+          <div class="phone-caption" id="caption">Gameplay</div>
+          <div class="phone-dots" id="dots"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop: features inside the grid -->
+    <div class="hero-left">
+      <ul class="features">
+        <li>
+          <div class="feat-icon blue">🐦</div>
+          <div class="feat-body">
+            <strong data-i18n="f1-title">Easy to pick up</strong>
+            <span  data-i18n="f1-text">One tap and you fly. Mastery comes with every run.</span>
+          </div>
+        </li>
+        <li>
+          <div class="feat-icon yellow">🎨</div>
+          <div class="feat-body">
+            <strong data-i18n="f2-title">Your bird, your style</strong>
+            <span  data-i18n="f2-text">Collect coins in-game to unlock colors, trails, tricks and sounds.</span>
+          </div>
+        </li>
+        <li>
+          <div class="feat-icon green">🗺️</div>
+          <div class="feat-body">
+            <strong data-i18n="f3-title">Adventure Mode</strong>
+            <span  data-i18n="f3-text">Go further in Adventure mode to unlock better rewards. Limited runs, bigger stakes.</span>
+          </div>
+        </li>
+        <li>
+          <div class="feat-icon purple">⚔️</div>
+          <div class="feat-body">
+            <strong data-i18n="f4-title">Challenge Mode <span class="feat-tag" data-i18n="soon">Soon</span></strong>
+            <span  data-i18n="f4-text">A challenge mode is coming — built on the Solana ecosystem.</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Scroll arrow + label (mobile only) -->
+    <div class="scroll-hint">
+      <span class="scroll-label" data-i18n="more-info">Plus d'infos</span>
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
+    <p class="play-now" id="play-now" data-i18n="play-now">Play now</p>
+
+    <!-- CTA -->
+    <div class="cta-wrap">
+      <a class="cta" href="https://blockndice.itch.io/flappy-world" target="_blank" rel="noopener" data-i18n="cta">Demo on itch.io →</a>
+      <span class="badge" data-i18n="badge">Browser · PC &amp; Mobile · No install</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- Features (below the fold) -->
+<section class="features-section" id="features">
+  <ul class="features">
+    <li>
+      <div class="feat-icon blue">🐦</div>
+      <div class="feat-body">
+        <strong data-i18n="f1-title">Easy to pick up</strong>
+        <span  data-i18n="f1-text">One tap and you fly. Mastery comes with every run.</span>
+      </div>
+    </li>
+    <li>
+      <div class="feat-icon yellow">🎨</div>
+      <div class="feat-body">
+        <strong data-i18n="f2-title">Your bird, your style</strong>
+        <span  data-i18n="f2-text">Collect coins in-game to unlock colors, trails, tricks and sounds.</span>
+      </div>
+    </li>
+    <li>
+      <div class="feat-icon green">🗺️</div>
+      <div class="feat-body">
+        <strong data-i18n="f3-title">Adventure Mode</strong>
+        <span  data-i18n="f3-text">Go further in Adventure mode to unlock better rewards. Limited runs, bigger stakes.</span>
+      </div>
+    </li>
+    <li>
+      <div class="feat-icon purple">⚔️</div>
+      <div class="feat-body">
+        <strong data-i18n="f4-title">Challenge Mode <span class="feat-tag" data-i18n="soon">Soon</span></strong>
+        <span  data-i18n="f4-text">A challenge mode is coming — built on the Solana ecosystem.</span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-brand">
+    <span class="logo-text"><span data-i18n="made-by">Built by</span> BLOCK'N <span class="logo-dice">DICE</span></span>
+  </div>
+  <div class="footer-socials">
+  <a href="../whitePaper/whitePaper.html" target="_blank" rel="noopener" class="social-icon whitepaper" title="Whitepaper"><i class="fas fa-scroll"></i></a>
+  <a href="https://x.com/blockndice"                  target="_blank" rel="noopener" class="social-icon x"       title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+  <a href="https://github.com/blockndice"             target="_blank" rel="noopener" class="social-icon github"  title="GitHub"><i class="fab fa-github"></i></a>
+  <a href="https://blockndice.itch.io/"   target="_blank" rel="noopener" class="social-icon itchio" title="itch.io"><i class="fab fa-itch-io"></i></a>
+  </div>
+</footer>
+
+<!-- Language switcher -->
+<div class="lang-switcher">
+  <button class="lang-btn active" data-lang="en" title="English"><span class="fi fi-gb"></span></button>
+  <button class="lang-btn"        data-lang="fr" title="Français"><span class="fi fi-fr"></span></button>
+  <button class="lang-btn"        data-lang="es" title="Español"><span class="fi fi-es"></span></button>
+</div>
+
+<!-- Music controls -->
+<audio id="landing-audio" src="../asset/sound/intro1Music.mp3" loop preload="auto"></audio>
+<div id="music-ctrl">
+  <button id="music-btn" aria-label="Toggle music">
+    <i class="fa-solid fa-music"></i>
+  </button>
+  <div id="music-vol">
+    <div class="vol-track">
+      <input type="range" id="music-vol-slider" min="0" max="1" step="0.05" value="0.5" aria-label="Music volume" />
+    </div>
+  </div>
+</div>
+
+<script src="../asset/js/flappyWorld.js"></script>
+</body>
+</html>
+

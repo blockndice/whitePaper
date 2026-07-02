@@ -1,7 +1,7 @@
 const translations = {
     fr: {
         'header-title': 'Flappy World',
-        'header-subtitle': 'White Paper v0.20 — Mini-Jeu Web3',
+        'header-subtitle': 'White Paper v1.03.9 — Mini-Jeu Web3',
 
         'status-title': 'Statut du projet',
         'status-2': 'Développement',
@@ -103,13 +103,13 @@ const translations = {
         'note-p1': '<strong>Projet de taille humaine, en développement actif.</strong>',
         'note-p2': 'Flappy World est actuellement en phase Alpha (v0.20). Le gameplay de base est fonctionnel et jouable. L\'intégration Web3 viendra en phase 4, une fois le jeu stabilisé et testé par une communauté de joueurs. Ce document évoluera avec le projet.',
 
-        'footer-text': '© 2025 Block\'n Dice — Flappy World White Paper v0.20',
+        'footer-text': '© 2025 Block\'n Dice — Flappy World White Paper v1.03.9',
         'footer-note': 'Document évolutif — Les spécifications peuvent être mises à jour au fil du développement',
     },
 
     en: {
         'header-title': 'Flappy World',
-        'header-subtitle': 'White Paper v0.20 — Web3 Mini-Game',
+        'header-subtitle': 'White Paper v1.03.9 — Web3 Mini-Game',
 
         'status-title': 'Project Status',
         'status-2': 'Development',
@@ -211,13 +211,13 @@ const translations = {
         'note-p1': '<strong>Human-sized project, in active development.</strong>',
         'note-p2': 'Flappy World is currently in Alpha phase (v0.20). Core gameplay is functional and playable. Web3 integration will come in phase 4, once the game is stabilized and tested by a player community. This document will evolve with the project.',
 
-        'footer-text': '© 2025 Block\'n Dice — Flappy World White Paper v0.20',
+        'footer-text': '© 2025 Block\'n Dice — Flappy World White Paper v1.03.9',
         'footer-note': 'Living document — Specifications may be updated throughout development',
     },
 
     es: {
         'header-title': 'Flappy World',
-        'header-subtitle': 'White Paper v0.20 — Mini-Juego Web3',
+        'header-subtitle': 'White Paper v1.03.9 — Mini-Juego Web3',
 
         'status-title': 'Estado del Proyecto',
         'status-2': 'Desarrollo',
@@ -319,7 +319,7 @@ const translations = {
         'note-p1': '<strong>Proyecto de escala humana, en desarrollo activo.</strong>',
         'note-p2': 'Flappy World se encuentra actualmente en fase Alpha (v0.20). El gameplay básico es funcional y jugable. La integración Web3 llegará en la fase 4, una vez el juego esté estabilizado y probado por una comunidad de jugadores. Este documento evolucionará con el proyecto.',
 
-        'footer-text': '© 2025 Block\'n Dice — Flappy World White Paper v0.20',
+        'footer-text': '© 2025 Block\'n Dice — Flappy World White Paper v1.03.9',
         'footer-note': 'Documento evolutivo — Las especificaciones pueden actualizarse durante el desarrollo',
     }
 };

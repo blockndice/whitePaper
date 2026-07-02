@@ -3,7 +3,7 @@ const translations = {
     fr: {
         // Header
         'header-title': 'Early Projet de Mini-Jeu Web3',
-        'header-subtitle': 'White Paper v0',
+        'header-subtitle': 'White Paper v1.03.9',
         'notification-banner': '⚠️ <strong>White paper en rédaction </strong> ⚠️',
         
         // Table des matières
@@ -127,14 +127,14 @@ const translations = {
         'banner-link': 'Visitez notre site web',
 
         // Footer
-        'footer-text': '© 2025 - Prototype de Mini-Jeu Web3 - White Paper v0.0',
+        'footer-text': '© 2025 - Prototype de Mini-Jeu Web3 - White Paper v1.03.9.0',
         'footer-note': 'Document évolutif - Les spécifications peuvent être mises à jour au fil du développement',
     },
 
     en: {
         // Header
         'header-title': 'Early Web3 Mini-Game Project',
-        'header-subtitle': 'White Paper v0',
+        'header-subtitle': 'White Paper v1.03.9',
         'notification-banner': '⚠️ <strong>White paper in progress</strong> ⚠️',
         
         // Table of contents
@@ -257,14 +257,14 @@ const translations = {
         'banner-link': 'Visit our website',
 
         // Footer
-        'footer-text': '© 2025 - Web3 Mini-Game Prototype - White Paper v0.0',
+        'footer-text': '© 2025 - Web3 Mini-Game Prototype - White Paper v1.03.9.0',
         'footer-note': 'Evolving document - Specifications may be updated during development',
     },
 
     es: {
         // Header
         'header-title': 'Proyecto Early de Mini-Juego Web3',
-        'header-subtitle': 'White Paper v0',
+        'header-subtitle': 'White Paper v1.03.9',
         'notification-banner': '⚠️ <strong>White paper en redacción</strong> ⚠️',
         
         // Tabla de contenidos
@@ -387,7 +387,7 @@ const translations = {
         'banner-link': 'Visite nuestro sitio web',
 
         // Footer
-        'footer-text': '© 2025 - Prototipo de Mini-Juego Web3 - White Paper v0.0',
+        'footer-text': '© 2025 - Prototipo de Mini-Juego Web3 - White Paper v1.03.9.0',
         'footer-note': 'Documento evolutivo - Las especificaciones pueden actualizarse durante el desarrollo',
     }
 };

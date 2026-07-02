@@ -13,7 +13,7 @@ const translations = {
         'phase-2-name':   'Test sur itch.io',
         'phase-2-sub':    'web · mobile · tablette',
         'phase-2-status': 'maintenant',
-        'phase-more-info':'Plus d\'infos',
+        'phase-more-info':'🎮 Jouer maintenant →',
         'phase-3-sub':    'rewards',
         'phase-3-status': 'phase III',
 
@@ -77,7 +77,7 @@ const translations = {
         'phase-2-name':   'Test on itch.io',
         'phase-2-sub':    'web · mobile · tablet',
         'phase-2-status': 'now',
-        'phase-more-info':'Learn more',
+        'phase-more-info':'🎮 Play now →',
         'phase-3-sub':    'rewards',
         'phase-3-status': 'phase III',
 
@@ -141,7 +141,7 @@ const translations = {
         'phase-2-name':   'Test en itch.io',
         'phase-2-sub':    'web · móvil · tablet',
         'phase-2-status': 'ahora',
-        'phase-more-info':'Más info',
+        'phase-more-info':'🎮 Jugar ahora →',
         'phase-3-sub':    'recompensas',
         'phase-3-status': 'fase III',
 
